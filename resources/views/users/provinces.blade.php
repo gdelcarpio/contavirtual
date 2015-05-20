@@ -1,0 +1,1 @@
+{!! Form::select('province', $provinces, null, ['class' => 'form-control text-center', 'required', 'id' => 'province']) !!}
