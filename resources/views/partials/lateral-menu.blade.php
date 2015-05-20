@@ -7,6 +7,18 @@
 		</a>
 	</li>
 
+	@if( is_admin() )
+
+	<li class="menu-li">
+		<a href="{{ route('users.index') }}" class="ajax-link">
+			<i class="fa fa-users"></i>
+			<span class="hidden-xs">Usuarios</span>
+		</a>
+		<a href="{{ route('users.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
+	</li>
+	
+	@endif
+
 	<li class="menu-li">
 		<a href="{{ route('companies') }}" class="ajax-link">
 			<i class="fa fa-users"></i>

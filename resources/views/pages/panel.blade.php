@@ -14,7 +14,7 @@
 <!--Start Dashboard 1-->
 <div id="dashboard-header" class="row">
 	<div class="col-xs-10 col-sm-10">
-		<h3>{{-- Auth::user()->roles->first()->name --}} / {{-- Auth::user()->name --}} {{-- Auth:: user()->lastname --}}</h3>
+		<h3>{{ Auth::user()->roles->first()->name }} / {{ Auth::user()->name }} {{ Auth:: user()->lastname }}</h3>
 	</div>
 
 
