@@ -27,7 +27,7 @@ class UserTableSeeder extends Seeder {
                 'ruc' => $faker->numberBetween(111111,888888),
                 'company_name' => $faker->company,
                 'sol_key' => $faker->randomNumber($nbDigits = 5),
-                'bn_account' =>$faker->creditCardNumber,
+                'bn_account' =>\Crypt::encrypt($faker->creditCardNumber),
                 'level_id' => $faker->numberBetween(1,2),
             ));
  
@@ -44,7 +44,7 @@ class UserTableSeeder extends Seeder {
                 'ruc' => $faker->numberBetween(111111,888888),
                 'company_name' => $faker->company,
                 'sol_key' => $faker->randomNumber($nbDigits = 5),
-                'bn_account' =>$faker->creditCardNumber,
+                'bn_account' =>\Crypt::encrypt($faker->creditCardNumber),
                 'level_id' => $faker->numberBetween(1,2),
             ));
 
@@ -63,7 +63,7 @@ class UserTableSeeder extends Seeder {
 				'ruc' => $faker->numberBetween(111111,888888),
 				'company_name' => $faker->company,
 				'sol_key' => $faker->randomNumber($nbDigits = 5),
-				'bn_account' =>$faker->creditCardNumber,
+				'bn_account' =>\Crypt::encrypt($faker->creditCardNumber),
 				'level_id' => $faker->numberBetween(1,2),
 			));
 		}
