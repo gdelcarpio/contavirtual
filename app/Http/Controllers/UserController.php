@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\PasswordRequest;
 
 use App\User;
 use App\Department;
@@ -200,9 +201,9 @@ class UserController extends Controller {
 
 	public function updatePassword(PasswordRequest $request)
 	{
-	    $user = Auth::user();
+	    $user = \Auth::user();
 
-	    if(!\Hash::check(\Input::get('old_password'), $user->password))
+	    if(!\Hash::check($request['old_password'], $user->password))
 	    {
 	      \Flash::warning('La contraseña actual no es correcta.');
 	      return \Redirect::back();
@@ -211,7 +212,7 @@ class UserController extends Controller {
 		$user->update($request->only('password'));
 
 	    \Flash::success('Contraseña actualizada.');
-	    return \Redirect::route('index');
+	    return \Redirect::route('home');
 	}
 
 	public function resetPassword($id)

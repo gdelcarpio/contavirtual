@@ -35,10 +35,16 @@
 					<span>Perfil</span>
 				</a>
 			</li>
-			<li>
+{{-- 			<li>
 				<a href="ajax/page_messages.html" class="ajax-link">
 					<i class="fa fa-envelope"></i>
 					<span>Messages</span>
+				</a>
+			</li> --}}
+			<li>
+				<a href="{{ route('users.password.edit') }}" class="ajax-link">
+					<i class="fa fa-key"></i>
+					<span>Cambiar contraseña</span>
 				</a>
 			</li>
 			<li>
