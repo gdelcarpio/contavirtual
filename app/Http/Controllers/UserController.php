@@ -42,6 +42,8 @@ class UserController extends Controller {
 	 */
 	public function create()
 	{
+		\Session::forget('location');
+
 		$departments = Department::lists('name', 'id');
 		$departments = array('' => 'Seleccione') + $departments;
 
@@ -65,7 +67,7 @@ class UserController extends Controller {
 
 		$user->roles()->attach(1);
 
-		Session::forget('location');
+		\Session::forget('location');
 
 		\Flash::success('Usuario agregado satisfactoriamente.');
 
@@ -110,9 +112,17 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, UserRequest $request)
 	{
-		//
+		$user = User::findOrFail($id);
+
+		$user->update($request->all());
+
+		\Session::forget('location');
+
+		\Flash::success('El usuario se actualizó correctamente.');
+
+		return \Redirect::route('users.index');
 	}
 
 	/**
