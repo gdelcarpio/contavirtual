@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Invoice;
+use App\Account;
+use App\Subaccount;
+use App\Company;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller {
@@ -21,32 +25,24 @@ class InvoiceController extends Controller {
         return view('pages.invoices', compact('invoices'));
     }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+
 	public function create()
 	{
-		//
+        $categoria = Account::All();
+        $subcategoria = Subaccount::All();
+        $companies = Company::select('ruc','id')->where('client','=','1')->get();
+
+		return view('pages.invoice_create', compact('categoria','subcategoria','companies'));
+        //dd($companies);
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+
 	public function store()
 	{
 		//
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+
 	public function show($id)
 	{
 		//
@@ -84,5 +80,13 @@ class InvoiceController extends Controller {
 	{
 		//
 	}
+
+
+    // public function subcategoria($id){
+    //     if(Request::ajax()){
+    //         $subcat = \DB::table('subaccount')->select('id','name')->where('account_id','=','id')->get();
+    //         return Response::json($subcat);
+    //     }
+    // }
 
 }

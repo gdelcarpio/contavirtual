@@ -15,7 +15,7 @@ $('#s2_ruc').select2({
 
 	});
 
-
+// creacion de factura
 	$("#venta_categoria").select2({placeholder: "Selecione una opción"});
 	$("#venta_subcategoria").select2({placeholder: "Selecione una opción"});
 	$("#documento_tipo").select2({placeholder: "Selecione un tipo de documento"});
@@ -49,7 +49,13 @@ function DemoTimePicker(){
 
 
 $(document).ready(function() {
+//carga la subcategoria en factura
 
+    $('#venta_categoria').change(function(){
+
+        //alert('salio el cambio');
+
+    });
 
 
 	//--------funcion para crear botones de crear documentos-----
