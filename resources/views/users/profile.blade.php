@@ -46,9 +46,9 @@
 					<h4>Dirección:</h4>
 					<p>
 						<span>{{ $user->address }}</span> <br>
-						<span>{{ $user->department->name }}</span> <br>
-						<span>{{ $user->province->name }}</span> <br>
-						<span>{{ $user->district->name }}</span> <br>
+						<span>{{ $user->department->name or 'No ingresado'}}</span> <br>
+						<span>{{ $user->province->name or 'No ingresado'}}</span> <br>
+						<span>{{ $user->district->name or 'No ingresado'}}</span> <br>
 						<span>C. B: {{ $user->bn_account }}</span>
 					</p>
 				</div>

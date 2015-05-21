@@ -93,9 +93,9 @@ function rememberLocationForms($department, $province, $district)
 {
 	Session::forget('location');
 
-	  Session::push('location.department', $department);
-	  Session::push('location.province', $province);
-	  Session::push('location.district', $district);
+	Session::push('location.department', $department);
+	Session::push('location.province', $province);
+	Session::push('location.district', $district);
 
-	  return true;
+	return true;
 }

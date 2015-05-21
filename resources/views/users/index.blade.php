@@ -97,7 +97,7 @@
 								<td>{{ $user->email }}</td>
 								<td>{{ $user->level->name }}</td>
 								<td>
-									<a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-pencil"></i></a>
+									<a href="{{ route('users.edit', $user->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-pencil"></i></a>
 									<a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar"><i class="fa fa-trash-o"></i></a>
 								</td>
 							</tr>

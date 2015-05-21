@@ -97,8 +97,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function getBnAccountAttribute()
 	{
+		if ( ! empty ( $this->attributes['bn_account'] ) ) {
+			return \Crypt::decrypt($this->attributes['bn_account']);
+		}
+
+		return 'No ingresado';
 		
-		return \Crypt::decrypt($this->attributes['bn_account']);
 	}
 
 	public function scopeIdDescending($query)

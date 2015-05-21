@@ -20,7 +20,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-file-text-o"></i>
-					<span>NUEVO USUARIO</span>
+					<span>EDITAR USUARIO</span>
 				</div>			
 			</div>
 
@@ -28,9 +28,9 @@
 
 				@include('errors.form')
 
-				{!! Form::open(['route' => 'users.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+				{!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-horizontal']) !!}
 					
-					@include('users.partials.form', ['submitButton' => 'INGRESAR USUARIO'])
+					@include('users.partials.form', ['submitButton' => 'EDITAR USUARIO'])
 
 				{!! Form::close() !!}
 

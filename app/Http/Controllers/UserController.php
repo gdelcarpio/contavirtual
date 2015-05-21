@@ -44,6 +44,7 @@ class UserController extends Controller {
 	{
 		$departments = Department::lists('name', 'id');
 		$departments = array('' => 'Seleccione') + $departments;
+
 		$levels = Level::lists('name', 'id');
 		$levels = array('' => 'Seleccione') + $levels;
 
@@ -90,7 +91,17 @@ class UserController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$user = User::findOrFail($id);
+
+		$departments = Department::lists('name', 'id');
+		$departments = array('' => 'Seleccione') + $departments;
+		
+		$levels = Level::lists('name', 'id');
+		$levels = array('' => 'Seleccione') + $levels;
+
+		rememberLocationForms($user->department_id, $user->province_id, $user->district_id);
+
+		return view('users.edit', compact('user', 'departments', 'levels'));
 	}
 
 	/**
@@ -140,7 +151,7 @@ class UserController extends Controller {
         $provinces = Province::where('department_id', $id)->lists('name', 'id');
         $provinces = array('' => 'Seleccione') + $provinces;
 
-        return view('users.provinces', compact('provinces'));
+        return view('users.partials.provinces', compact('provinces'));
     }
 
     public function districts($id)
@@ -148,7 +159,7 @@ class UserController extends Controller {
         $districts = District::where('province_id', $id)->lists('name', 'id');
         $districts = array('' => 'Seleccione') + $districts;
 
-        return view('users.districts', compact('districts'));
+        return view('users.partials.districts', compact('districts'));
     }
 
 }
