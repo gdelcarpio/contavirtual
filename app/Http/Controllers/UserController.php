@@ -18,8 +18,8 @@ class UserController extends Controller {
 
 	public function __construct()
 	{
-		// $this->middleware('auth');
-		$this->middleware('admin', ['except' => [ 'profile',  'register'] ]);
+		$this->middleware('auth');
+		$this->middleware('admin', ['except' => [ 'profile',  'register', 'editPassword', 'updatePassword'] ]);
 	}
 
 	/**
