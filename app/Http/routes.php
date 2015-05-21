@@ -47,6 +47,4 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-//Cuentas y subcuentas (categorias) - factura
-Route::post('/subaccount/{id}', ['as' => 'subaccount', 'uses' => 'InvoiceController@subaccount']);
 

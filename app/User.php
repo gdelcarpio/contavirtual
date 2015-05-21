@@ -69,7 +69,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	{
 		if ( ! empty ($value))
 		{
-		  $this->attributes['name'] = Str::title(trim($value));
+			$this->attributes['name'] = Str::title(trim($value));
 		}
 	}
 
@@ -77,7 +77,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	{
 		if ( ! empty ($value))
 		{
-		  $this->attributes['lastname'] = Str::title(trim($value));
+			$this->attributes['lastname'] = Str::title(trim($value));
 		}
 	}
 

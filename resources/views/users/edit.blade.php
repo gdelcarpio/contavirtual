@@ -30,7 +30,7 @@
 
 				{!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-horizontal']) !!}
 					
-					@include('users.partials.form', ['submitButton' => 'EDITAR USUARIO'])
+					@include('users.partials.form', ['submitButton' => 'ACTUALIZAR USUARIO'])
 
 				{!! Form::close() !!}
 
@@ -42,7 +42,7 @@
 
 @endsection
 
-@section('scripts')
+@section('ajax-scripts')
 
 	@include('scripts.ajax-provinces-districts')
 

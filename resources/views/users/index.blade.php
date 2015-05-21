@@ -85,20 +85,32 @@
 							<th><a href="#"><i class="fa fa-sort"></i> Nombres</a></th>
 							<th><a href="#"><i class="fa fa-sort"></i> Apellidos</a></th>
 							<th><a href="#"><i class="fa fa-sort"></i> Correo electrónico</a></th>
+							<th><a href="#"><i class="fa fa-sort"></i> Estado</a></th>
 							<th><a href="#"><i class="fa fa-sort"></i> Level</a></th>
 							<th>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($users as $user)
-							<tr>
+							<tr data-id="{{ $user->id }}" data-type="el usuario" data-name="{{ $user->lastname }}">
 								<td>{{ $user->name }}</td>
 								<td>{{ $user->lastname }}</td>
 								<td>{{ $user->email }}</td>
+					          	<td class="text-center">
+
+									{!! Form::open([ 'route' => ['users.active', $user->id], 'method' => 'PATCH', 'id' => 'form-user-active', 'onSubmit' => 'return confirm("¿Está seguro de cambiar el estado de este usuario?")']) !!}
+										<button type="submit" data-toggle="tooltip" data-placement="top" data-original-title="Cambiar Estado" class="btn btn-{{ $user->active ? 'success' : 'danger' }} user-active">
+										{{ $user->active ? '&nbsp;&nbsp;Activo&nbsp;&nbsp;' : 'Inactivo' }}
+										</button>
+									{!! Form::close() !!}
+
+								</td>
 								<td>{{ $user->level->name }}</td>
-								<td>
-									<a href="{{ route('users.edit', $user->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-pencil"></i></a>
-									<a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar"><i class="fa fa-trash-o"></i></a>
+								<td class="text-center">
+						            <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar" class="option-icons row-delete"><i class="fa fa-trash-o fa-lg"></i></a>
+            						<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Restablecer Contraseña" class="option-icons row-reset"><i class="fa fa-key fa-lg"></i></a>
+									<a href="{{ route('users.edit', $user->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-pencil fa-lg"></i></a>
+									<a href="{{ route('users.show', $user->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detalle"><i class="fa fa-bars fa-lg"></i></a>
 								</td>
 							</tr>
 						@endforeach
@@ -130,5 +142,24 @@
 	</div> --}}
 
 </div>
+
+<!-- DELETE FORM -->
+
+{!! Form::open([ 'route' => ['users.destroy', ':ROW_ID'], 'method' => 'DELETE', 'id' => 'form-delete']) !!}
+
+{!! Form::close() !!}
+
+<!-- RESET FORM -->
+
+{!! Form::open([ 'route' => ['users.password.reset', ':ROW_ID'], 'method' => 'PATCH', 'id' => 'form-reset']) !!}
+
+{!! Form::close() !!}
+
+@endsection
+
+@section('ajax-scripts')
+
+  @include('scripts.ajax-delete')
+  @include('scripts.ajax-reset')
 
 @endsection

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\PasswordRequest;
 
 use App\User;
 use App\Department;
@@ -82,7 +83,9 @@ class UserController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$user = User::findOrFail($id);
+
+		return view('users.profile', compact('user'));
 	}
 
 	/**
@@ -133,7 +136,13 @@ class UserController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$user = User::findOrFail($id);
+
+		$user_name = $user->name . ' ' . $user->lastname;
+		$user->delete();
+
+		\Flash::success('Se eliminó al usuario ' . $user_name . ' correctamente.');
+		return view('message');
 	}
 
 	public function register(RegisterRequest $request)
@@ -171,5 +180,52 @@ class UserController extends Controller {
 
         return view('users.partials.districts', compact('districts'));
     }
+
+    public function active($id)
+	{
+		$user = User::findOrFail($id);
+
+		$user->active = $user->active == 1 ? 0 : 1;
+
+		$user->save();
+
+		\Flash::success( 'Se actualizó el estado de ' . $user->name . ' ' . $user->lastname );
+		return \Redirect::route('users.index');
+	}
+
+	public function editPassword()
+	{
+		$url = 'users.password.edit';
+		return view('auth.password-edit', compact('url'));
+	}
+
+	public function updatePassword(PasswordRequest $request)
+	{
+	    $user = \Auth::user();
+
+	    if(!\Hash::check($request['old_password'], $user->password))
+	    {
+	      \Flash::warning('La contraseña actual no es correcta.');
+	      return \Redirect::back();
+	    }
+
+		$user->update($request->only('password'));
+
+	    \Flash::success('Contraseña actualizada.');
+	    return \Redirect::route('home');
+	}
+
+	public function resetPassword($id)
+	{
+		$user = User::findOrFail($id);
+
+		$user->password = '111111';
+
+		$user->update();
+
+    	\Flash::success('Se restableció la contraseña del usuario '. $user->name . ' ' . $user->lastname . '.');
+		return view('message');
+
+	}
 
 }
