@@ -44,7 +44,10 @@ Route::post('/provinces/{code}', ['as' => 'provinces', 'uses' => 'UserController
 Route::post('/districts/{code}', ['as' => 'districts', 'uses' => 'UserController@districts']);
 
 // Users routes
-
+Route::patch('/users/{users}/reset', ['as' => 'users.password.reset', 'uses' => 'UserController@resetPassword']);
+Route::patch('/users/password', ['as' => 'users.password.update', 'uses' => 'UserController@updatePassword']);
+Route::get('/users/password', ['as' => 'users.password.edit', 'uses' => 'UserController@changePassword']);
+Route::patch('/users/{users}/active', ['as' => 'users.active', 'uses' => 'UserController@active']);
 Route::post('/auth/register', ['as' => 'users.register', 'uses' => 'UserController@register']);
 Route::get('/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);
 

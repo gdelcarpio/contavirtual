@@ -12,20 +12,21 @@ class LevelTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
+		\DB::table('levels')->delete();
+		
+		\DB::table('levels')->insert(array(
+			'name' => 'Free',
+			'expenses' => '10',
+			'purchases' => '10',
+			
+		));
 
-			\DB::table('levels')->insert(array(
-				'name' => 'Free',
-				'expenses' => '10',
-				'purchases' => '10',
-				
-			));
-
-			\DB::table('levels')->insert(array(
-				'name' => 'Pagado',
-				'expenses' => '100',
-				'purchases' => '100',
-				
-			));
+		\DB::table('levels')->insert(array(
+			'name' => 'Pagado',
+			'expenses' => '100',
+			'purchases' => '100',
+			
+		));
 
 	}
 

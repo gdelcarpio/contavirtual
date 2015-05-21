@@ -12,19 +12,20 @@ class RoleTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
+		\DB::table('roles')->delete();
 
-			\DB::table('roles')->insert(array(
-				'name' => 'Usuario'
-			));
+		\DB::table('roles')->insert(array(
+			'name' => 'Usuario'
+		));
 
-			\DB::table('roles')->insert(array(
-				'name' => 'Administrador'
-				
-			));
+		\DB::table('roles')->insert(array(
+			'name' => 'Administrador'
+			
+		));
 
-			\DB::table('roles')->insert(array(
-				'name' => 'Contador'
-			));
+		\DB::table('roles')->insert(array(
+			'name' => 'Contador'
+		));
 
 	}
 

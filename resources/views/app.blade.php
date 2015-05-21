@@ -77,6 +77,7 @@
 		<!--Start Content-->
 		<div id="content" class="col-xs-12 col-sm-10">
 			<div id="ajax-content">
+				<div id="message"></div>
 				@include('flash::message')
 				@yield('content')
 			</div>
@@ -115,6 +116,7 @@
 	</script>
 
 	@yield('scripts')
+	@yield('ajax-scripts')
 
 </body>
 </html>
