@@ -89,7 +89,7 @@ function link_selected($url, $link)
 
 }
 
-function rememberLocationForms($department, $province, $district)
+function rememberFormLocation($department, $province, $district)
 {
 	Session::forget('location');
 

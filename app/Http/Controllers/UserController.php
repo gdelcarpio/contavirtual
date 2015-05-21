@@ -104,7 +104,7 @@ class UserController extends Controller {
 		$levels = Level::lists('name', 'id');
 		$levels = array('' => 'Seleccione') + $levels;
 
-		rememberLocationForms($user->department_id, $user->province_id, $user->district_id);
+		rememberFormLocation($user->department_id, $user->province_id, $user->district_id);
 
 		return view('users.edit', compact('user', 'departments', 'levels'));
 	}
