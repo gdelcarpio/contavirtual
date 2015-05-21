@@ -43,13 +43,13 @@
 					</p>
 				</div>
 				<div class="card address">
-					<div class="vcard">
-						<a href="#"><i class="fa fa-file"></i>.vCard</a>
-					</div>
-					<h4>Adress:</h4>
+					<h4>Dirección:</h4>
 					<p>
 						<span>{{ $user->address }}</span> <br>
-						<span>str. Nonest. building 33</span>
+						<span>{{ $user->department->name }}</span> <br>
+						<span>{{ $user->province->name }}</span> <br>
+						<span>{{ $user->district->name }}</span> <br>
+						<span>C. B: {{ $user->bn_account }}</span>
 					</p>
 				</div>
 			</div>

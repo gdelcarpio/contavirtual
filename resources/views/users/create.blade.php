@@ -26,7 +26,9 @@
 
 			<div class="box-content">
 
-				<form id="defaultForm" method="post" action="{{ route('users.store') }}" class="form-horizontal">
+				@include('errors.form')
+
+				{!! Form::open(['route' => 'users.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form-horizontal']) !!}
 					<h3>Datos Personales</h3>
 					<div class="row">
 
@@ -58,7 +60,7 @@
 							<div class="col-sm-6">
 								<label class="col-sm-2 control-label">Teléfono Casa / Oficina</label>
 								<div class="col-sm-9">
-								{!! Form::text('name', null, ['class' => 'form-control text-center', 'placeholder' => 'Máximo 10 caracteres', 'required', 'minlength' => '2', 'maxlength' => '10', 'id' => 'office_phone']) !!}
+								{!! Form::text('office_phone', null, ['class' => 'form-control text-center', 'placeholder' => 'Máximo 10 caracteres', 'required', 'minlength' => '2', 'maxlength' => '10', 'id' => 'office_phone']) !!}
 								</div>	
 							</div>
 						</div>
@@ -112,18 +114,23 @@
 							<div class="col-sm-4">
 								<label class="col-sm-12 xcontrol-label text-center">Provincia</label>
 								<div class="col-sm-12">
-								{!! Form::select('province_id', [], null, ['class' => 'form-control', 'required', 'id' => 'province_id']) !!}
+								{{-- {!! Form::select('province_id', [], null, ['class' => 'form-control', 'required', 'id' => 'province_id']) !!} --}}
+								<select id="province_id" name="province_id" class="form-control text-center" required>
+						          <option>Seleccione</option>
+						        </select>
 								</div>	
 							</div>
 							<div class="col-sm-4">
 								<label class="col-sm-12 xcontrol-label text-center">Distrito</label>
 								<div class="col-sm-12">
-								{!! Form::select('district_id', [], null, ['class' => 'form-control', 'required', 'id' => 'district_id']) !!}
+								{{-- {!! Form::select('district_id', [], null, ['class' => 'form-control', 'required', 'id' => 'district_id']) !!} --}}
+								<select id="district_id" name="district_id" class="form-control text-center" required>
+						          <option>Seleccione</option>
+						        </select>
 								</div>	
 							</div>
 						</div>
 					</div>
-
 					<div class="linea"></div>
 
 					<div class="row">
@@ -182,14 +189,16 @@
 					<div class="col-sm-12 text-center">
 						<div class="form-group">
 								
-							<button type="submit" class="btn btn-primary">Guardar como borrador</button>
-							<button type="submit" class="btn btn-danger">Guardar Factura</button>
+							{{-- <button type="submit" class="btn btn-primary">Guardar como borrador</button> --}}
+							<button type="submit" class="btn btn-danger">Ingresar Usuario</button>
 								
 						</div>
 					</div>
 				</div>
 
-				</form>
+					{{-- include('users.form', ['submitButton' => 'REGISTRAR']) --}}
+
+				{!! Form::close() !!}
 
 			</div>
 		</div>

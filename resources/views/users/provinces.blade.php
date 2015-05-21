@@ -1,1 +1,1 @@
-{!! Form::select('province', $provinces, null, ['class' => 'form-control text-center', 'required', 'id' => 'province']) !!}
+{!! Form::select('province_id', $provinces, Session::get('location.province'), ['class' => 'form-control text-center', 'required', 'id' => 'province_id']) !!}

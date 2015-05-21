@@ -48,6 +48,36 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->belongsTo('App\Level');
 	}
 
+	public function department()
+	{
+		return $this->belongsTo('App\Department');
+	}
+
+	public function province()
+	{
+		return $this->belongsTo('App\Province');
+	}
+
+	public function district()
+	{
+		return $this->belongsTo('App\District');
+	}
+
+	public function setNameAttribute($value)
+	{
+		if ( ! empty ($value))
+		{
+		  $this->attributes['name'] = Str::title(trim($value));
+		}
+	}
+
+	public function setLastnameAttribute($value)
+	{
+		if ( ! empty ($value))
+		{
+		  $this->attributes['lastname'] = Str::title(trim($value));
+		}
+	}
 
 	public function setPasswordAttribute($value)
 	{
@@ -55,5 +85,24 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		{
 		  	$this->attributes['password'] = \Hash::make($value);
 		}
+	}
+
+	public function setBnAccountAttribute($value)
+	{
+		if ( ! empty ($value))
+		{
+		  	$this->attributes['bn_account'] = \Crypt::encrypt($value);
+		}
+	}
+
+	public function getBnAccountAttribute()
+	{
+		
+		return \Crypt::decrypt($this->attributes['bn_account']);
+	}
+
+	public function scopeIdDescending($query)
+	{
+		$query->orderBy('id', 'desc');
 	}
 }

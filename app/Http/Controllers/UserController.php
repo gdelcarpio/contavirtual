@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UserRequest;
 
 use App\User;
 use App\Department;
@@ -27,7 +28,7 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		$users = User::paginate(20);
+		$users = User::idDescending()->paginate(20);
 		
 		$count['users'] = User::all()->count();
 
@@ -54,9 +55,20 @@ class UserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(UserRequest $request)
 	{
-		//
+		
+		$request['password'] =  '123456';
+
+		$user = User::create($request->all());
+
+		$user->roles()->attach(1);
+
+		Session::forget('location');
+
+		\Flash::success('Usuario agregado satisfactoriamente.');
+
+		return \Redirect::route('users.index');
 	}
 
 	/**
