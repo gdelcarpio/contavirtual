@@ -28,11 +28,11 @@ class InvoiceController extends Controller {
 
 	public function create()
 	{
-        $categoria = Account::All();
-        $subcategoria = Subaccount::All();
+        $account = Account::All();
+        $subaccount = Subaccount::All();
         $companies = Company::select('ruc','id')->where('client','=','1')->get();
 
-		return view('pages.invoice_create', compact('categoria','subcategoria','companies'));
+		return view('pages.invoice_create', compact('account','subaccount','companies'));
         //dd($companies);
 	}
 
@@ -88,5 +88,17 @@ class InvoiceController extends Controller {
     //         return Response::json($subcat);
     //     }
     // }
+
+     public function subaccount($id){
+       // if(Request::ajax()){
+            $subaccount = Subaccount::where('account_id',$id)->lists('name','id');
+            //$subaccount = array('' => 'Seleccione')  + $subaccount;
+           // return Response::json($subcat);
+       // }
+          // return view('pages.subaccount');
+     	  // $subaccount = Subaccount::where('account_id',$id)->get();
+           return view('pages.subaccount', compact('subaccount'));
+            
+    }
 
 }

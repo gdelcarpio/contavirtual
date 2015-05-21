@@ -16,26 +16,22 @@ $('#s2_ruc').select2({
 	});
 
 // creacion de factura
-	$("#venta_categoria").select2({placeholder: "Selecione una opción"});
-	$("#venta_subcategoria").select2({placeholder: "Selecione una opción"});
+	$("#account_venta").select2({placeholder: "Selecione una opción"});
+	$("#subaccount_venta").select2({placeholder: "Selecione una opción"});
 	$("#documento_tipo").select2({placeholder: "Selecione un tipo de documento"});
 
 	$("#prod_item1").select2({
 		placeholder: "Seleciona un Producto",
 
 		formatNoMatches: function(term) {return '<a href="#">Agregar Producto o Servicio</a>';}
-
 	});
+
 	$('#s2_clientes').select2({
 		placeholder: "Seleccione un cliente",
 
 		 formatNoMatches: function(term) {
-		    return '<a href="#">Agregar Cliente</a>';	 }   
-
+		    return '<a href="#">Agregar Cliente</a>';}   
 	});
-
-
-
 
 }
 // Run timepicker
@@ -51,11 +47,19 @@ function DemoTimePicker(){
 $(document).ready(function() {
 //carga la subcategoria en factura
 
-    $('#venta_categoria').change(function(){
+    // $('#account_venta').change(function(){
 
-        //alert('salio el cambio');
+    //     alert('salio el cambio');
 
-    });
+    //     $.post("{{ URL::to('/subaccount') }}/"+$('#account_venta').val(),{},function(cadena){
+
+    //         $("#subaccount_venta").html(cadena); 
+    //        // $("#subaccount_venta").html('hola');
+
+    //        alert(cadena);
+    //     });
+
+    // });
 
 
 	//--------funcion para crear botones de crear documentos-----
@@ -114,7 +118,7 @@ e.preventDefault();
 				placeholder: "Seleciona un Producto",
 
 				formatNoMatches: function(term) {
-				  return '<a href="#">Agregar Producto o Servicio</a>';
+				return '<a href="#">Agregar Producto o Servicio</a>';
 		 }
 
 	});
