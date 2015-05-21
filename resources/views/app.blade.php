@@ -95,9 +95,11 @@
 	<script src="{{ asset('plugins/justified-gallery/jquery.justifiedgallery.min.js') }}"></script>
 	<script src="{{ asset('plugins/tinymce/tinymce.min.js') }}"></script>
 	<script src="{{ asset('plugins/tinymce/jquery.tinymce.min.js') }}"></script>
+	<script src="{{ asset('plugins/select2/select2.js') }}"></script>
 	<!-- All functions for this theme + document.ready processing -->
 	<script src="{{ asset('js/devoops.js') }}"></script>
 	<script src="{{ asset('js/contabilidad.js') }}"></script>
+	<script src="{{ asset('js/paginas.js') }}"></script>
 
 	<script type="text/javascript">
 	    $.ajaxSetup({

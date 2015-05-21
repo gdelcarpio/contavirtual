@@ -43,7 +43,7 @@
 
 		</div>
 		<div class="col-md-2 text-right">
-					<a href="paginas/factura-crear.html"  class="btn btn-danger crear_documento">
+					<a href="{{ route('invoices.create') }}"  class="btn btn-danger crear_documento">
 						<i class="fa fa-plus"></i> Nueva Factura
 					</a>					
 			</div>	

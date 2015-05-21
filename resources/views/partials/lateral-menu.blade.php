@@ -17,6 +17,7 @@
 		<a href="{{ route('users.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
 	</li>
 	
+	
 	@endif
 
 	<li class="menu-li">
@@ -46,7 +47,7 @@
 
 		<ul class="dropdown-menu">
 			<li class="menu-li"><a class="ajax-link" href="{{ route('invoices.index') }}">Facturas</a>
-				<a href="#" class="agregar"><i class="fa fa-plus"></i></a>
+				<a href="{{ route('invoices.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
 			</li>
 			<li class="menu-li"><a class="ajax-link" href="{{ route('tickets') }}">Boletas</a>
 				<a href="#" class="agregar"><i class="fa fa-plus"></i></a>
