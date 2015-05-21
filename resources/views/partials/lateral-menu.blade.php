@@ -17,6 +17,7 @@
 		<a href="{{ route('users.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
 	</li>
 	
+	
 	@endif
 
 	<li class="menu-li">
