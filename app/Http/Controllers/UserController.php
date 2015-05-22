@@ -33,6 +33,10 @@ class UserController extends Controller {
 		
 		$count['users'] = User::all()->count();
 
+		$count['clients'] 			= User::byRole(1)->count();
+		$count['administrators'] 	= User::byRole(2)->count();
+		$count['accountants'] 		= User::byRole(3)->count();
+
 		return view('users.index', compact('users', 'count'));
 	}
 
@@ -45,14 +49,12 @@ class UserController extends Controller {
 	{
 		\Session::forget('location');
 
-		$departments = Department::lists('name', 'id');
-		$departments = array('' => 'Seleccione') + $departments;
-
-		$levels = Level::lists('name', 'id');
-		$levels = array('' => 'Seleccione') + $levels;
+		$departments 	= $this->modelList('Department');
+		$levels 		= $this->modelList('Level');
 
 		return view('users.create', compact('departments', 'levels'));
 	}
+
 
 	/**
 	 * Store a newly created resource in storage.
@@ -98,11 +100,8 @@ class UserController extends Controller {
 	{
 		$user = User::findOrFail($id);
 
-		$departments = Department::lists('name', 'id');
-		$departments = array('' => 'Seleccione') + $departments;
-		
-		$levels = Level::lists('name', 'id');
-		$levels = array('' => 'Seleccione') + $levels;
+		$departments 	= $this->modelList('Department');
+		$levels 		= $this->modelList('Level');
 
 		rememberFormLocation($user->department_id, $user->province_id, $user->district_id);
 
@@ -139,6 +138,8 @@ class UserController extends Controller {
 		$user = User::findOrFail($id);
 
 		$user_name = $user->name . ' ' . $user->lastname;
+
+		$user->roles()->detach();
 		$user->delete();
 
 		\Flash::success('Se eliminó al usuario ' . $user_name . ' correctamente.');
@@ -228,4 +229,12 @@ class UserController extends Controller {
 
 	}
 
+	public function modelList($entity)
+	{
+		$model 	= "App" . "\\" . $entity;
+		$list 	= $model::lists('name', 'id');
+		$list 	= array('' => 'Seleccione') + $list;
+
+		return $list;
+	}
 }

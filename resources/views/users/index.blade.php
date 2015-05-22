@@ -16,8 +16,10 @@
 		<div class="row">
 			<div class="col-md-6">
 				<ul class="nav nav-pills" role="tablist">
-				  <li role="presentation" class="active"><a href="#">Todos <span class="badge">{{ $count['users'] }}</span></a></li>
-				  <li role="presentation"><a href="#">Administradores <span class="badge">30</span></a></li>
+				  <li role="presentation" class="active"><a href="{{ route('users.index') }}">Todos <span class="badge">{{ $count['users'] }}</span></a></li>
+				  <li role="presentation"><a href="#">Administradores <span class="badge">{{ $count['administrators']}}</span></a></li>
+				  <li role="presentation"><a href="#">Usuarios <span class="badge">{{ $count['clients']}}</span></a></li>
+				  <li role="presentation"><a href="#">Contadores <span class="badge">{{ $count['accountants']}}</span></a></li>
 				</ul>
 			</div>
 			<div class="col-md-6 text-right">
