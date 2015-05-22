@@ -29,7 +29,7 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		$users = User::idDescending()->paginate(20);
+		$users = User::latest()->paginate(20);
 		
 		$count['users'] = User::all()->count();
 

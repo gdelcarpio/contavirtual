@@ -25,7 +25,7 @@ Route::get('/credit_notes', ['as' => 'credit_notes', 'uses' => 'HomeController@c
 // Route::resource('companies', 'CompanyController');
 // Route::resource('credit_notes', 'CreditNoteController');
 Route::resource('invoices', 'InvoiceController');
-// Route::resource('payments', 'PaymentController');
+Route::resource('payments', 'PaymentController');
 // Route::resource('products', 'ProductController');
 // Route::resource('roles', 'RoleController');
 // Route::resource('subaccounts', 'SubaccountController');

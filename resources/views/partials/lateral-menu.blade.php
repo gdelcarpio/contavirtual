@@ -16,13 +16,21 @@
 		</a>
 		<a href="{{ route('users.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
 	</li>
+
+	<li class="menu-li">
+		<a href="{{ route('payments.index') }}" class="ajax-link">
+			<i class="fa fa-credit-card"></i>
+			<span class="hidden-xs">Pagos</span>
+		</a>
+		<a href="{{ route('payments.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
+	</li>
 	
 	
 	@endif
 
 	<li class="menu-li">
 		<a href="{{ route('companies') }}" class="ajax-link">
-			<i class="fa fa-users"></i>
+			<i class="fa fa-building"></i>
 			<span class="hidden-xs">Empresas</span>
 		</a>
 		<a href="#" class="agregar"><i class="fa fa-plus"></i></a>
