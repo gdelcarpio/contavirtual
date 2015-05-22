@@ -7,8 +7,8 @@ function DemoSelect2(){
 	$('#s2_with_tag').select2({placeholder: "Select OS"});
 	$('#s2_country').select2();
 
-$('#s2_ruc').select2({
-		placeholder: "Escriba el RUC",
+$('#select_ruc').select2({
+		placeholder: "Busque RUC",
 
 		 formatNoMatches: function(term) {
 		    return '<a href="#">Agregar Cliente</a>';	 }   
@@ -16,8 +16,8 @@ $('#s2_ruc').select2({
 	});
 
 // creacion de factura
-	$("#account_venta").select2({placeholder: "Selecione una opción"});
-	$("#subaccount_venta").select2({placeholder: "Selecione una opción"});
+	$("#select_account").select2({placeholder: "Selecione una opción"});
+	//$("#subaccount_venta").select2({placeholder: "Selecione una opción"});
 	$("#documento_tipo").select2({placeholder: "Selecione un tipo de documento"});
 
 	$("#prod_item1").select2({

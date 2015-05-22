@@ -52,4 +52,7 @@ Route::controllers([
 //Cuentas y subcuentas (categorias) - factura
 Route::post('/subaccount/{id}', ['as' => 'subaccount', 'uses' => 'InvoiceController@subaccount']);
 
+//Cargar Cliente
+Route::post('/client_ajax/{id}', ['as' => 'subaccount', 'uses' => 'CompanyController@client_ajax']);
+
 

@@ -22,18 +22,22 @@ class InvoiceController extends Controller {
 	public function index()
     {
         $invoices = Invoice::All();
-        return view('pages.invoices', compact('invoices'));
+        return view('invoices.index', compact('invoices'));
     }
 
 
 	public function create()
 	{
-        $account = Account::All();
-        $subaccount = Subaccount::All();
-        $companies = Company::select('ruc','id')->where('client','=','1')->get();
+        $account = Account::lists('name','id');
+        $account = array(''=>'') + $account;
 
-		return view('pages.invoice_create', compact('account','subaccount','companies'));
-        //dd($companies);
+        $subaccount = Subaccount::All();
+
+        $companies = Company::where('client','=','1')->lists('ruc','id');
+        $companies = array(''=>'') + $companies;
+       //$companies = Company::select('ruc','id')->where('client','=','1')->get();
+
+		return view('invoices.create', compact('account','subaccount','companies'));        
 	}
 
 
@@ -92,7 +96,8 @@ class InvoiceController extends Controller {
      public function subaccount($id){
       
             $subaccount = Subaccount::where('account_id',$id)->lists('name','id');
-             return view('pages.subaccount', compact('subaccount'));
+            $subaccount = array('' => '') + $subaccount;
+             return view('invoices.partials.subaccount', compact('subaccount'));
             
     }
 

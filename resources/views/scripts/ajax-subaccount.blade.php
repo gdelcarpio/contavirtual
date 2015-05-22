@@ -1,13 +1,12 @@
 <script type="text/javascript">
 
-$('#account_venta').change(function(){
+$('#select_account').change(function(){
 
 
-   $.post("{{ URL::to('/subaccount') }}/"+$('#account_venta').val(),{},function(cadena){
+   $.post("{{ URL::to('/subaccount') }}/"+$('#select_account').val(),{},function(cadena){
 
         $("#subaccount_select").html(cadena); 
-
-        $("#subaccount_venta").select2({placeholder: "Seleciona un Producto"});
+        $("#subaccount_venta").select2({placeholder: "Seleciona una Opción"});
 
   });
 

@@ -44,12 +44,7 @@
         <div class="col-sm-6">
             <label class="col-sm-2 control-label">Categoría</label>
                     <div class="col-sm-9">
-                        <select class="placeholder" name="account_venta" id="account_venta">
-                            <option></option>
-                            @foreach($account as $cat)
-                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                            @endforeach
-                        </select>
+                         {!! Form::select('account', $account, '',['class' => '', 'required', 'id' => 'select_account']) !!}
 
                     </div>
 
@@ -57,9 +52,7 @@
         <div class="col-sm-6">
 
         <label class="col-sm-2 control-label">Sub Cat.</label>
-                    <div class="col-sm-9" id="subaccount_select">
-
-                        
+                    <div class="col-sm-9" id="subaccount_select">                        
                         
                     </div>
         </div>
@@ -81,33 +74,22 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">RUC</label>
                                     <div class="col-sm-9">
-                                        <select class="populate placeholder" name="country" id="s2_ruc">
+                                        
 
-                                            <option></option>
-                                            @foreach($companies as $com)
-                                            <option value="{{ $com->id }}">{{ $com->ruc }}</option>
-                                            @endforeach
-                                        </select>
+                                        {!! Form::select('ruc', $companies, '',['class' => '', 'required', 'id' => 'select_ruc']) !!}
+
+
                                     </div>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Cliente</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" placeholder="" name="serie" />
+                                    <div class="col-sm-9" id="client_date">
+                                        <input type="text" class="form-control" placeholder="" name="serie"/>
                                     </div>
                                 </div>
 
-
-
-
-
-
-
-
-
-
-        </div>
+       </div>
 
 
 
@@ -282,5 +264,6 @@
 @section('scripts')
 
     @include('scripts.ajax-subaccount')
+    @include('scripts.ajax-client')
 
 @endsection

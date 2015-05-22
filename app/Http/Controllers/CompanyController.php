@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Company;
 
 class CompanyController extends Controller {
 
@@ -79,6 +80,11 @@ class CompanyController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function client_ajax($id){
+		$company_ajax = Company::findOrFail($id);
+        return view('invoices.partials.company', compact('company_ajax'));
 	}
 
 }
