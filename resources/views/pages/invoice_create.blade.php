@@ -44,10 +44,9 @@
         <div class="col-sm-6">
             <label class="col-sm-2 control-label">Categoría</label>
                     <div class="col-sm-9">
-                        <select class="populate placeholder" name="venta_categoria" id="venta_categoria">
-
+                        <select class="placeholder" name="account_venta" id="account_venta">
                             <option></option>
-                            @foreach($categoria as $cat)
+                            @foreach($account as $cat)
                             <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                             @endforeach
                         </select>
@@ -58,14 +57,10 @@
         <div class="col-sm-6">
 
         <label class="col-sm-2 control-label">Sub Cat.</label>
-                    <div class="col-sm-9">
-                        <select class="populate placeholder" name="venta_subcategoria" id="venta_subcategoria">
+                    <div class="col-sm-9" id="subaccount_select">
 
-                            <option></option>
-                            @foreach($subcategoria as $subcat)
-                            <option value="{{ $subcat->id }}">{{ $subcat->name }}</option>
-                            @endforeach
-                        </select>
+                        
+                        
                     </div>
         </div>
 
@@ -90,7 +85,7 @@
 
                                             <option></option>
                                             @foreach($companies as $com)
-                                            <option value="{{ $subcat->id }}">{{ $com->ruc }}</option>
+                                            <option value="{{ $com->id }}">{{ $com->ruc }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -281,5 +276,11 @@
 	</div>
 
 </div>
+
+@endsection
+
+@section('scripts')
+
+    @include('scripts.ajax-subaccount')
 
 @endsection

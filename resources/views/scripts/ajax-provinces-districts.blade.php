@@ -14,7 +14,6 @@
                   $("#district_id").html(cadena); 
                   $("#district_id").val("{{ session('location.district.0') }}");
                 });
-
             }
       });
 
