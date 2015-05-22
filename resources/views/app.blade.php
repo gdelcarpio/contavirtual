@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="{{ asset('plugins/bootstrap/bootstrap.css') }}" rel="stylesheet">
 		<link href="{{ asset('plugins/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet">
-		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
 		<link href="{{ asset('plugins/fancybox/jquery.fancybox.css') }}" rel="stylesheet">
 		<link href="{{ asset('plugins/fullcalendar/fullcalendar.css') }}" rel="stylesheet">

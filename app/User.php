@@ -111,4 +111,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	{
 		$query->orderBy('id', 'desc');
 	}
+
+	public function scopeByRole($query, $id)
+	{
+		$query->whereHas('roles', function($q) use ($id)
+				{
+				    $q->where('role_id', '=', $id);
+
+				});
+	}
 }

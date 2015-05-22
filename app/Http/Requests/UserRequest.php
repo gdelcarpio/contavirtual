@@ -23,7 +23,7 @@ class UserRequest extends Request {
 
 	public function rules()
 	{
-		rememberLocationForms(Request::get('department_id'), Request::get('province_id'), Request::get('district_id'));
+		rememberFormLocation(Request::get('department_id'), Request::get('province_id'), Request::get('district_id'));
 
 		$id = $this->segment(2);
 

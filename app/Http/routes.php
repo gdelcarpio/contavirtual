@@ -25,22 +25,24 @@ Route::get('/credit_notes', ['as' => 'credit_notes', 'uses' => 'HomeController@c
 // Route::resource('companies', 'CompanyController');
 // Route::resource('credit_notes', 'CreditNoteController');
 Route::resource('invoices', 'InvoiceController');
-// Route::resource('payments', 'PaymentController');
+Route::resource('payments', 'PaymentController');
 // Route::resource('products', 'ProductController');
 // Route::resource('roles', 'RoleController');
 // Route::resource('subaccounts', 'SubaccountController');
+
 // Locations
-// Route::post('/ubigeo/{code}', ['as' => 'ubigeo', 'uses' => 'HomeController@ajaxUbigeo']);
 Route::post('/provinces/{code}', ['as' => 'provinces', 'uses' => 'UserController@provinces']);
 Route::post('/districts/{code}', ['as' => 'districts', 'uses' => 'UserController@districts']);
+
 // Users routes
-Route::patch('/users/{users}/reset', ['as' => 'users.password.reset', 'uses' => 'UserController@resetPassword']);
-Route::patch('/users/password', ['as' => 'users.password.update', 'uses' => 'UserController@updatePassword']);
-Route::get('/users/password', ['as' => 'users.password.edit', 'uses' => 'UserController@changePassword']);
-Route::patch('/users/{users}/active', ['as' => 'users.active', 'uses' => 'UserController@active']);
-Route::post('/auth/register', ['as' => 'users.register', 'uses' => 'UserController@register']);
-Route::get('/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);
+Route::patch('/users/{users}/reset', 	['as' => 'users.password.reset', 'uses'  => 'UserController@resetPassword']);
+Route::patch('/users/password', 		['as' => 'users.password.update', 'uses' => 'UserController@updatePassword']);
+Route::patch('/users/{users}/active', 	['as' => 'users.active', 'uses' 		 => 'UserController@active']);
+Route::post('/auth/register', 			['as' => 'users.register', 'uses' 		 => 'UserController@register']);
+Route::get('/users/password', 			['as' => 'users.password.edit', 'uses' 	 => 'UserController@changePassword']);
+Route::get('/profile', 					['as' => 'users.profile', 'uses' 		 => 'UserController@profile']);
 Route::resource('users', 'UserController');
+
 // Auth and Password Controller
 Route::controllers([
 	'auth' => 'Auth\AuthController',

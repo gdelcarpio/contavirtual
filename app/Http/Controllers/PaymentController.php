@@ -5,6 +5,9 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use App\User;
+use App\Payment;
+
 class PaymentController extends Controller {
 
 	/**
@@ -14,7 +17,9 @@ class PaymentController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$payments = Payment::latest()->paginate(20);
+
+		return view('payments.index', compact('payments'));
 	}
 
 	/**
@@ -24,7 +29,10 @@ class PaymentController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		$users = User::lists('company_name', 'id');
+		$users 	= array('' => 'Seleccione') + $users;
+
+		return view('payments.create', compact('users'));
 	}
 
 	/**
