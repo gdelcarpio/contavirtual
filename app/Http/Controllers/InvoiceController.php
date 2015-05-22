@@ -90,14 +90,9 @@ class InvoiceController extends Controller {
     // }
 
      public function subaccount($id){
-       // if(Request::ajax()){
+      
             $subaccount = Subaccount::where('account_id',$id)->lists('name','id');
-            //$subaccount = array('' => 'Seleccione')  + $subaccount;
-           // return Response::json($subcat);
-       // }
-          // return view('pages.subaccount');
-     	  // $subaccount = Subaccount::where('account_id',$id)->get();
-           return view('pages.subaccount', compact('subaccount'));
+             return view('pages.subaccount', compact('subaccount'));
             
     }
 

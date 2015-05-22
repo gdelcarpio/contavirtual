@@ -7,6 +7,8 @@ $('#account_venta').change(function(){
 
         $("#subaccount_select").html(cadena); 
 
+        $("#subaccount_venta").select2({placeholder: "Seleciona un Producto"});
+
   });
 
 });

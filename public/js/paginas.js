@@ -35,9 +35,9 @@ $('#s2_ruc').select2({
 
 }
 // Run timepicker
-function DemoTimePicker(){
-	$('#input_time').timepicker({setDate: new Date()});
-}
+// function DemoTimePicker(){
+// 	$('#input_time').timepicker({setDate: new Date()});
+// }
 
 
 
@@ -153,8 +153,9 @@ e.preventDefault();
 	// Initialize datepicker
 	$('#fecha_emision').datepicker({setDate: new Date()});
 	$('#fecha_vencimiento').datepicker({setDate: new Date()});
+	$('#payment_date, #payment_expiration_date, #start_date, #end_date').datepicker({setDate: new Date()});
 	// Load Timepicker plugin
-	LoadTimePickerScript(DemoTimePicker);
+	// LoadTimePickerScript(DemoTimePicker);
 	// Add tooltip to form-controls
 	$('.form-control').tooltip();
 	LoadSelect2Script(DemoSelect2);
