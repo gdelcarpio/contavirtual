@@ -95,12 +95,12 @@
 							<tr data-id="{{ $payment->id }}" data-type="el pago" data-name="{{ $payment->id }}">
 								<td>{{ $payment->id }}</td>
 								<td>{{ $payment->user->name }} {{ $payment->user->lastname }}</td>
-								<td>{{ $payment->payment_date->format('d-m-Y') }}</td>
-								<td>{{ $payment->payment_expiration_date->format('d-m-Y') }}</td>
+								<td>{{ $payment->payment_date }}</td>
+								<td>{{ $payment->payment_expiration_date }}</td>
 								<td>{{ $payment->amount }}</td>
 								<td>{{ $payment->invoice }}</td>
-								<td>{{ $payment->start_date->format('d-m-Y') }}</td>
-								<td>{{ $payment->end_date->format('d-m-Y') }}</td>
+								<td>{{ $payment->start_date }}</td>
+								<td>{{ $payment->end_date }}</td>
 								<td class="text-center">
 						            <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar" class="option-icons row-delete"><i class="fa fa-trash-o fa-lg"></i></a>
 									<a href="{{ route('payments.edit', $payment->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-pencil fa-lg"></i></a>

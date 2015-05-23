@@ -45,7 +45,7 @@ class PaymentController extends Controller {
 	{
 		Payment::create($request->all());
 		
-		\Flash::success('pago registrado correctamente.');
+		\Flash::success('Pago registrado correctamente.');
 		return \Redirect::route('payments.index');
 
 	}
@@ -69,7 +69,12 @@ class PaymentController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$payment = Payment::findOrFail($id);
+
+		$users = User::lists('company_name', 'id');
+		$users 	= array('' => 'Seleccione') + $users;
+
+		return view('payments.edit', compact('payment', 'users'));
 	}
 
 	/**
@@ -78,9 +83,14 @@ class PaymentController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, PaymentRequest $request)
 	{
-		//
+		$payment = Payment::findOrFail($id);
+
+		$payment->update($request->all());
+		
+		\Flash::success('Pago actualizado correctamente.');
+		return \Redirect::route('payments.index');
 	}
 
 	/**
