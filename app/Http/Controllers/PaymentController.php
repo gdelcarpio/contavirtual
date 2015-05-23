@@ -101,7 +101,15 @@ class PaymentController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$payment = Payment::findOrFail($id);
+
+		$payment_user = $payment->user->name . ' ' . $payment->user->lastname;
+		$payment_id = $payment->id;
+
+		$payment->delete();
+
+		\Flash::success('Se eliminó el pago #' . $payment_id . ' del usuario ' . $payment_user . ' correctamente.');
+		return view('message');
 	}
 
 }
