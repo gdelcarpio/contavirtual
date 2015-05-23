@@ -39,8 +39,10 @@ Route::patch('/users/{users}/reset', 	['as' => 'users.password.reset', 'uses'  =
 Route::patch('/users/password', 		['as' => 'users.password.update', 'uses' => 'UserController@updatePassword']);
 Route::patch('/users/{users}/active', 	['as' => 'users.active', 'uses' 		 => 'UserController@active']);
 Route::post('/auth/register', 			['as' => 'users.register', 'uses' 		 => 'UserController@register']);
+Route::get('/users/{id}/payments',		['as' => 'users.payments', 'uses' 	 	 => 'UserController@payments']);
 Route::get('/users/password', 			['as' => 'users.password.edit', 'uses' 	 => 'UserController@changePassword']);
-Route::get('/profile', 					['as' => 'users.profile', 'uses' 		 => 'UserController@profile']);
+Route::get('/my-profile', 				['as' => 'users.profile', 'uses' 		 => 'UserController@profile']);
+Route::get('/my-payments',				['as' => 'users.payments', 'uses' 		 => 'UserController@myPayments']);
 Route::resource('users', 'UserController');
 
 // Auth and Password Controller

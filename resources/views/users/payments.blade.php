@@ -5,7 +5,7 @@
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12">
 		<ol class="breadcrumb">
-			<li><a href="index.html">LISTA DE PAGOS</a></li>
+			<li><a href="index.html">LISTA DE PAGOS DE {{ $user->name }} {{ $user->lastname }}</a></li>
 		</ol>
 	</div>
 </div> 

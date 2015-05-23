@@ -32,15 +32,15 @@
 			<li>
 				<a href="{{ route('users.profile') }}">
 					<i class="fa fa-user"></i>
-					<span>Perfil</span>
+					<span>Mi Perfil</span>
 				</a>
 			</li>
-{{-- 			<li>
-				<a href="ajax/page_messages.html" class="ajax-link">
-					<i class="fa fa-envelope"></i>
-					<span>Messages</span>
+			<li>
+				<a href="{{ route('users.payments') }}">
+					<i class="fa fa-credit-card"></i>
+					<span>Mis Pagos</span>
 				</a>
-			</li> --}}
+			</li>
 			<li>
 				<a href="{{ route('users.password.edit') }}" class="ajax-link">
 					<i class="fa fa-key"></i>

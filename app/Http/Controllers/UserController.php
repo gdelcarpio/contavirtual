@@ -237,4 +237,21 @@ class UserController extends Controller {
 
 		return $list;
 	}
+
+	public function payments($id)
+	{
+		$user = User::findOrFail($id);
+		$payments = $user->payments()->paginate(20);
+
+		return view('users.payments', compact('payments', 'user'));
+	}
+
+	public function myPayments()
+	{
+		$user = \Auth::user();
+		$payments = $user->payments()->paginate(20);
+		
+		return view('users.payments', compact('payments', 'user'));
+
+	}
 }
