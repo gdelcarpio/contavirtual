@@ -28,7 +28,15 @@
 
 				@include('errors.form')
 
-				{!! Form::open(['route' => 'payments.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+				@if( Route::currentRouteName() == "payments.create" )
+
+					{!! Form::open(['route' => 'payments.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+					
+				@else
+					
+					{!! Form::open(['route' => ['users.payments.store', $user->id], 'method' => 'POST', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+
+				@endif
 					
 					@include('payments.partials.form', ['submitButton' => 'INGRESAR PAGO'])
 

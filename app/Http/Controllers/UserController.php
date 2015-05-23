@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\PaymentRequest;
 
 use App\User;
 use App\Department;
@@ -238,7 +239,7 @@ class UserController extends Controller {
 		return $list;
 	}
 
-	public function payments($id)
+	public function paymentsIndex($id)
 	{
 		$user = User::findOrFail($id);
 		$payments = $user->payments()->paginate(20);
@@ -252,6 +253,22 @@ class UserController extends Controller {
 		$payments = $user->payments()->paginate(20);
 		
 		return view('users.payments', compact('payments', 'user'));
+	}
 
+	public function paymentsCreate($id)
+	{
+		$user = User::findOrFail($id);
+		return view('payments.create', compact('user'));
+	}
+
+	public function paymentsStore($id, PaymentRequest $request)
+	{
+		$user = User::findOrFail($id);
+
+		$user->payments()->create($request->all());
+
+
+		\Flash::success('Pago registrado correctamente.');
+		return \Redirect::route('users.payments.index', $id);
 	}
 }

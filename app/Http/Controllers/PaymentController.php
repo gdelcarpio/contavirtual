@@ -47,7 +47,6 @@ class PaymentController extends Controller {
 		
 		\Flash::success('Pago registrado correctamente.');
 		return \Redirect::route('payments.index');
-
 	}
 
 	/**
@@ -73,7 +72,7 @@ class PaymentController extends Controller {
 	{
 		$payment = Payment::findOrFail($id);
 
-		$users = User::lists('company_name', 'id');
+		$users  = User::lists('company_name', 'id');
 		$users 	= array('' => 'Seleccione') + $users;
 
 		return view('payments.edit', compact('payment', 'users'));

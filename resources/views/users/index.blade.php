@@ -113,7 +113,7 @@
             						<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Restablecer Contraseña" class="option-icons row-reset"><i class="fa fa-key fa-lg"></i></a>
 									<a href="{{ route('users.edit', $user->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-pencil fa-lg"></i></a>
 									<a href="{{ route('users.show', $user->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detalle"><i class="fa fa-bars fa-lg"></i></a>
-									<a href="{{ route('users.payments', $user->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pagos"><i class="fa fa-credit-card fa-lg"></i></a>
+									<a href="{{ route('users.payments.index', $user->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pagos"><i class="fa fa-credit-card fa-lg"></i></a>
 								</td>
 							</tr>
 						@endforeach

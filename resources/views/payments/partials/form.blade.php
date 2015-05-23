@@ -61,12 +61,14 @@
 
 <div class="row">
 	<div class="form-group">
-		<div class="col-sm-6">
-			<label class="col-sm-4 control-label">Usuario</label>
-			<div class="col-sm-8">
-				{!! Form::select('user_id', $users, null, ['class' => 'form-control', 'required', 'id' => 'user_id']) !!}
-			</div>	
-		</div>
+		@if( Route::currentRouteName() == "payments.create" )
+			<div class="col-sm-6">
+				<label class="col-sm-4 control-label">Usuario</label>
+				<div class="col-sm-8">
+					{!! Form::select('user_id', $users, null, ['class' => 'form-control', 'required', 'id' => 'user_id']) !!}
+				</div>	
+			</div>
+		@endif
 		<div class="col-sm-6">
 			<label class="col-sm-4 control-label">Código</label>
 			<div class="col-sm-8">

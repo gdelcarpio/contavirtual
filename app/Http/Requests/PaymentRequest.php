@@ -23,7 +23,6 @@ class PaymentRequest extends Request {
 
 	public function rules()
 	{
-
 		return [
             'user_id'					=> 'sometimes|required|exists:users,id',
             'payment_date'     			=> 'required|date',

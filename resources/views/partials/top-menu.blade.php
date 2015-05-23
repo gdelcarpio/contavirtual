@@ -36,7 +36,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="{{ route('users.my-payments') }}">
+				<a href="{{ route('users.payments') }}">
 					<i class="fa fa-credit-card"></i>
 					<span>Mis Pagos</span>
 				</a>

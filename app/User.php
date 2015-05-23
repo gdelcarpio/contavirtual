@@ -112,11 +112,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		
 	}
 
-	public function scopeIdDescending($query)
-	{
-		$query->orderBy('id', 'desc');
-	}
-
 	public function scopeByRole($query, $id)
 	{
 		$query->whereHas('roles', function($q) use ($id)

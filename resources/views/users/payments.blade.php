@@ -19,7 +19,7 @@
 			</div>
 			<div class="col-md-6 text-right">
 				<div class="btn-group">
-				  <a href="{{ route('payments.create') }}"  class="btn btn-danger">
+				  <a href="{{ route('users.payments.create', $user->id) }}"  class="btn btn-danger">
 				    <i class="fa fa-plus"></i> Agregar Pago
 				  </a>
 				</div>
@@ -86,21 +86,6 @@
 		<!-- paginado inferior -->
 
 	</div>
-
-{{--     <div class="col-md-6">
-	    Mostrando 23 de 1520 resultados
-	</div>
-	<div class="col-md-6 text-right">
-
-		<a href="#" class="btn btn-primary "><i class="fa  fa-angle-left"></i></a>
-
-	    <form id="pog2" method="get" style="display:inline-block" >
-	        <input id="pag_actual2" size="3" name="pag" value="" type="text" style="text-align:center"> de 100
-	    </form>
-	   
-	    <a href="#" class="btn btn-primary"><i class="fa  fa-angle-right"></i></a>               
-
-	</div> --}}
 
 </div>
 
