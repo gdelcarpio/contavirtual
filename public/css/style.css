@@ -2416,7 +2416,8 @@ a.active {
   position: absolute;
   right: 0;
   top: 0;
-  background-color: #243E50 !important;  
+  /*background-color: #243E50 !important;  */
+  background-color: #2a6496 !important;  
   padding: 9px;
   border-left: 1px solid #fff;
   color: #fff;

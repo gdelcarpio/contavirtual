@@ -48,27 +48,24 @@ function limpiarEspacios($string)
 	return $string;
 }
 
-function link_selected($url, $link)
+function link_selected($route, $link)
 {
 
 	switch ($link) {
-		case 'Fichas':
-			$array = ['files.index', 'files.create', 'files.edit', 'files.search', 'files.show', 'files.statistics'];
+		case 'Pagos':
+			$array = ['payments.index', 'payments.create', 'payments.edit', 'payments.search', 'payments.show', 'payments.statistics'];
 			break;
 		case 'Usuarios':
-			$array = ['users.index', 'users.create', 'users.edit', 'users.search', 'users.show'];
+			$array = ['users.index', 'users.create', 'users.edit', 'users.search', 'users.show', 'users.payments.index', 'users.payments.create'];
 			break;
-		case 'Sedes':
-			$array = ['headquarters.index', 'headquarters.create', 'headquarters.edit', 'headquarters.search', 'headquarters.show'];
-			break;
-		case 'Midis':
-			$array = ['index', 'contact'];
+		case 'Panel':
+			$array = ['home', 'contact'];
 			break;
 		case 'Login':
 			$array = ['login'];
 			break;
 		case 'Perfil':
-			$array = ['users.profile', 'users.change-password', 'users.history'];
+			$array = ['users.profile', 'users.password.edit', 'users.payments'];
 			break;
 
 		default:
@@ -76,16 +73,12 @@ function link_selected($url, $link)
 			break;
 	}
 
-	if( in_array($url, $array) )
+	if( in_array($route, $array) )
 	{
-
-		return 'selected-link';
-
-	}else{
-
-		return '';
-
+		return 'active';
 	}
+
+	return '';
 
 }
 

@@ -61,7 +61,7 @@
 
 <div class="row">
 	<div class="form-group">
-		@if( Route::currentRouteName() == "payments.create" )
+		@if( Route::currentRouteName() == "payments.create" OR Route::currentRouteName() == "payments.edit" )
 			<div class="col-sm-6">
 				<label class="col-sm-4 control-label">Usuario</label>
 				<div class="col-sm-8">

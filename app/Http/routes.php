@@ -42,7 +42,7 @@ Route::post('/auth/register', 			 ['as' => 'users.register', 'uses' 		  => 'User
 Route::get('/users/{id}/payments',		 ['as' => 'users.payments.index', 'uses'  => 'UserController@paymentsIndex']);
 Route::get('/users/{id}/payments/create',['as' => 'users.payments.create', 'uses' => 'UserController@paymentsCreate']);
 Route::post('/users/{id}/payments/store',['as' => 'users.payments.store', 'uses'  => 'UserController@paymentsStore']);
-Route::get('/users/password', 			 ['as' => 'users.password.edit', 'uses'   => 'UserController@changePassword']);
+Route::get('/users/password', 			 ['as' => 'users.password.edit', 'uses'   => 'UserController@editPassword']);
 Route::get('/my-profile', 				 ['as' => 'users.profile', 'uses' 		  => 'UserController@profile']);
 Route::get('/my-payments',				 ['as' => 'users.payments', 'uses' 		  => 'UserController@myPayments']);
 Route::resource('users', 'UserController');

@@ -18,7 +18,7 @@
 		</a>
 	</li>--}}
 	<li class="dropdown">
-		<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
+		<a href="#" class="dropdown-toggle account {{ link_selected(Route::currentRouteName(), 'Perfil') }}" data-toggle="dropdown">
 			<div class="avatar">
 				<img src="{{ asset('img/avatar.jpg') }}" class="img-rounded" alt="avatar" />
 			</div>

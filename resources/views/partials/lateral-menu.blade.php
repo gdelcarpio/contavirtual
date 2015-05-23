@@ -1,7 +1,7 @@
 <ul class="nav main-menu">
 			
 	<li>
-		<a href="{{ route('home') }}" class="active ajax-link">
+		<a href="{{ route('home') }}" class="{{ link_selected(Route::currentRouteName(), 'Panel') }}">
 			<i class="fa fa-dashboard"></i>
 			<span class="hidden-xs">Panel de control</span>
 		</a>
@@ -10,7 +10,7 @@
 	@if( is_admin() )
 
 	<li class="menu-li">
-		<a href="{{ route('users.index') }}" class="ajax-link">
+		<a href="{{ route('users.index') }}" class="{{ link_selected(Route::currentRouteName(), 'Usuarios') }}">
 			<i class="fa fa-users"></i>
 			<span class="hidden-xs">Usuarios</span>
 		</a>
@@ -18,7 +18,7 @@
 	</li>
 
 	<li class="menu-li">
-		<a href="{{ route('payments.index') }}" class="ajax-link">
+		<a href="{{ route('payments.index') }}" class="{{ link_selected(Route::currentRouteName(), 'Pagos') }}">
 			<i class="fa fa-credit-card"></i>
 			<span class="hidden-xs">Pagos</span>
 		</a>
@@ -29,7 +29,7 @@
 	@endif
 
 	<li class="menu-li">
-		<a href="{{ route('companies') }}" class="ajax-link">
+		<a href="{{ route('companies') }}" class="{{ link_selected(Route::currentRouteName(), 'Empresas') }}">
 			<i class="fa fa-building"></i>
 			<span class="hidden-xs">Empresas</span>
 		</a>
@@ -38,7 +38,7 @@
 	</li>
 
 	<li class="menu-li">
-		<a href="{{ route('products') }}" class="ajax-link">
+		<a href="{{ route('products') }}" class="{{ link_selected(Route::currentRouteName(), 'Productos') }}">
 			<i class="fa fa-list-ul"></i>
 			<span class="hidden-xs">Productos / servicios</span>
 		</a>
