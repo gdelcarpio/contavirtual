@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PaymentRequest;
 
 use App\User;
 use App\Payment;
@@ -40,9 +41,13 @@ class PaymentController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(PaymentRequest $request)
 	{
-		//
+		Payment::create($request->all());
+		
+		\Flash::success('pago registrado correctamente.');
+		return \Redirect::route('payments.index');
+
 	}
 
 	/**

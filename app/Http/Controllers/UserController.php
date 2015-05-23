@@ -4,9 +4,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\PasswordRequest;
+use App\Http\Requests\RegisterRequest;
 
 use App\User;
 use App\Department;

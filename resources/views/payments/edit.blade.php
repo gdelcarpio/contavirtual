@@ -20,7 +20,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-file-text-o"></i>
-					<span>EDITAR USUARIO</span>
+					<span>EDITAR PAGO</span>
 				</div>			
 			</div>
 
@@ -28,9 +28,9 @@
 
 				@include('errors.form')
 
-				{!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+				{!! Form::model($payment, ['route' => ['payments.update', $payment->id], 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-horizontal']) !!}
 					
-					@include('users.partials.form', ['submitButton' => 'ACTUALIZAR USUARIO'])
+					@include('payments.partials.form', ['submitButton' => 'ACTUALIZAR PAGO'])
 
 				{!! Form::close() !!}
 
@@ -39,11 +39,5 @@
 	</div>
 
 </div>
-
-@endsection
-
-@section('ajax-scripts')
-
-	@include('scripts.ajax-provinces-districts')
 
 @endsection
