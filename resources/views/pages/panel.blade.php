@@ -15,6 +15,16 @@
 <div id="dashboard-header" class="row">
 	<div class="col-xs-10 col-sm-10">
 		<h3>{{ Auth::user()->roles->first()->name }} / {{ Auth::user()->name }} {{ Auth:: user()->lastname }}</h3>
+
+    @if( has_debt() )
+
+      <h4>Tiene deudas</h4>
+
+    @else
+
+      <h4>NO tiene deudas</h4>
+      
+    @endif
 	</div>
 
 

@@ -29,4 +29,9 @@ class Company extends Model {
 		return $this->has('App\Product');
 	}
 
+	public function invoices()
+	{
+		return $this->hasMany('App\Invoice');
+	}
+
 }
