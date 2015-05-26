@@ -43,19 +43,7 @@
 			  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 			</form>
 			|
-			{!! Form::open(['route' => 'users.index', 'method' => 'GET', 'role' => 'form', 'class' => 'form-inline', 'style' =>'display:inline-block']) !!}
-
-	          <label>Número de filas:</label>
-	          
-	          <div class="form-group">   
-
-	            {!! Form::hidden('column', Input::get('column')) !!}
-	            {!! Form::hidden('direction', Input::get('direction')) !!}
-	            {!! Form::select('rows', $rows, Input::get('rows'), ['class' => 'form-control', 'id' => 'rows', 'onchange' => 'this.form.submit()']) !!}
-
-	          </div>
-
-	       	{!! Form::close() !!}
+			@include('partials.rows-form')
 
 		</div>
 
@@ -79,6 +67,10 @@
 				<table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
 					<thead>
 						<tr>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('id', $column, $direction) }}"></i>
+          						{!! sort_model_by('id', 'ID', Route::currentRouteName()) !!}
+							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('name', $column, $direction) }}"></i>
           						{!! sort_model_by('name', 'Nombres', Route::currentRouteName()) !!}

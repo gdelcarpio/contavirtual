@@ -38,24 +38,7 @@
 			  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 			</form>
 			|
-			<form name="form_salto" method="POST" action="mensajes.php" class="form-inline" style="display:inline-block">
-       
-	          <label>Número de filas:</label>
-	          
-	          <div class="form-group">   
-	            
-	            <select class="form-control input-sm input-group" id="filas_x_pagina" name="filas_x_pagina"  onchange="this.form.submit();">              
-
-	              <option value="10" >10</option>
-	              <option value="25" >25</option>
-	              <option value="50" >50</option>
-	              <option value="100" >100</option>
-	            
-	            </select>
-
-	          </div>
-
-	        </form>
+			@include('partials.rows-form')
 
 		</div>
 

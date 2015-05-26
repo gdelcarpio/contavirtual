@@ -25,16 +25,24 @@ class PaymentController extends Controller {
 	 */
 	public function index()
 	{
-		$column 	= \Input::get('column') ? \Input::get('column', 'id');
-		$direction  = \Input::get('direction') ? \Input::get('direction', 'desc');
+		$column 	= \Input::get('column', 'id');
+		$direction  = \Input::get('direction', 'desc');
+		$rows  		= \Input::get('rows', 10);
 
 		$payments = Payment::with(['user'])		
 							->join('users', 'users.id', '=', 'user_id')
             			 	->select('payments.*','users.name as name')
 							->orderBy($column, $direction)
-							->paginate(20);
+							->paginate($rows);
 
-		return view('payments.index', compact('payments', 'column', 'direction'));
+		$rows = [
+			10 => 10,
+			20 => 20,
+			30 => 30,
+			40 => 40
+		];
+
+		return view('payments.index', compact('payments', 'column', 'direction', 'rows'));
 	}
 
 	/**
