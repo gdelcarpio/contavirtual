@@ -11,6 +11,13 @@ use App\Payment;
 
 class PaymentController extends Controller {
 
+
+	public function __construct()
+	{
+		$this->middleware('auth');
+		$this->middleware('admin');
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -18,9 +25,16 @@ class PaymentController extends Controller {
 	 */
 	public function index()
 	{
-		$payments = Payment::latest()->paginate(20);
+		$column 	= \Input::get('column') ? \Input::get('column') : 'id';
+		$direction  = \Input::get('direction') ? \Input::get('direction') : 'desc';
 
-		return view('payments.index', compact('payments'));
+		$payments = Payment::with(['user'])		
+							->join('users', 'users.id', '=', 'user_id')
+            			 	->select('payments.*','users.name as name')
+							->orderBy($column, $direction)
+							->paginate(20);
+
+		return view('payments.index', compact('payments', 'column', 'direction'));
 	}
 
 	/**

@@ -1,14 +1,38 @@
 <table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
 	<thead>
 		<tr>
-			<th><a href="#"><i class="fa fa-sort"></i> ID</a></th>
-			<th><a href="#"><i class="fa fa-sort"></i> Usuario</a></th>
-			<th><a href="#"><i class="fa fa-sort"></i> Fecha de Pago</a></th>
-			<th><a href="#"><i class="fa fa-sort"></i> Fecha Limite de Pago</a></th>
-			<th><a href="#"><i class="fa fa-sort"></i> Monto</a></th>
-			<th><a href="#"><i class="fa fa-sort"></i> Doc Pago</a></th>
-			<th><a href="#"><i class="fa fa-sort"></i> Inicio</a></th>
-			<th><a href="#"><i class="fa fa-sort"></i> Fin</a></th>
+			<th>
+				<i class="fa fa-{{ show_sort_icon('id', $column, $direction) }}"></i>
+				{!! sort_model_by('id', 'ID', Route::currentRouteName()) !!}
+			</th>
+			<th>
+				<i class="fa fa-{{ show_sort_icon('name', $column, $direction) }}"></i>
+				{!! sort_model_by('name', 'Usuario', Route::currentRouteName()) !!}
+			</th>
+			<th>
+				<i class="fa fa-{{ show_sort_icon('payment_date', $column, $direction) }}"></i>
+				{!! sort_model_by('payment_date', 'Fecha de Pago', Route::currentRouteName()) !!}
+			</th>
+			<th>
+				<i class="fa fa-{{ show_sort_icon('payment_expiration_date', $column, $direction) }}"></i>
+				{!! sort_model_by('payment_expiration_date', 'Vencimiento', Route::currentRouteName()) !!}
+			</th>
+			<th>
+				<i class="fa fa-{{ show_sort_icon('amount', $column, $direction) }}"></i>
+				{!! sort_model_by('amount', 'Monto', Route::currentRouteName()) !!}
+			</th>
+			<th>
+				<i class="fa fa-{{ show_sort_icon('invoice', $column, $direction) }}"></i>
+				{!! sort_model_by('invoice', 'Doc de Pago', Route::currentRouteName()) !!}
+			</th>
+			<th>
+				<i class="fa fa-{{ show_sort_icon('start_date', $column, $direction) }}"></i>
+				{!! sort_model_by('start_date', 'Inicio', Route::currentRouteName()) !!}
+			</th>
+			<th>
+				<i class="fa fa-{{ show_sort_icon('end_date', $column, $direction) }}"></i>
+				{!! sort_model_by('end_date', 'Fin', Route::currentRouteName()) !!}
+			</th>
 			<th>Acciones</th>
 		</tr>
 	</thead>

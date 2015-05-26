@@ -84,11 +84,26 @@
 				<table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
 					<thead>
 						<tr>
-							<th><a href="#"><i class="fa fa-sort"></i> Nombres</a></th>
-							<th><a href="#"><i class="fa fa-sort"></i> Apellidos</a></th>
-							<th><a href="#"><i class="fa fa-sort"></i> Correo electrónico</a></th>
-							<th><a href="#"><i class="fa fa-sort"></i> Estado</a></th>
-							<th><a href="#"><i class="fa fa-sort"></i> Level</a></th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('name', $column, $direction) }}"></i>
+          						{!! sort_model_by('name', 'Nombres', Route::currentRouteName()) !!}
+							</th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('lastname', $column, $direction) }}"></i>
+          						{!! sort_model_by('lastname', 'Apellidos', Route::currentRouteName()) !!}
+							</th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('email', $column, $direction) }}"></i>
+          						{!! sort_model_by('email', 'Correo', Route::currentRouteName()) !!}
+							</th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('active', $column, $direction) }}"></i>
+          						{!! sort_model_by('active', 'Estado', Route::currentRouteName()) !!}
+							</th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('scale', $column, $direction) }}"></i>
+          						{!! sort_model_by('scale', 'Nivel', Route::currentRouteName()) !!}
+							</th>
 							<th>Acciones</th>
 						</tr>
 					</thead>
@@ -125,7 +140,9 @@
 
 		</div>
 		
-		{!! $users->setPath('')->render() !!}
+		{{-- {!! $users->setPath('')->render() !!} --}}
+
+		{!! $users->setPath('')->appends(array('q' => Input::get('q') ,'column' => Input::get('column'),'direction' => Input::get('direction')))->render() !!}
 
 		<!-- paginado inferior -->
 

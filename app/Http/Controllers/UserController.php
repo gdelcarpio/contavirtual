@@ -30,7 +30,14 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		$users = User::latest()->paginate(20);
+		$column 	= \Input::get('column') ? \Input::get('column') : 'id';
+		$direction  = \Input::get('direction') ? \Input::get('direction') : 'desc';
+
+		$users = User::with(['level'])		
+						->join('levels', 'levels.id', '=', 'level_id')
+						->select('users.*','levels.name as scale')
+						->orderBy($column, $direction)
+            			->paginate(20);
 		
 		$count['users'] = User::all()->count();
 
@@ -38,7 +45,7 @@ class UserController extends Controller {
 		$count['administrators'] 	= User::byRole(2)->count();
 		$count['accountants'] 		= User::byRole(3)->count();
 
-		return view('users.index', compact('users', 'count'));
+		return view('users.index', compact('users', 'count', 'column', 'direction'));
 	}
 
 	/**
