@@ -25,8 +25,8 @@ class PaymentController extends Controller {
 	 */
 	public function index()
 	{
-		$column 	= \Input::get('column') ? \Input::get('column') : 'id';
-		$direction  = \Input::get('direction') ? \Input::get('direction') : 'desc';
+		$column 	= \Input::get('column') ? \Input::get('column', 'id');
+		$direction  = \Input::get('direction') ? \Input::get('direction', 'desc');
 
 		$payments = Payment::with(['user'])		
 							->join('users', 'users.id', '=', 'user_id')

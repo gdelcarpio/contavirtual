@@ -43,24 +43,19 @@
 			  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 			</form>
 			|
-			<form name="form_salto" method="POST" action="mensajes.php" class="form-inline" style="display:inline-block">
-       
+			{!! Form::open(['route' => 'users.index', 'method' => 'GET', 'role' => 'form', 'class' => 'form-inline', 'style' =>'display:inline-block']) !!}
+
 	          <label>Número de filas:</label>
 	          
 	          <div class="form-group">   
-	            
-	            <select class="form-control input-sm input-group" id="filas_x_pagina" name="filas_x_pagina"  onchange="this.form.submit();">              
 
-	              <option value="10" >10</option>
-	              <option value="25" >25</option>
-	              <option value="50" >50</option>
-	              <option value="100" >100</option>
-	            
-	            </select>
+	            {!! Form::hidden('column', Input::get('column')) !!}
+	            {!! Form::hidden('direction', Input::get('direction')) !!}
+	            {!! Form::select('rows', $rows, Input::get('rows'), ['class' => 'form-control', 'id' => 'rows', 'onchange' => 'this.form.submit()']) !!}
 
 	          </div>
 
-	        </form>
+	       	{!! Form::close() !!}
 
 		</div>
 
@@ -140,9 +135,7 @@
 
 		</div>
 		
-		{{-- {!! $users->setPath('')->render() !!} --}}
-
-		{!! $users->setPath('')->appends(array('q' => Input::get('q') ,'column' => Input::get('column'),'direction' => Input::get('direction')))->render() !!}
+		{!! $users->setPath('')->appends( array( 'q' => Input::get('q') ,'column' => Input::get('column'),'direction' => Input::get('direction'), 'rows' => Input::get('rows') ) )->render() !!}
 
 		<!-- paginado inferior -->
 

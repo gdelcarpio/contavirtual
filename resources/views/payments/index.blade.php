@@ -81,7 +81,7 @@
 
 		</div>
 		
-		{!! $payments->setPath('')->render() !!}
+		{!! $payments->setPath('')->appends(array('q' => Input::get('q') ,'column' => Input::get('column'),'direction' => Input::get('direction')))->render() !!}
 
 		<!-- paginado inferior -->
 

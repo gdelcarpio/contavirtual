@@ -5,8 +5,9 @@ function sort_model_by($column, $body, $url)
 	$direction 	= Request::get('direction') == 'asc' ? 'desc' : 'asc' ;
 	$option 	= Request::get('option');
 	$q 			= Request::get('q');
+	$rows 		= Request::get('rows');
 
-	return link_to_route($url, $body, ['column' => $column, 'direction' => $direction, 'option' => $option, 'q' => $q]);
+	return link_to_route($url, $body, ['column' => $column, 'direction' => $direction, 'rows' => $rows, 'q' => $q]);
 }
 
 function show_sort_icon($sortName, $sortRequest, $direction)
