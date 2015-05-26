@@ -4,9 +4,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model {
 
-	public function company()
+	protected $table = 'products';
+
+	protected $guarded = ['id', 'created_at', 'updated_at'];
+
+	
+
+	public function user()
 	{
-		return $this->belongsTo('App\Company');
+		return $this->belongsTo('App\User');
 	}
 
 	public function invoices()

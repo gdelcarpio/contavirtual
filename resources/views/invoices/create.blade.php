@@ -7,7 +7,7 @@
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12">
 		<ol class="breadcrumb">
-			<li><a href="index.html">GASTOS</a></li>
+			<li><a href="index.html">Productos</a></li>
 			<li><a href="index.html">Crear</a></li>
 		</ol>
 	</div>
@@ -156,24 +156,29 @@
 
 
 
-                            <div class="form-group detalle_producto">
+            <div class="form-group detalle_producto">
 
-                                    <div class="col-xs-8">
+                    <div class="col-xs-8">
+                        <select id="prod_item_1">
+                            <option></option>
+                            @foreach($products as $product)
+                            <option value="{{ $product->id }}"> {{ $product->name}} </option>
+                            @endforeach
+                        </select>
 
+                       <p>{{ Auth::user()->name }}</p>
 
-                                        <select class="populate placeholder" id="prod_item1"  name="country" ><option></option><option value="1">205fiusf isf isuf is fisu </option><option value="2">875421549</option></select>
+                    </div>
 
-                                    </div>
+                    <div class="col-xs-1 text-center">
+                        {!! Form::text('cant_1', 1, ['class' => 'form-control text-center', 'required', 'minlength' => '1', 'id' => 'cant_1']) !!}
+                    </div>
+                    <div class="col-xs-1 text-center">
+                        {!! Form::text('price_1', null, ['class' => 'form-control text-center', 'required', 'minlength' => '1', 'id' => 'price_1']) !!}
+                    </div>
+                    <div class="col-xs-2 text-right">PEN <span id="monto_1">0.00</span> <a href="#" class="eliminar_producto"><i class="fa fa-times-circle" style="color:#f66"></i></a></div>
 
-                                    <div class="col-xs-1 text-center">
-                                        <input type="text" class="form-control" placeholder="" name="serie" />
-                                    </div>
-                                    <div class="col-xs-1 text-center">
-                                        <input type="text" class="form-control" placeholder="" name="serie" />
-                                    </div>
-                                    <div class="col-xs-2 text-right">PEN 0.00 <a href="#" class="eliminar_producto"><i class="fa fa-times-circle" style="color:#f66"></i></a></div>
-
-                            </div>
+            </div>
 
 
 
@@ -182,7 +187,7 @@
 
             <div class="col-sm-12 detalle_cabecera">
 
-                                <a href="#" id="agregar_producto">+ agregar nuevo producto</a>
+                <a href="#" id="agregar_producto">+ Agregar nuevo item</a>
 
             </div>
 
@@ -242,15 +247,15 @@
 
 
         <div class="row">
-                <div class="col-sm-12 text-center">
-                        <div class="form-group">
+            <div class="col-sm-12 text-center">
+                <div class="form-group">
 
-                                    <button type="submit" class="btn btn-primary">Guardar como borrador</button>
-                                    <button type="submit" class="btn btn-danger">Guardar Factura</button>
+                    <button type="submit" class="btn btn-primary">Guardar como borrador</button>
+                    <button type="submit" class="btn btn-danger">Guardar Factura</button>
 
-                        </div>
                 </div>
-    </div>
+            </div>
+        </div>
 </form>
 
 			</div>

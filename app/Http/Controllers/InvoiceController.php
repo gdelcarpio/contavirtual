@@ -10,6 +10,8 @@ use App\Invoice;
 use App\Account;
 use App\Subaccount;
 use App\Company;
+use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller {
@@ -28,16 +30,18 @@ class InvoiceController extends Controller {
 
 	public function create()
 	{
+		$user = \Auth::user()->id;
         $account = Account::lists('name','id');
         $account = array(''=>'') + $account;
 
-        $subaccount = Subaccount::All();
-
-        $companies = Company::where('client','=','1')->lists('ruc','id');
+        $companies = Company::where('client','=','1')->where('user_id', $user)->lists('ruc','id');
         $companies = array(''=>'') + $companies;
-       //$companies = Company::select('ruc','id')->where('client','=','1')->get();
 
-		return view('invoices.create', compact('account','subaccount','companies'));        
+       // $user = User::findOrFail();
+
+        $products = Product::where('active','1')->Where('user_id', $user)->get();
+
+		return view('invoices.create', compact('account','companies','products'));        
 	}
 
 
@@ -97,7 +101,7 @@ class InvoiceController extends Controller {
       
             $subaccount = Subaccount::where('account_id',$id)->lists('name','id');
             $subaccount = array('' => '') + $subaccount;
-             return view('invoices.partials.subaccount', compact('subaccount'));
+            return view('invoices.partials.subaccount', compact('subaccount'));
             
     }
 

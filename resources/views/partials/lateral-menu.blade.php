@@ -38,11 +38,11 @@
 	</li>
 
 	<li class="menu-li">
-		<a href="{{ route('products') }}" class="{{ link_selected(Route::currentRouteName(), 'Productos') }}">
+		<a href="{{ route('products.index') }}" class="{{ link_selected(Route::currentRouteName(), 'Productos') }}">
 			<i class="fa fa-list-ul"></i>
 			<span class="hidden-xs">Productos / servicios</span>
 		</a>
-		<a href="#" class="agregar"><i class="fa fa-plus"></i></a>
+		<a href="{{ route('products.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
 	</li>
 
 	<hr style="margin:0px">

@@ -20,7 +20,7 @@ $('#select_ruc').select2({
 	//$("#subaccount_venta").select2({placeholder: "Selecione una opción"});
 	$("#documento_tipo").select2({placeholder: "Selecione un tipo de documento"});
 
-	$("#prod_item1").select2({
+	$("#prod_item_1").select2({
 		placeholder: "Seleciona un Producto",
 
 		formatNoMatches: function(term) {return '<a href="#">Agregar Producto o Servicio</a>';}
@@ -102,31 +102,6 @@ $(document).ready(function() {
 
 //---------agregar y eliminar productos en factura y boletas----------
 
-var item = 1;
-
-$('#agregar_producto').click(function(e){	
-
-item++;	
-
-e.preventDefault();
-
-		
-		$('.detalle_cuerpo').append('<div class="form-group detalle_producto"><div class="col-xs-8"><select class="populate placeholder" id="prod_item'+item+'"  name="country" ><option></option><option value="1">20514159069  </option><option value="2">875421549</option></select></div><div class="col-xs-1 text-center"><input type="text" class="form-control" placeholder="" name="serie" /></div><div class="col-xs-1 text-center"><input type="text" class="form-control" placeholder="" name="serie" /></div><div class="col-xs-2 text-right">PEN 0.00 <a href="#" class="eliminar_producto"><i class="fa fa-times-circle" style="color:#f66"></i></a></div></div>');
-
-
-			$("#prod_item"+item).select2({
-				placeholder: "Seleciona un Producto",
-
-				formatNoMatches: function(term) {
-				return '<a href="#">Agregar Producto o Servicio</a>';
-		 }
-
-	});
-
-
-
-
-	});
 
 
 

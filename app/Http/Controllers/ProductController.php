@@ -4,78 +4,57 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
+use App\Product;
 
 class ProductController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+	
 	public function index()
 	{
-		//
+		$user = \Auth::user()->id;
+		$products = Product::where('user_id',$user)->get();
+		return view('products.index', compact('products'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+
 	public function create()
 	{
-		//
+		return view('products.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+
+	public function store(ProductRequest $request)
 	{
-		//
+		$product = new Product($request->all());
+		$product->user_id = \Auth::user()->id;
+		$product->save();
+		//\Flash::success('Se agregó elproducto correctamente.');
+		return redirect()->route('products.index');
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+
 	public function show($id)
 	{
 		//
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
-		//
+		$product = Product::findOrFail($id);
+		return view('products.edit', compact('product'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
+
+	public function update($id, ProductRequest $request)
 	{
-		//
+		$product = Product::findOrFail($id);
+		$product->update($request->all());
+
+		return redirect()->back();
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+
 	public function destroy($id)
 	{
 		//

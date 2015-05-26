@@ -24,7 +24,7 @@
 		<div class="col-md-6 text-right">
 					
 			<div class="btn-group">
-			  <a href="paginas/producto-crear.html"  class="btn btn-danger crear_documento">
+			  <a href="{{ route('products.create') }}"  class="btn btn-danger crear_documento">
 			    <i class="fa fa-plus"></i> Registrar Producto / Servicio
 			  </a>
 			 
@@ -93,77 +93,25 @@
 							<th><a href="#"><i class="fa fa-sort"></i> Cod.</a></th>
 							<th><a href="#"><i class="fa fa-sort"></i> Nombre</a></th>
 							<th><a href="#"><i class="fa fa-sort"></i> Descripción</a></th>
-							<th><a href="#"><i class="fa fa-sort"></i> Prc. Unitario</a></th>
+							<th><a href="#"><i class="fa fa-sort"></i> Prc. Unitario (Sin IGV)</a></th>
 							<th>Acciones</th>
 							
 							
 						</tr>
 					</thead>
 					<tbody>
+						@foreach($products as $product)
 						<tr>
-							<td>PR150</td>
-							<td>Producto </td>
-							<td>Esta es la descripción del producto</td>
-							<td>PEN 150.00</td>
-							<td><a href="#">Editar</a>
+							
+							<td>{{ $product->code }}</td>
+							<td>{{ $product->name }}</td>
+							<td>{{ $product->description }}</td>
+							<td>PEN {{ $product->price }}</td>
+							<td><a href="{{ route('products.edit', $product) }}">Editar</a>
 								<a href="#">Eliminar</a></td>
 						</tr>
-						<tr>
-							<td>PR150</td>
-							<td>Producto </td>
-							<td>Esta es la descripción del producto</td>
-							<td>PEN 150.00</td>
-							<td><a href="#">Editar</a>
-								<a href="#">Eliminar</a></td>
-						</tr>
-						<tr>
-							<td>PR150</td>
-							<td>Producto </td>
-							<td>Esta es la descripción del producto</td>
-							<td>PEN 150.00</td>
-							<td><a href="#">Editar</a>
-								<a href="#">Eliminar</a></td>
-						</tr>
-						<tr>
-							<td>PR150</td>
-							<td>Producto </td>
-							<td>Esta es la descripción del producto</td>
-							<td>PEN 150.00</td>
-							<td><a href="#">Editar</a>
-								<a href="#">Eliminar</a></td>
-						</tr>
-						<tr>
-							<td>PR150</td>
-							<td>Producto </td>
-							<td>Esta es la descripción del producto</td>
-							<td>PEN 150.00</td>
-							<td><a href="#">Editar</a>
-								<a href="#">Eliminar</a></td>
-						</tr>
-						<tr>
-							<td>PR150</td>
-							<td>Producto </td>
-							<td>Esta es la descripción del producto</td>
-							<td>PEN 150.00</td>
-							<td><a href="#">Editar</a>
-								<a href="#">Eliminar</a></td>
-						</tr>
-						<tr>
-							<td>PR150</td>
-							<td>Producto </td>
-							<td>Esta es la descripción del producto</td>
-							<td>PEN 150.00</td>
-							<td><a href="#">Editar</a>
-								<a href="#">Eliminar</a></td>
-						</tr>
-						<tr>
-							<td>PR150</td>
-							<td>Producto </td>
-							<td>Esta es la descripción del producto</td>
-							<td>PEN 150.00</td>
-							<td><a href="#">Editar</a>
-								<a href="#">Eliminar</a></td>
-						</tr>
+						@endforeach
+						
 						
 					</tbody>
 				</table>

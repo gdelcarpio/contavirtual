@@ -15,7 +15,7 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 // Route::get('/purchases', ['as' => 'purchases', 'uses' => 'HomeController@purchases']);
 // Route::get('/sales', ['as' => 'sales', 'uses' => 'HomeController@sales']);
 Route::get('/companies', ['as' => 'companies', 'uses' => 'HomeController@companies']);
-Route::get('/products', ['as' => 'products', 'uses' => 'HomeController@products']);
+//Route::get('/products', ['as' => 'products', 'uses' => 'HomeController@products']);
 Route::get('/purchases', ['as' => 'purchases', 'uses' => 'HomeController@purchases']);
 Route::get('/expenses', ['as' => 'expenses', 'uses' => 'HomeController@expenses']);
 //Route::get('/invoices', ['as' => 'invoices', 'uses' => 'HomeController@invoices']);
@@ -26,7 +26,7 @@ Route::get('/credit_notes', ['as' => 'credit_notes', 'uses' => 'HomeController@c
 // Route::resource('credit_notes', 'CreditNoteController');
 Route::resource('invoices', 'InvoiceController');
 Route::resource('payments', 'PaymentController');
-// Route::resource('products', 'ProductController');
+Route::resource('products', 'ProductController');
 // Route::resource('roles', 'RoleController');
 // Route::resource('subaccounts', 'SubaccountController');
 
