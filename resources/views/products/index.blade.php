@@ -26,8 +26,7 @@
 			<div class="btn-group">
 			  <a href="{{ route('products.create') }}"  class="btn btn-danger crear_documento">
 			    <i class="fa fa-plus"></i> Registrar Producto / Servicio
-			  </a>
-			 
+			  </a>			 
 			</div>
 
 		</div>
@@ -37,45 +36,34 @@
 
 		<div class="col-md-6">
 
-			<form class="form-inline" style="display:inline-block">
+			{!! Form::open(['route' => 'products.index', 'method' => 'GET', 'class' => 'form-inline', 'style' => 'display:inline-block' ]) !!}
+
+			
 			  <div class="form-group">		    
-			    <input type="text" class="form-control" id="exampleInputName2" placeholder="buscar">
+			    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Buscar']) !!}
+			    
 			  </div>		  
 			  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-			</form>
+			
+
+			{!! Form::close() !!}
 			|
-				<form name="form_salto" method="POST" action="mensajes.php" class="form-inline" style="display:inline-block">
+			
            
-                <label>Número de filas: </label>
-                <div class="form-group">   
-                  
-                  <select class="form-control input-sm input-group" id="filas_x_pagina" name="filas_x_pagina"  onchange="this.form.submit();">              
-
-                    <option value="10" >10</option>
-                    <option value="25" >25</option>
-                    <option value="50" >50</option>
-                    <option value="100" >100</option>
-                  
-
-                </select>
-
-              </div>
-
-
-              </form>
+            @include('partials.rows-form')          
 
 
 			</div>
 
 		<div class="col-md-6 text-right">
 
-			<a href="#" class="btn btn-primary "><i class="fa  fa-angle-left"></i></a>
+		  <!--	<a href="#" class="btn btn-primary "><i class="fa  fa-angle-left"></i></a>
 
-	    <form id="pog1" method="get" style="display:inline-block" >
+	   <form id="pog1" method="get" style="display:inline-block" >
 	        <input id="pag_actual1" size="3" name="pag" value="" type="text" style="text-align:center"> de 100
-	    </form>
+	    </form> 
 	   
-	    <a href="#" class="btn btn-primary"><i class="fa  fa-angle-right"></i></a>               
+	    <a href="#" class="btn btn-primary"><i class="fa  fa-angle-right"></i></a>      -->         
 
 
 		</div>
@@ -122,16 +110,18 @@
 
 	</div>
     <div class="col-md-6">
-	    Mostrando 23 de 1520 resultados</div>
+    	{!! $products->setPath('')->appends(['rows' => Input::get('rows')])->render() !!}
+	    Mostrando 23 de 15201 resultados
+	</div>
 		<div class="col-md-6 text-right">
-
+<!-- 
 			<a href="#" class="btn btn-primary "><i class="fa  fa-angle-left"></i></a>
 
 	    <form id="pog2" method="get" style="display:inline-block" >
 	        <input id="pag_actual2" size="3" name="pag" value="" type="text" style="text-align:center"> de 100
 	    </form>
 	   
-	    <a href="#" class="btn btn-primary"><i class="fa  fa-angle-right"></i></a>               
+	    <a href="#" class="btn btn-primary"><i class="fa  fa-angle-right"></i></a>  -->              
 
 
 		</div>

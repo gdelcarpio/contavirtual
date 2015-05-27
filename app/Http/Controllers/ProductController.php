@@ -1,4 +1,5 @@
-<?php namespace App\Http\Controllers;
+<?php 
+namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -10,11 +11,25 @@ use App\Product;
 class ProductController extends Controller {
 
 	
-	public function index()
+	public function index(Requests $request)
 	{
-		$user = \Auth::user()->id;
-		$products = Product::where('user_id',$user)->get();
-		return view('products.index', compact('products'));
+
+		$search     = $request->get('name');
+
+		$user       = \Auth::user()->id;		
+		$rows  	    = \Input::get('rows', 1);
+		$products   = Product::where('user_id',$user)->paginate($rows);
+		$column 	= \Input::get('column', 'id');
+		$direction  = \Input::get('direction', 'desc');
+
+		$rows = [
+					10 => 10,
+					20 => 20,
+					30 => 30,
+					40 => 40
+				];
+
+		return view('products.index', compact('products','rows','column','direction'));
 	}
 
 
