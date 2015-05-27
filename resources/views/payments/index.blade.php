@@ -31,12 +31,8 @@
 
 		<div class="col-md-6">
 
-			<form class="form-inline" style="display:inline-block">
-			  <div class="form-group">		    
-			    <input type="text" class="form-control" id="exampleInputName2" placeholder="buscar">
-			  </div>		  
-			  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-			</form>
+
+			@include('partials.search-form')
 			|
 			@include('partials.rows-form')
 

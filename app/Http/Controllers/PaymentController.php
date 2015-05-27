@@ -29,10 +29,25 @@ class PaymentController extends Controller {
 		$direction  = \Input::get('direction', 'desc');
 		$rows  		= \Input::get('rows', 10);
 
+		$q  = trim(\Input::get('q') != "" ) ? trim(\Input::get('q')) : '';
+
+		$searchTerms = $q != '' ? explode(' ', $q) : '';
+
 		$payments = Payment::with(['user'])		
 							->join('users', 'users.id', '=', 'user_id')
             			 	->select('payments.*','users.name as name')
-							->orderBy($column, $direction)
+							->sortBy(compact('column', 'direction'))
+							->where(function($query) use ($searchTerms) {
+				                if( $searchTerms != '' )
+				                {
+				                    foreach($searchTerms as $term){
+				                     $query->orWhere('users.name', 'LIKE', '%'. $term .'%');
+				                     $query->orWhere('users.lastname', 'LIKE', '%'. $term .'%');
+				                     $query->orWhere('invoice', 'LIKE', '%'. $term .'%');
+				                    }
+
+				                }
+				            })
 							->paginate($rows);
 
 		$rows = [

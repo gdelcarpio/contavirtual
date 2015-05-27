@@ -35,10 +35,25 @@ class UserController extends Controller {
 
 		$rows  		= \Input::get('rows', 10);
 
+		$q  = trim(\Input::get('q') != "" ) ? trim(\Input::get('q')) : '';
+
+		$searchTerms = $q != '' ? explode(' ', $q) : '';
+
 		$users = User::with(['level'])		
 						->join('levels', 'levels.id', '=', 'level_id')
 						->select('users.*','levels.name as scale')
 						->sortBy(compact('column', 'direction'))
+						->where(function($query) use ($searchTerms) {
+			                if( $searchTerms != '' )
+			                {
+			                    foreach($searchTerms as $term){
+			                     $query->orWhere('users.name', 'LIKE', '%'. $term .'%');
+			                     $query->orWhere('lastname', 'LIKE', '%'. $term .'%');
+			                     $query->orWhere('email', 'LIKE', '%'. $term .'%');
+			                    }
+
+			                }
+			            })
             			->paginate($rows);
 		
 		$count['users'] = User::all()->count();

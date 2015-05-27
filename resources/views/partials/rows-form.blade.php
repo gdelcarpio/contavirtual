@@ -3,6 +3,9 @@
   <label>Número de filas:</label>
   
   <div class="form-group">   
+	@if(Input::get('q'))
+    {!! Form::hidden('q', Input::get('q')) !!}
+    @endif
 	@if(Input::get('column') AND Input::get('direction'))
     {!! Form::hidden('column', Input::get('column')) !!}
     {!! Form::hidden('direction', Input::get('direction')) !!}

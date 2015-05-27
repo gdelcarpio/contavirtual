@@ -87,4 +87,17 @@ class Payment extends Model {
 		return $this->attributes['start_date'];
 	}
 
+	public function scopeSortBy($query, array $params)
+	{
+		if ($this->isSortable($params))
+        {
+        	$query->orderBy($params['column'], $params['direction']);
+        }
+	}
+
+	protected function isSortable(array $params)
+    {
+        return $params['column'] and $params['direction'];
+    }
+
 }
