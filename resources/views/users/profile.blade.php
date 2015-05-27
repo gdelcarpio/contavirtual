@@ -34,6 +34,7 @@
 			<div class="box-content">
 				<div class="card">
 					<h4 class="page-header">{{ $user->name }} {{ $user->lastname }}</h4>
+					<h4 class="page-header">{{ $user->company_name }}</h4>
 					<h4 class="page-header"></h4>
 					<p>
 						<span>{{ $user->phone }}</span> <br>
