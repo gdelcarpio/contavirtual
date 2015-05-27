@@ -132,11 +132,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         {
         	$query->orderBy($params['column'], $params['direction']);
         }
-
-
 	}
 
-	    protected function isSortable(array $params)
+    protected function isSortable(array $params)
     {
         return $params['column'] and $params['direction'];
     }

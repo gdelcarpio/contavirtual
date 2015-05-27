@@ -2,12 +2,12 @@
 
 function sort_model_by($column, $body, $url)
 {
+	$q 			= Request::get('q');
 	$direction 	= Request::get('direction') == 'asc' ? 'desc' : 'asc' ;
 	$option 	= Request::get('option');
-	$q 			= Request::get('q');
 	$rows 		= Request::get('rows');
 
-	return link_to_route($url, $body, ['column' => $column, 'direction' => $direction, 'rows' => $rows, 'q' => $q]);
+	return link_to_route($url, $body, ['q' => $q,'column' => $column, 'direction' => $direction, 'rows' => $rows ]);
 }
 
 function show_sort_icon($sortName, $sortRequest, $direction)

@@ -36,12 +36,7 @@
 
 		<div class="col-md-6">
 
-			<form class="form-inline" style="display:inline-block">
-			  <div class="form-group">		    
-			    <input type="text" class="form-control" id="exampleInputName2" placeholder="buscar">
-			  </div>		  
-			  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-			</form>
+			@include('partials.search-form')
 			|
 			@include('partials.rows-form')
 
@@ -97,6 +92,7 @@
 					<tbody>
 						@foreach($users as $user)
 							<tr data-id="{{ $user->id }}" data-type="el usuario" data-name="{{ $user->lastname }}">
+								<td>{{ $user->id }}</td>
 								<td>{{ $user->name }}</td>
 								<td>{{ $user->lastname }}</td>
 								<td>{{ $user->email }}</td>
