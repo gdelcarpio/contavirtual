@@ -1,4 +1,8 @@
-{!! Form::open(['route' => Route::currentRouteName(), 'method' => 'GET', 'role' => 'form', 'class' => 'form-inline', 'style' => 'display:inline-block']) !!}
+@if(Route::currentRouteName()=='users.payments.index')
+	{!! Form::open(['route' => [Route::currentRouteName(), $user->id], 'method' => 'GET', 'role' => 'form', 'class' => 'form-inline', 'style' => 'display:inline-block']) !!}
+@else
+	{!! Form::open(['route' => Route::currentRouteName(), 'method' => 'GET', 'role' => 'form', 'class' => 'form-inline', 'style' => 'display:inline-block']) !!}
+@endif
 
 	<div class="form-group">
 		{!! Form::input('search','q', Input::get('q'), ['class' => 'form-control', 'placeholder' => 'Ingrese su búsqueda...', 'required']) !!}

@@ -273,10 +273,43 @@ class UserController extends Controller {
 
 	public function paymentsIndex($id)
 	{
-		$user = User::findOrFail($id);
-		$payments = $user->payments()->paginate(20);
+		$column 	= \Input::get('column', 'id');
+		$direction  = \Input::get('direction', 'desc');
 
-		return view('users.payments', compact('payments', 'user'));
+		$rows  		= \Input::get('rows', 10);
+
+		$q  = trim(\Input::get('q') != "" ) ? trim(\Input::get('q')) : '';
+
+		$searchTerms = $q != '' ? explode(' ', $q) : '';
+
+		$user = User::findOrFail($id);
+		$payments = $user->payments()
+							->with(['user'])		
+							->join('users', 'users.id', '=', 'user_id')
+            			 	->select('payments.*','users.name as name')
+							->sortBy(compact('column', 'direction'))
+							->where(function($query) use ($searchTerms) {
+				                if( $searchTerms != '' )
+				                {
+				                    foreach($searchTerms as $term){
+				                     $query->orWhere('users.name', 'LIKE', '%'. $term .'%');
+				                     $query->orWhere('users.lastname', 'LIKE', '%'. $term .'%');
+				                     $query->orWhere('invoice', 'LIKE', '%'. $term .'%');
+				                    }
+
+				                }
+				            })
+							->paginate($rows);
+
+
+				$rows = [
+					10 => 10,
+					20 => 20,
+					30 => 30,
+					40 => 40
+				];
+
+		return view('users.payments', compact('payments', 'user','column', 'direction', 'rows'));
 	}
 
 	public function myPayments()
