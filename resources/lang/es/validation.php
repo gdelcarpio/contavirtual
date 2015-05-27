@@ -103,6 +103,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+                        'code' => 'código',
+                        'name' => 'nombre',
+                    ],
 
 ];

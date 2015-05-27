@@ -11,13 +11,13 @@ use App\Product;
 class ProductController extends Controller {
 
 	
-	public function index(Requests $request)
+	public function index()
 	{
 
-		$search     = $request->get('name');
+		//$search     = $request->get('name');
 
 		$user       = \Auth::user()->id;		
-		$rows  	    = \Input::get('rows', 1);
+		$rows  	    = \Input::get('rows', 5);
 		$products   = Product::where('user_id',$user)->paginate($rows);
 		$column 	= \Input::get('column', 'id');
 		$direction  = \Input::get('direction', 'desc');
