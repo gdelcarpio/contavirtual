@@ -18,11 +18,32 @@ class ProductController extends Controller {
 
 		$user       = \Auth::user()->id;		
 		$rows  	    = \Input::get('rows', 5);
-		$products   = Product::where('user_id',$user)->paginate($rows);
-		$column 	= \Input::get('column', 'id');
-		$direction  = \Input::get('direction', 'desc');
+		
+		$column 	= \Input::get('column', 'id'); //columna a ordenr
+		$direction  = \Input::get('direction', 'desc'); //tipo de orden
+
+		$q  = trim(\Input::get('q') != "" ) ? trim(\Input::get('q')) : '';
+
+		$searchTerms = $q != '' ? explode(' ', $q) : '';
+
+		$products   = Product::where('user_id',$user)
+							   ->sortBy(compact('column', 'direction'))
+		                       ->where(function($query) use ($searchTerms) {
+					                if( $searchTerms != '' )
+					                {
+					                    foreach($searchTerms as $term){
+					                     $query->orWhere('code', 'LIKE', '%'. $term .'%');
+					                     $query->orWhere('name', 'LIKE', '%'. $term .'%');
+					                     $query->orWhere('description', 'LIKE', '%'. $term .'%');
+					                     $query->orWhere('price', 'LIKE', '%'. $term .'%');
+					                    }
+
+					                }
+					            })
+		                       ->paginate($rows);
 
 		$rows = [
+					5  => 5,
 					10 => 10,
 					20 => 20,
 					30 => 30,
@@ -72,7 +93,15 @@ class ProductController extends Controller {
 
 	public function destroy($id)
 	{
-		//
+		$product = Product::findOrFail($id);
+
+		//$user_name = $user->name . ' ' . $user->lastname;
+
+		//$user->roles()->detach();
+		$product->delete();
+
+		//\Flash::success('Se eliminó al usuario ' . $user_name . ' correctamente.');
+		return view('message');
 	}
 
 }

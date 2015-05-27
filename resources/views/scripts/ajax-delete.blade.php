@@ -20,6 +20,8 @@
 
           row.fadeOut(500);
 
+
+
           $.post(url, data, function(result) {
 
             var mensaje = $('<div/>', {
@@ -28,7 +30,7 @@
 
             $("#message").prepend(mensaje)
             $("#mensaje").html(result).delay(3000).slideUp(300); 
-
+           
           });
 
       };

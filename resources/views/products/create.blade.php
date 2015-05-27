@@ -16,7 +16,6 @@
 	<div class="col-xs-12 col-sm-12">
 		<div class="box">
 
-
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-file-text-o"></i>
@@ -26,44 +25,25 @@
 
 
 			<div class="box-content">
-
-
-@include('products.partials.messages')
-
-
-{!! Form::open(['route' => 'products.store', 'method' => 'POST']) !!}
-
-
-<h3>Datos del Producto/Servicio</h3>	
-
-<div class="row">
-<div class="col-sm-6">
-
-	
-	@include('products.partials.form')
-
-	<!-- boton -->
-	<div class="col-sm-8 col-sm-offset-4 text-left">
-		<div class="form-group">						
-			{!! Form::submit('Crear Producto', ['class' => 'btn btn-primary']) !!}						
-		</div>
-	</div>
-</div>
-</div>					
-					
-
-
-{!! Form::close() !!}
-					
-
-
-{{ $errors->name }}
-
-
+				@include('errors.form')
+				{!! Form::open(['route' => 'products.store', 'method' => 'POST']) !!}
+					<h3>Datos del Producto/Servicio</h3>	
+					<div class="row">
+						<div class="col-sm-6">					
+							@include('products.partials.form')
+							<!-- boton -->
+							<div class="col-sm-8 col-sm-offset-4 text-left">
+								<div class="form-group">						
+									{!! Form::submit('Crear Producto', ['class' => 'btn btn-primary']) !!}						
+								</div>
+							</div>
+						</div>
+					</div>
+				{!! Form::close() !!}
 			</div>
+
 		</div>
 	</div>
-
 </div>
 
 @endsection
