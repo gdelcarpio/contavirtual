@@ -76,7 +76,7 @@
                                     <div class="col-sm-9">
                                         
 
-                                        {!! Form::select('ruc', $companies, '',['class' => '', 'required', 'id' => 'select_ruc']) !!}
+                                        {!! Form::select('ruc', $companies, null,['class' => '', 'required', 'id' => 'select_ruc']) !!}
 
 
                                     </div>

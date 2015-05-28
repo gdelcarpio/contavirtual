@@ -14,7 +14,7 @@ class CompanyTableSeeder extends Seeder {
 	{
 		$faker = Faker::create('es_ES');
 
-		foreach(range(1, 100) as $index)
+		foreach(range(1, 200) as $index)
 		{
 			\DB::table('companies')->insert(array(
 				'user_id'       => $faker->numberBetween(1,50),

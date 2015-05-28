@@ -42,7 +42,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function products()
 	{
-		return $this->belongsTo('App\Product');
+		return $this->hasMany('App\Product');
 	}
 
 	public function roles()
