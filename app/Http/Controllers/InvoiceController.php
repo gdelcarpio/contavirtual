@@ -30,16 +30,15 @@ class InvoiceController extends Controller {
 
 	public function create()
 	{
-		$user = \Auth::user()->id;
+		$user = \Auth::user();
         $account = Account::lists('name','id');
         $account = array(''=>'') + $account;
 
-        $companies = Company::where('client','=','1')->where('user_id', $user)->lists('ruc','id');
+        $companies = $user->companies->where('client', 1)->lists('ruc','id');
         $companies = array(''=>'') + $companies;
 
-       // $user = User::findOrFail();
-
-        $products = Product::where('active','1')->Where('user_id', $user)->get();
+        $products = $user->products->where('active', 1)->lists('name','id');
+        $products = array(''=>'') + $products;
 
 		return view('invoices.create', compact('account','companies','products'));        
 	}
