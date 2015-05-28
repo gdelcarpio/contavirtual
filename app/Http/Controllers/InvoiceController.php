@@ -37,7 +37,8 @@ class InvoiceController extends Controller {
         $companies = $user->companies->where('client', 1)->lists('ruc','id');
         $companies = array(''=>'') + $companies;
 
-        $products = $user->products->where('active', 1);
+        $products = $user->products->where('active', 1)->lists('name','id');
+        $products = array(''=>'') + $products;
 
 		return view('invoices.create', compact('account','companies','products'));        
 	}

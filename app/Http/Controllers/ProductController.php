@@ -95,13 +95,20 @@ class ProductController extends Controller {
 	{
 		$product = Product::findOrFail($id);
 
-		//$user_name = $user->name . ' ' . $user->lastname;
+		\Flash::success('Se eliminó el producto ' . $product->name . ' correctamente.');
 
-		//$user->roles()->detach();
 		$product->delete();
 
-		//\Flash::success('Se eliminó al usuario ' . $user_name . ' correctamente.');
 		return view('message');
 	}
+
+	public function ajaxPrice($product_id)
+	{
+		$product = \Auth::user()->products->find($product_id);
+
+		return view('invoices.partials.form-price', compact('product'));
+
+	}
+
 
 }

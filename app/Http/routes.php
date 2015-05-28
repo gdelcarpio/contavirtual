@@ -26,6 +26,7 @@ Route::get('/credit_notes', ['as' => 'credit_notes', 'uses' => 'HomeController@c
 // Route::resource('credit_notes', 'CreditNoteController');
 Route::resource('invoices', 'InvoiceController');
 Route::resource('payments', 'PaymentController');
+Route::post('/price/{product_id}',	 ['as' => 'products.price', 'uses' 		  => 'ProductController@ajaxPrice']);
 Route::resource('products', 'ProductController');
 // Route::resource('roles', 'RoleController');
 // Route::resource('subaccounts', 'SubaccountController');
