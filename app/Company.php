@@ -34,4 +34,19 @@ class Company extends Model {
 		return $this->hasMany('App\Invoice');
 	}
 
+	// scopes
+
+		public function scopeSortBy($query, array $params)
+	{
+		if ($this->isSortable($params))
+        {
+        	$query->orderBy($params['column'], $params['direction']);
+        }
+	}
+
+    protected function isSortable(array $params)
+    {
+        return $params['column'] and $params['direction'];
+    }
+
 }
