@@ -13,29 +13,26 @@ class ProductController extends Controller {
 	
 	public function index()
 	{
-
-		//$search     = $request->get('name');
-
-		$user       = \Auth::user()->id;		
+		$user       = \Auth::user();		
 		$rows  	    = \Input::get('rows', 5);
 		
 		$column 	= \Input::get('column', 'id'); //columna a ordenr
 		$direction  = \Input::get('direction', 'desc'); //tipo de orden
 
-		$q  = trim(\Input::get('q') != "" ) ? trim(\Input::get('q')) : '';
+		$q  = trim(\Input::get('q')) != "" ? trim(\Input::get('q')) : '';
 
 		$searchTerms = $q != '' ? explode(' ', $q) : '';
 
-		$products   = Product::where('user_id',$user)
+		$products   = Product::where('user_id',$user->id)
 							   ->sortBy(compact('column', 'direction'))
 		                       ->where(function($query) use ($searchTerms) {
 					                if( $searchTerms != '' )
 					                {
 					                    foreach($searchTerms as $term){
-					                     $query->orWhere('code', 'LIKE', '%'. $term .'%');
-					                     $query->orWhere('name', 'LIKE', '%'. $term .'%');
-					                     $query->orWhere('description', 'LIKE', '%'. $term .'%');
-					                     $query->orWhere('price', 'LIKE', '%'. $term .'%');
+											$query->orWhere('code', 'LIKE', '%'. $term .'%');
+											$query->orWhere('name', 'LIKE', '%'. $term .'%');
+											$query->orWhere('description', 'LIKE', '%'. $term .'%');
+											$query->orWhere('price', 'LIKE', '%'. $term .'%');
 					                    }
 
 					                }
@@ -102,11 +99,13 @@ class ProductController extends Controller {
 		return view('message');
 	}
 
-	public function ajaxPrice($product_id)
+	public function ajaxPrice($product_id, $quantity)
 	{
 		$product = \Auth::user()->products->find($product_id);
 
-		return view('invoices.partials.form-price', compact('product'));
+		$quantity = $quantity != 0 ? $quantity : 1;
+
+		return view('invoices.partials.form-price', compact('product', 'quantity'));
 
 	}
 

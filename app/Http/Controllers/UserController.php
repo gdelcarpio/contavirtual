@@ -35,7 +35,7 @@ class UserController extends Controller {
 
 		$rows  		= \Input::get('rows', 10);
 
-		$q  = trim(\Input::get('q') != "" ) ? trim(\Input::get('q')) : '';
+		$q  = trim(\Input::get('q')) != "" ? trim(\Input::get('q')) : '';
 
 		$searchTerms = $q != '' ? explode(' ', $q) : '';
 

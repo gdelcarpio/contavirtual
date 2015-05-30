@@ -182,6 +182,7 @@
 
 @section('ajax-scripts')
 
+    @include('scripts.ajax-products')
     @include('scripts.ajax-subaccount')
     @include('scripts.ajax-client')
 
