@@ -8,9 +8,13 @@
 
 			$.post("{{ URL::to('/add-product') }}/"+$('#product_id').val()+"/"+$('#quantity').val(),{},function(cadena){
 
-		        $(".detalle_cuerpo").append(cadena); 
+		        $(".detalle_cuerpo").append(cadena);
 
-		  	});
+		        $('#quantity').val(1);
+					
+		  	}).fail(function() {
+				alert('Producto ya agregado');
+			});
 
 		}else{
 

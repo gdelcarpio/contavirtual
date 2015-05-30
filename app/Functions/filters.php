@@ -14,7 +14,7 @@ function is_free()
 
 function has_invoices()
 {
-	return has_companies() AND Auth::user()->invoices->count > 0;
+	return has_companies() AND Auth::user()->invoices->count() > 0;
 }
 
 function has_companies()
