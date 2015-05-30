@@ -20,8 +20,9 @@
 
 	$('#product_id').change(function(){
 
-	   	$.post("{{ URL::to('/price') }}/"+$('#product_id').val()+"/"+$('#quantity').val(),{},function(cadena){
+	   	$.post("{{ URL::to('/price') }}/"+$('#product_id').val()+"/1",{},function(cadena){
 
+	   		$('#quantity').val(1);
 	        $(".price").html(cadena); 
 
 	  	});
