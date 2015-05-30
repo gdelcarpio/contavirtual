@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="col-sm-12 detalle_cabecera">
-                    <div class="col-xs-8">
+                    <div class="col-xs-6">
                         {!! Form::select("product_id", $products, null, ["class" => "product_id", "id" => "product_id"]) !!}
                     </div>
 
@@ -109,12 +109,17 @@
                     <div class="col-xs-1 text-center price"> 
                        <div><span>0.00</span></div>
                     </div>
-                    <a href="#" id="add_product">+ Agregar</a>
+                    <div class="col-xs-2 text-center"> 
+                        <a href="#" id="add_product">+ Agregar</a>
+                    </div>
+                    <div class="col-xs-2 text-center"> 
+                        <a href="#" id="cart_clear">Limpiar lista</a>
+                    </div>
                 </div>
                 
                 <div class="col-sm-12 detalle_cabecera">
 
-                    <div class="col-xs-8">Descripción</div>
+                    <div class="col-xs-6">Descripción</div>
                     <div class="col-xs-1 text-center">Cant.</div>
                     <div class="col-xs-1 text-center">Pr. unit.</div>
                     <div class="col-xs-2 text-right">Montos (Sin IGV)</div>

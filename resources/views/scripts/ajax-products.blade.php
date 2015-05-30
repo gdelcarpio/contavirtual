@@ -1,5 +1,7 @@
 <script type="text/javascript">
 
+	// AJAX ADD PRODUCT TO CART
+
 	$('#add_product').click(function(){	
 
 		if( $('#product_id').val() != '' && $('#quantity').val() != '' ) {
@@ -18,6 +20,24 @@
 
 	});
 
+	// AJAX EMPTY CART
+
+	$('#cart_clear').click(function(){	
+
+		$.post("{{ URL::to('/clear-cart') }}",{},function(cadena){
+
+        // $(".detalle_cuerpo").append(cadena); 
+
+		alert('Lista de productos vacía.');
+
+		});
+
+	});
+
+
+
+	// AJAX PRODUCT PRICE
+
 	$('#product_id').change(function(){
 
 	   	$.post("{{ URL::to('/price') }}/"+$('#product_id').val()+"/1",{},function(cadena){
@@ -29,7 +49,7 @@
 
 	});
 
-	// AJAX PRICE x QUANTITY
+	// AJAX PRODUCT PRICE x QUANTITY
 
 	if ( $('#quantity').val() != '' && $('#product_id').val() != '' ) {
     

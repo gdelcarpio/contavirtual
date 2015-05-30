@@ -22,6 +22,7 @@ Route::resource('invoices', 'InvoiceController');
 Route::resource('payments', 'PaymentController');
 
 // Products routes
+Route::post('/clear-cart',							['as' => 'products.cart.empty', 'uses'  => 'ProductController@ajaxEmptyCart']);
 Route::post('/add-product/{product_id}/{quantity}',	['as' => 'products.cart.add', 'uses'  => 'ProductController@ajaxAddToCart']);
 Route::post('/price/{product_id}/{quantity}',	 	['as' => 'products.price', 'uses' 	  => 'ProductController@ajaxPrice']);
 Route::resource('products', 'ProductController');

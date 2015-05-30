@@ -112,9 +112,15 @@ class ProductController extends Controller {
 
 	public function ajaxAddToCart($product_id, $quantity)
 	{
-		$product = Product::findOrFail($product_id);
-
 		$cart = new Cart();
+
+		if ($cart->has($product_id)) {
+
+			return false;
+
+		}
+
+		$product = Product::findOrFail($product_id);
 
 		$cart->add([
 		    'id'       => $product->id,
@@ -126,6 +132,14 @@ class ProductController extends Controller {
 		$product = $cart->get($product_id);
 
 		return view('invoices.partials.form-product', compact('product'));
+	}
+
+	public function ajaxEmptyCart()
+	{
+		$cart = new Cart();
+		$cart->clear();
+
+		return true;
 	}
 
 
