@@ -14,7 +14,7 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 // Route::get('/products', ['as' => 'products', 'uses' => 'HomeController@products']);
 // Route::get('/purchases', ['as' => 'purchases', 'uses' => 'HomeController@purchases']);
 // Route::get('/sales', ['as' => 'sales', 'uses' => 'HomeController@sales']);
-Route::get('/companies', ['as' => 'companies', 'uses' => 'HomeController@companies']);
+//Route::get('/companies', ['as' => 'companies', 'uses' => 'HomeController@companies']);
 //Route::get('/products', ['as' => 'products', 'uses' => 'HomeController@products']);
 Route::get('/purchases', ['as' => 'purchases', 'uses' => 'HomeController@purchases']);
 Route::get('/expenses', ['as' => 'expenses', 'uses' => 'HomeController@expenses']);
@@ -22,7 +22,7 @@ Route::get('/expenses', ['as' => 'expenses', 'uses' => 'HomeController@expenses'
 Route::get('/tickets', ['as' => 'tickets', 'uses' => 'HomeController@tickets']);
 Route::get('/credit_notes', ['as' => 'credit_notes', 'uses' => 'HomeController@credit_notes']);
 // Route::resource('accounts', 'AccountController');
-// Route::resource('companies', 'CompanyController');
+Route::resource('companies', 'CompanyController');
 // Route::resource('credit_notes', 'CreditNoteController');
 Route::resource('invoices', 'InvoiceController');
 Route::resource('payments', 'PaymentController');
@@ -30,11 +30,9 @@ Route::post('/price/{product_id}',	 ['as' => 'products.price', 'uses' 		  => 'Pr
 Route::resource('products', 'ProductController');
 // Route::resource('roles', 'RoleController');
 // Route::resource('subaccounts', 'SubaccountController');
-
 // Locations
 Route::post('/provinces/{code}', ['as' => 'provinces', 'uses' => 'UserController@provinces']);
 Route::post('/districts/{code}', ['as' => 'districts', 'uses' => 'UserController@districts']);
-
 // Users routes
 Route::patch('/users/{users}/reset', 	 ['as' => 'users.password.reset', 'uses'  => 'UserController@resetPassword']);
 Route::patch('/users/password', 		 ['as' => 'users.password.update', 'uses' => 'UserController@updatePassword']);
@@ -47,16 +45,13 @@ Route::get('/users/password', 			 ['as' => 'users.password.edit', 'uses'   => 'U
 Route::get('/my-profile', 				 ['as' => 'users.profile', 'uses' 		  => 'UserController@profile']);
 Route::get('/my-payments',				 ['as' => 'users.payments', 'uses' 		  => 'UserController@myPayments']);
 Route::resource('users', 'UserController');
-
 // Auth and Password Controller
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-
 //Cuentas y subcuentas (categorias) - factura
 Route::post('/subaccount/{id}', ['as' => 'subaccount', 'uses' => 'InvoiceController@subaccount']);
-
 //Cargar Cliente
 Route::post('/client_ajax/{id}', ['as' => 'subaccount', 'uses' => 'CompanyController@client_ajax']);
 

@@ -15,7 +15,44 @@ class CompanyController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$user       = \Auth::user()->id;	
+		$type		= \Input::get('type');		
+		$rows  	    = \Input::get('rows', 5);
+
+		$column 	= \Input::get('column', 'id'); //columna a ordenr
+		$direction  = \Input::get('direction', 'desc'); //tipo de orden
+
+		$q  = trim(\Input::get('q') != "" ) ? trim(\Input::get('q')) : '';
+
+		$searchTerms = $q != '' ? explode(' ', $q) : '';
+
+		$companies   = Company::where('user_id',$user)
+							   ->sortBy(compact('column', 'direction'))
+							   
+		                       ->where(function($query) use ($searchTerms) {
+					                if( $searchTerms != '' )
+					                {
+					                    foreach($searchTerms as $term){
+					                     $query->orWhere('company_name', 'LIKE', '%'. $term .'%');
+					                     $query->orWhere('ruc', 'LIKE', '%'. $term .'%');
+					                     $query->orWhere('name', 'LIKE', '%'. $term .'%');
+					                     $query->orWhere('email', 'LIKE', '%'. $term .'%');
+					                     $query->orWhere('phone', 'LIKE', '%'. $term .'%');
+					                    }
+
+					                }
+					            })
+		                       ->paginate($rows);
+
+		$rows = [
+					5  => 5,
+					10 => 10,
+					20 => 20,
+					30 => 30,
+					40 => 40
+				];
+
+		return view('companies.index', compact('companies','rows','column','direction','type'));
 	}
 
 	/**
@@ -25,7 +62,7 @@ class CompanyController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return 'hola';
 	}
 
 	/**

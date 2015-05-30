@@ -24,16 +24,15 @@
 		</a>
 		<a href="{{ route('payments.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
 	</li>
-	
-	
+		
 	@endif
 
 	<li class="menu-li">
-		<a href="{{ route('companies') }}" class="{{ link_selected(Route::currentRouteName(), 'Empresas') }}">
+		<a href="{{ route('companies.index') }}" class="{{ link_selected(Route::currentRouteName(), 'Empresas') }}">
 			<i class="fa fa-building"></i>
 			<span class="hidden-xs">Empresas</span>
 		</a>
-		<a href="#" class="agregar"><i class="fa fa-plus"></i></a>
+		<a href="{{ route('companies.create')}}" class="agregar"><i class="fa fa-plus"></i></a>
 		
 	</li>
 
