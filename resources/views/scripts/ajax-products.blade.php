@@ -2,11 +2,11 @@
 
 	$('#add_product').click(function(){	
 
-		if( $('#product_id').val() != undefined && $('#quantity').val() != undefined ) {
+		if( $('#product_id').val() != '' && $('#quantity').val() != '' ) {
 
 			$.post("{{ URL::to('/add-product') }}/"+$('#product_id').val()+"/"+$('#quantity').val(),{},function(cadena){
 
-		        $("#subaccount_select").html(cadena); 
+		        $(".detalle_cuerpo").append(cadena); 
 
 		  	});
 

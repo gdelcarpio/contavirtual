@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
+
 use App\Product;
+use Anam\Phpcart\Cart;
 
 class ProductController extends Controller {
 
@@ -106,7 +108,24 @@ class ProductController extends Controller {
 		$quantity = $quantity != 0 ? $quantity : 1;
 
 		return view('invoices.partials.form-price', compact('product', 'quantity'));
+	}
 
+	public function ajaxAddToCart($product_id, $quantity)
+	{
+		$product = Product::findOrFail($product_id);
+
+		$cart = new Cart();
+
+		$cart->add([
+		    'id'       => $product->id,
+		    'name'     => $product->name,
+		    'quantity' => $quantity,
+		    'price'    => $product->price
+		]);
+
+		$product = $cart->get($product_id);
+
+		return view('invoices.partials.form-product', compact('product'));
 	}
 
 

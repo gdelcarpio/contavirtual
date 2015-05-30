@@ -98,7 +98,17 @@
                 </div>
 
                 <div class="col-sm-12 detalle_cabecera">
-                    @include('invoices.partials.product-form')
+                    <div class="col-xs-8">
+                        {!! Form::select("product_id", $products, null, ["class" => "product_id", "id" => "product_id"]) !!}
+                    </div>
+
+                    <div class="col-xs-1 text-center">
+                        {!! Form::text("quantity", 1, ["class" => "form-control text-center", "required", "minlength" => "1", "id" => "quantity"]) !!}
+                    </div>
+
+                    <div class="col-xs-1 text-center price"> 
+                       <div><span>0.00</span></div>
+                    </div>
                     <a href="#" id="add_product">+ Agregar</a>
                 </div>
                 
@@ -114,14 +124,7 @@
 
                 <div class="col-sm-12 detalle_cuerpo">
 
-                    <div class="form-group detalle_producto">
 
-
-                    </div>
-
-                </div>
-
-                <div class="col-sm-12 detalle_cabecera">
                 </div>
 
                 <div class="col-sm-4 col-sm-offset-8">
