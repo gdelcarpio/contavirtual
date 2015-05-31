@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Http\Requests\InvoiceRequest;
 
 use App\Invoice;
 use App\Account;
@@ -31,6 +33,7 @@ class InvoiceController extends Controller {
 	public function create()
 	{
 		$user = \Auth::user();
+
         $account = Account::lists('name','id');
         $account = array(''=>'') + $account;
 
@@ -48,9 +51,24 @@ class InvoiceController extends Controller {
 	}
 
 
-	public function store()
+	public function store(InvoiceRequest $request)
 	{
-		//
+		$request['invoice_category_id'] =  '1';
+		$request['invoice_type_id'] =  '1';
+
+		$invoice = Invoice::create($request->except('account_id', 'product_id', 'quantity'));
+
+		$cart = new Cart();
+
+		$products_id = $cart->items()->lists('id');
+
+		// dd(array_flatten($products_id));
+
+		$invoice->products()->attach($products_id);
+
+		\Flash::success('Factura agregada satisfactoriamente.');
+
+		return \Redirect::route('invoices.index');
 	}
 
 

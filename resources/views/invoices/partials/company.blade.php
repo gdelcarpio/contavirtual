@@ -1,1 +1,1 @@
-{{ $company_ajax->company_name }}
+{{ $company->company_name }}

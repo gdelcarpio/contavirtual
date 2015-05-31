@@ -119,9 +119,9 @@ class CompanyController extends Controller {
 		//
 	}
 
-	public function client_ajax($id){
-		$company_ajax = Company::findOrFail($id);
-        return view('invoices.partials.company', compact('company_ajax'));
+	public function ajaxCompany($company_id){
+		$company = Company::findOrFail($company_id);
+        return view('invoices.partials.company', compact('company'));
 	}
 
 }

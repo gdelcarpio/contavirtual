@@ -59,6 +59,6 @@ Route::controllers([
 Route::post('/subaccount/{id}', ['as' => 'subaccount', 'uses' => 'InvoiceController@subaccount']);
 
 //Cargar Cliente
-Route::post('/client_ajax/{id}', ['as' => 'subaccount', 'uses' => 'CompanyController@client_ajax']);
+Route::post('/ajax-company/{company_id}', ['as' => 'subaccount', 'uses' => 'CompanyController@ajaxCompany']);
 
 

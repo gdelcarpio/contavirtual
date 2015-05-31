@@ -15,7 +15,6 @@
 		        $('#quantity').val(1);
 
 				$('.remove_item').click(remove_item);
-				// $('.remove_item').click(remove_item);
 					
 		  	}).fail(function() {
 				alert('Producto ya agregado');
@@ -51,6 +50,8 @@
 			alert('Lista de productos vacía.');
 
 		});
+
+		get_cart_total();
 	}
 
 	// AJAX REMOVE ITEM
@@ -67,9 +68,21 @@
 			alert('Producto quitado de la lista');
 
 		});
+
+		get_cart_total();
 	}
 
+	// AJAX COMPANY NAME
 
+	$('#company_id').change(function(){
+
+	   	$.post("{{ URL::to('/ajax-company') }}/"+$('#company_id').val(),{},function(cadena){
+
+	        $("#client_name").html(cadena); 
+
+	  	});
+
+	});
 
 	// AJAX PRODUCT PRICE
 

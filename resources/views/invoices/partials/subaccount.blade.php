@@ -1,1 +1,1 @@
-{!! Form::select('subaccount_ventas', $subaccount, '',['class' => '', 'required', 'id' => 'subaccount_venta']) !!}
+{!! Form::select('subaccount_id', $subaccount, '',['class' => '', 'required', 'id' => 'subaccount_id']) !!}

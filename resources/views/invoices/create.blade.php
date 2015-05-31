@@ -24,6 +24,8 @@
 
 			<div class="box-content">
 
+            @include('errors.form')
+
             {!! Form::open(['route' => 'invoices.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form-horizontal']) !!}
                 <h3>Tipo de Venta</h3>
                 <div class="row">
@@ -33,12 +35,12 @@
                         <div class="col-sm-6">
                             <label class="col-sm-2 control-label">Categoría</label>
                             <div class="col-sm-9">
-                                {!! Form::select('account', $account, '',['class' => '', 'required', 'id' => 'select_account']) !!}
+                                {!! Form::select('account_id', $account, '',['class' => '', 'required', 'id' => 'account_id']) !!}
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <label class="col-sm-2 control-label">Sub Cat.</label>
-                            <div class="col-sm-9" id="subaccount_select"></div>
+                            <div class="col-sm-9" id="subaccount"></div>
                         </div>
 
                     </div>
@@ -52,13 +54,13 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">RUC</label>
                             <div class="col-sm-9">
-                                {!! Form::select('ruc', $companies, null,['class' => '', 'required', 'id' => 'select_ruc']) !!}
+                                {!! Form::select('company_id', $companies, null,['class' => '', 'required', 'id' => 'company_id']) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Cliente</label>
-                            <div class="col-sm-9" id="client_date">
-                                <input type="text" class="form-control" placeholder="" name="serie"/>
+                            <div class="col-sm-9" id="client_name">
+                                No seleccionado
                             </div>
                         </div>
                    </div>
