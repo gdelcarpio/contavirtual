@@ -33,7 +33,7 @@ function DemoSelect2(){
 $(document).ready(function() {
 
 
-	$('.detalle_cuerpo').on('click','.eliminar_producto',function(e){
+	$('.detalle_cuerpo').on('click','.remove_item',function(e){
 			e.preventDefault();
 			//$('.detalle_producto:last').remove();
 			$(this).parent('div').parent('div').remove();
@@ -48,7 +48,7 @@ $(document).ready(function() {
 	// Initialize datepicker
 	$('#fecha_emision').datepicker({setDate: new Date()});
 	$('#fecha_vencimiento').datepicker({setDate: new Date()});
-	$('#payment_date, #payment_expiration_date, #start_date, #end_date').datepicker({setDate: new Date()});
+	$('#payment_date, #payment_expiration_date, #start_date, #end_date, #expiration_date, #issue_date').datepicker({setDate: new Date()});
 	// Load Timepicker plugin
 	// LoadTimePickerScript(DemoTimePicker);
 	// Add tooltip to form-controls

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -12,7 +12,7 @@ use App\Subaccount;
 use App\Company;
 use App\Product;
 use App\User;
-use Illuminate\Http\Request;
+use Anam\Phpcart\Cart;
 
 class InvoiceController extends Controller {
 
@@ -40,7 +40,11 @@ class InvoiceController extends Controller {
         $products = $user->products->where('active', 1)->lists('name','id');
         $products = array(''=>'') + $products;
 
-		return view('invoices.create', compact('account','companies','products'));        
+        $cart = new Cart();
+
+		$items = $cart->items();
+
+		return view('invoices.create', compact('account','companies','products', 'items'));        
 	}
 
 

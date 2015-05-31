@@ -114,24 +114,22 @@ class ProductController extends Controller {
 	{
 		$cart = new Cart();
 
-		if ($cart->has($product_id)) {
+		if (!$cart->has($product_id)) {
 
-			return false;
+			$product = Product::findOrFail($product_id);
 
+			$cart->add([
+			    'id'       => $product->id,
+			    'name'     => $product->name,
+			    'quantity' => $quantity,
+			    'price'    => $product->price
+			]);
+
+			$product = $cart->get($product_id);
+
+			return view('invoices.partials.form-product', compact('product'));
 		}
 
-		$product = Product::findOrFail($product_id);
-
-		$cart->add([
-		    'id'       => $product->id,
-		    'name'     => $product->name,
-		    'quantity' => $quantity,
-		    'price'    => $product->price
-		]);
-
-		$product = $cart->get($product_id);
-
-		return view('invoices.partials.form-product', compact('product'));
 	}
 
 	public function ajaxEmptyCart()
@@ -139,8 +137,20 @@ class ProductController extends Controller {
 		$cart = new Cart();
 		$cart->clear();
 
-		return true;
+		// return true;
 	}
 
+	public function ajaxRemoveFromCart($id)
+	{
+		$cart = new Cart();
+		$cart->remove($id);
+	}
+
+	public function ajaxTotalCart()
+	{
+		// $cart = new Cart();
+
+		return view('invoices.partials.form-total');
+	}
 
 }

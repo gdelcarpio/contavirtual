@@ -24,7 +24,7 @@
 
 			<div class="box-content">
 
-            <form id="defaultForm" method="post" action="validators.html" class="form-horizontal">
+            {!! Form::open(['route' => 'invoices.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form-horizontal']) !!}
                 <h3>Tipo de Venta</h3>
                 <div class="row">
 
@@ -70,10 +70,10 @@
                         <div class="form-group">
                             <label class="col-sm-2 col-xs-2 control-label">Factura</label>
                             <div class="col-sm-3 col-xs-3">
-                                <input type="text" class="form-control" placeholder="Serie" name="serie" />
+                                {!! Form::text('serial', null, ['class' => 'form-control text-center', 'placeholder' => 'Serie', 'required', 'minlength' => '2', 'maxlength' => '20', 'id' => 'serial']) !!}
                             </div>
                             <div class="col-sm-7 col-xs-7">
-                                <input type="text" class="form-control" placeholder="Número" name="numero" />
+                                {!! Form::text('number', null, ['class' => 'form-control text-center', 'placeholder' => 'Número', 'required', 'minlength' => '2', 'maxlength' => '20', 'id' => 'number']) !!}
                             </div>
                         </div>
 
@@ -81,13 +81,13 @@
 
                             <label class="col-sm-2 control-label">Emisión</label>
                             <div class="col-sm-4">
-                                <input type="text" id="fecha_emision" class="form-control" name="date_emision" placeholder="dd/mm/yyyy">
+                                {!! Form::text('issue_date', null, ['class' => 'form-control text-center', 'placeholder' => 'dd/mm/yyyy', 'required', 'id' => 'issue_date']) !!}
                                 <span class="fa fa-calendar form-control-feedback"></span>
                             </div>
 
                             <label class="col-sm-2 control-label">Vencimiento</label>
                             <div class="col-sm-4">
-                                <input type="text" id="fecha_vencimiento" class="form-control" name="date_emision" placeholder="dd/mm/yyyy">
+                                {!! Form::text('expiration_date', null, ['class' => 'form-control text-center', 'placeholder' => 'dd/mm/yyyy', 'required', 'id' => 'expiration_date']) !!}
                                 <span class="fa fa-calendar form-control-feedback"></span>
                             </div>
 
@@ -128,42 +128,30 @@
                 </div>
 
                 <div class="col-sm-12 detalle_cuerpo">
-
-
+                    
+                    @foreach($items as $item)
+                        <div class="product-row">
+                            <div class="col-xs-6">{{ $item->name }}</div>
+                            <div class="col-xs-1 text-center">{{ $item->quantity }}</div>
+                            <div class="col-xs-1 text-center">{{ $item->price }}</div>
+                            <div class="col-xs-2 text-right" data-id="{{ $item->id }}">PEN {{ $item->price * $item->quantity }} <a href="#" class="remove_item"><i class="fa fa-times-circle" style="color:#f66"></i></a></div>
+                            <div class="clearfix visible-xs-block"></div>
+                        </div>
+                    @endforeach
                 </div>
 
-                <div class="col-sm-4 col-sm-offset-8">
-
-                    <div class="row" style="padding-bottom:10px">
-                        <div class="col-xs-6">Subtotal</div>
-                        <div class="col-xs-6 text-right">PEN 100.00</div>
-                        <div class="clearfix visible-xs-block"></div>
-                    </div>
-
-                    <div class="row" style="padding-bottom:10px">
-                        <div class="col-xs-6">IGV</div>
-                        <div class="col-xs-6 text-right">PEN 18.00</div>
-                        <div class="clearfix visible-xs-block"></div>
-                    </div>
-
-                    <div class="row detalle_cabecera" style="padding:10px 0px" >
-                        <div class="col-xs-6">Total</div>
-                        <div class="col-xs-6 text-right">PEN 118.00</div>
-                        <div class="clearfix visible-xs-block"></div>
-                    </div>
-
-                </div>
+                @include('invoices.partials.form-total')
 
                 <div class="linea col-md-12"></div>
 
                 <div class="row">
                     <div class="form-group">
                         <div class="col-sm-2 text-right">
-                                <label class="control-label">Anotaciones</label>
+                            <label class="control-label">Anotaciones</label>
                         </div>
 
                         <div class="col-sm-10">
-                                <textarea class="form-control"  rows="2" placeholder="Dejar una anotación o comentatrio"></textarea>
+                            {!! Form::textarea('note', null, ['class' => 'form-control text-center', 'rows' => '2', 'placeholder' => 'Deja una anotación o descripción...', 'required', 'id' => 'note']) !!}
                         </div>
                     </div>
                 </div>
@@ -178,7 +166,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            {!! Form::close() !!}
 
 			</div>
 		</div>

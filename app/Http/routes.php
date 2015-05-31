@@ -22,8 +22,10 @@ Route::resource('invoices', 'InvoiceController');
 Route::resource('payments', 'PaymentController');
 
 // Products routes
+Route::post('/cart-total',							['as' => 'products.cart.total', 'uses'  => 'ProductController@ajaxTotalCart']);
 Route::post('/clear-cart',							['as' => 'products.cart.empty', 'uses'  => 'ProductController@ajaxEmptyCart']);
 Route::post('/add-product/{product_id}/{quantity}',	['as' => 'products.cart.add', 'uses'  => 'ProductController@ajaxAddToCart']);
+Route::post('/remove-item/{product_id}',			['as' => 'products.cart.remove', 'uses'  => 'ProductController@ajaxRemoveFromCart']);
 Route::post('/price/{product_id}/{quantity}',	 	['as' => 'products.price', 'uses' 	  => 'ProductController@ajaxPrice']);
 Route::resource('products', 'ProductController');
 
