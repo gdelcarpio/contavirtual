@@ -18,7 +18,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-file-text-o"></i>
-					<span>NUEVA FACTURA</span>
+					<span>EDITAR FACTURA - {{ $invoice->id }} </span>
 				</div>			
 			</div>
 
@@ -26,7 +26,7 @@
 
             @include('errors.form')
 
-            {!! Form::open(['route' => 'invoices.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+            {!! Form::model($invoice, ['route' => ['invoices.update', $invoice->id ], 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-horizontal']) !!}
                 
                @include('invoices.partials.form')
                

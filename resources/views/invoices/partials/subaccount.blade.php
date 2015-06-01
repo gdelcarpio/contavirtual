@@ -1,1 +1,0 @@
-{!! Form::select('subaccount_id', $subaccount, '',['class' => '', 'required', 'id' => 'subaccount_id']) !!}
