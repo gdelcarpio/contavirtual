@@ -5,8 +5,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
+
 use App\Product;
 use Anam\Phpcart\Cart;
+
 class ProductController extends Controller {
 	
 	public function index()
@@ -16,8 +18,10 @@ class ProductController extends Controller {
 		
 		$column 	= \Input::get('column', 'id'); //columna a ordenr
 		$direction  = \Input::get('direction', 'desc'); //tipo de orden
+
 		$q  = trim(\Input::get('q')) != "" ? trim(\Input::get('q')) : '';
 		$searchTerms = $q != '' ? explode(' ', $q) : '';
+
 		$products   = Product::where('user_id',$user->id)
 							   ->sortBy(compact('column', 'direction'))
 		                       ->where(function($query) use ($searchTerms) {
@@ -76,6 +80,7 @@ class ProductController extends Controller {
 		$product->delete();
 		return view('message');
 	}
+
 	public function ajaxPrice($product_id, $quantity)
 	{
 		$product = \Auth::user()->products->find($product_id);
@@ -114,6 +119,3 @@ class ProductController extends Controller {
 		return view('invoices.partials.form-total');
 	}
 }
-
-
-

@@ -80,6 +80,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->hasMany('App\Company');
 	}
 
+	public function invoices()
+    {
+        return $this->hasManyThrough('App\Invoice', 'App\Company');
+    }
+
 	public function setNameAttribute($value)
 	{
 		if ( ! empty ($value))

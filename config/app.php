@@ -147,6 +147,7 @@ return [
 
 	    'Laracasts\Flash\FlashServiceProvider',
 	    'Illuminate\Html\HtmlServiceProvider',
+	    'Anam\Phpcart\CartServiceProvider',
 
 	],
 
@@ -199,6 +200,7 @@ return [
 		'Flash' 	=> 'Laracasts\Flash\Flash',
 		'Html'      => 'Illuminate\Html\HtmlFacade',
     	'Form'      => 'Illuminate\Html\FormFacade',
+    	'Cart' 		=> 'Anam\Phpcart\Facades\Cart',
 
 	],
 

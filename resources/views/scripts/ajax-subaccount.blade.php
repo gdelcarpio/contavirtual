@@ -1,44 +1,53 @@
 <script type="text/javascript">
 
-$('#select_account').change(function(){
 
+var subaccount_id = {{ isset($invoice->subaccount_id) ? $invoice->subaccount_id : 0 }}
 
-   $.post("{{ URL::to('/subaccount') }}/"+$('#select_account').val(),{},function(cadena){
+if( $('#account_id').val() != '' ) {
 
-        $("#subaccount_select").html(cadena); 
-        $("#subaccount_venta").select2({placeholder: "Seleciona una Opción"});
+	var subaccount_id = {{ Request::old('subaccount_id') ? Request::old('subaccount_id') : 0 }}
 
-  });
+	get_subaccounts($('#account_id').val(), subaccount_id);
+
+}
+
+if ( subaccount_id ) {
+
+	get_accounts(subaccount_id);
+	$("#subaccount_id").select2("val", subaccount_id);
+};
+
+$('#account_id').change(function(){
+
+   get_subaccounts();
 
 });
 
-$('#add_product').click(function(e){	
+function get_subaccounts(account_id, subaccount_id){
 
-	// e.preventDefault();
-
-	if ( $('#product_id').val() != undefined && $('#quantity').val() != undefined) {
-
-		$.post("{{ URL::to('/add-product') }}/"+$('#product_id').val()+"/"+$('#quantity').val(),{},function(cadena){
-
-	        $("#subaccount_select").html(cadena); 
-
-	  	});
+	if (account_id) {
+		var account_id = account_id;
 	}else{
-		alert('Seleccione un producto y su cantidad.');
-	}
+		var account_id = $('#account_id').val();
+	};
 
-});
+	$.post("{{ URL::to('/ajax-subaccounts') }}/"+account_id,{},function(cadena){
 
-$('#product_id').change(function(){
+        $("#subaccount").html(cadena); 
+        $("#subaccount_id").select2({placeholder: "Seleciona una opción"});
+        $("#subaccount_id").select2("val", subaccount_id);
 
+  	});
+}
 
-   $.post("{{ URL::to('/price') }}/"+$('#product_id').val(),{},function(cadena){
+function get_accounts(subaccount_id){
+	$.post("{{ URL::to('/ajax-accounts') }}/"+subaccount_id,{},function(account_id){
 
-        $(".price").html(cadena); 
+        $("#account_id").select2("val", account_id);
 
-  });
+        get_subaccounts(account_id, subaccount_id);
 
-});
-
+  	});
+}
 
 </script>

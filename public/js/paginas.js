@@ -1,8 +1,6 @@
 function DemoSelect2(){
-	$('#s2_with_tag').select2({placeholder: "Select OS"});
-	$('#s2_country').select2();
 
-	$('#select_ruc').select2({
+	$('#company_id').select2({
 		placeholder: "Busque RUC",
 
 		 formatNoMatches: function(term) {
@@ -11,9 +9,7 @@ function DemoSelect2(){
 	});
 
 // creacion de factura
-	$("#select_account").select2({placeholder: "Selecione una opción"});
-	//$("#subaccount_venta").select2({placeholder: "Selecione una opción"});
-	$("#documento_tipo").select2({placeholder: "Selecione un tipo de documento"});
+	$("#account_id").select2({placeholder: "Selecione una opción"});
 
 	$(".product_id").select2({
 		placeholder: "Seleciona un Producto",
@@ -33,7 +29,7 @@ function DemoSelect2(){
 $(document).ready(function() {
 
 
-	$('.detalle_cuerpo').on('click','.eliminar_producto',function(e){
+	$('.detalle_cuerpo').on('click','.remove_item',function(e){
 			e.preventDefault();
 			//$('.detalle_producto:last').remove();
 			$(this).parent('div').parent('div').remove();
@@ -48,7 +44,7 @@ $(document).ready(function() {
 	// Initialize datepicker
 	$('#fecha_emision').datepicker({setDate: new Date()});
 	$('#fecha_vencimiento').datepicker({setDate: new Date()});
-	$('#payment_date, #payment_expiration_date, #start_date, #end_date').datepicker({setDate: new Date()});
+	$('#payment_date, #payment_expiration_date, #start_date, #end_date, #expiration_date, #issue_date').datepicker({setDate: new Date()});
 	// Load Timepicker plugin
 	// LoadTimePickerScript(DemoTimePicker);
 	// Add tooltip to form-controls

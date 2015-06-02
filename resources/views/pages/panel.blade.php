@@ -25,6 +25,7 @@
       <h4>NO tiene deudas</h4>
       
     @endif
+
 	</div>
 
 

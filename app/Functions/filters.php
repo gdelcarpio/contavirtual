@@ -9,12 +9,12 @@ function is_admin()
 
 function is_free()
 {
-	return ! has_invoices() OR ( has_invoices() AND Auth::user()->companies->invoices->count() <= 10 );
+	return ! has_invoices() OR ( has_invoices() AND Auth::user()->invoices->count() <= 10 );
 }
 
 function has_invoices()
 {
-	return has_companies() AND Auth::user()->companies->invoices->count() > 0;
+	return has_companies() AND Auth::user()->invoices->count() > 0;
 }
 
 function has_companies()
