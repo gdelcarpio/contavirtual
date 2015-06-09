@@ -161,6 +161,11 @@ class InvoiceController extends Controller {
 
 		$invoice->products()->sync($products_id);
 
+		$invoice->subtotal 	= $cart->getTotal();
+		$invoice->total 	= $cart->getTotal() * ( 1 + ( $invoice->igv / 100 ) );
+
+		$invoice->update();
+
 		$cart->clear();
 
 		\Flash::success('Factura actualizada satisfactoriamente.');
@@ -178,14 +183,6 @@ class InvoiceController extends Controller {
 	{
 		//
 	}
-
-
-    // public function subcategoria($id){
-    //     if(Request::ajax()){
-    //         $subcat = \DB::table('subaccount')->select('id','name')->where('account_id','=','id')->get();
-    //         return Response::json($subcat);
-    //     }
-    // }
 
      public function ajaxSubaccounts($id)
      {

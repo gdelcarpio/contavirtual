@@ -6,7 +6,7 @@
             <div class="col-sm-6">
                 <label class="col-sm-2 control-label">Tipo</label>
                 <div class="col-sm-9">
-                    {!! Form::select('invoice_type_id', $types, '',['class' => '', 'required', 'id' => 'invoice_type_id']) !!}
+                    {!! Form::select('invoice_type_id', $types, null,['class' => '', 'required', 'id' => 'invoice_type_id']) !!}
                 </div>
             </div>
 
@@ -22,7 +22,7 @@
             <div class="col-sm-6">
                 <label class="col-sm-2 control-label">Categoría</label>
                 <div class="col-sm-9">
-                    {!! Form::select('account_id', $accounts, '',['class' => '', 'required', 'id' => 'account_id']) !!}
+                    {!! Form::select('account_id', $accounts, null,['class' => '', 'required', 'id' => 'account_id']) !!}
                 </div>
             </div>
             <div class="col-sm-6">
