@@ -48,7 +48,7 @@
 
 		<div class="box">		
 			<div class="box-content no-padding">
-				<table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
+				<table class="table table-bordered table-hover table-heading no-border-bottom">
 					<thead>
 						<tr>							
 							<th>
@@ -67,16 +67,21 @@
 								<i class="fa fa-{{ show_sort_icon('price', $column, $direction) }}"></i>
           						{!! sort_model_by('price', 'Precio uni. (sin IGV)', Route::currentRouteName()) !!}
 							</th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('active', $column, $direction) }}"></i>
+          						{!! sort_model_by('active', 'Activo', Route::currentRouteName()) !!}
+							</th>
 							<th>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($products as $product)
-						<tr data-id="{{ $product->id }}" data-type="el producto: " data-name="{{ $product->name }}">							
+						<tr @if($product->active == 0) class="alert-danger" @endif data-id="{{ $product->id }}" data-type="el producto: " data-name="{{ $product->name }}">							
 							<td>{{ $product->code }}</td>
 							<td>{{ $product->name }}</td>
 							<td>{{ str_limit($product->description, 40, '...') }}</td>
 							<td>PEN {{ $product->price }}</td>
+							<td>@if($product->active == 1) Si @else No  @endif</td>
 							<td>
 								<a href="{{ route('products.edit', $product) }}">Editar</a>
 								<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar" class="option-icons row-delete"><i class="fa fa-trash-o fa-lg"></i></a>
