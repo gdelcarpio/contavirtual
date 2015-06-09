@@ -9,7 +9,7 @@ function DemoSelect2(){
 	});
 
 // creacion de factura
-	$("#account_id").select2({placeholder: "Selecione una opción"});
+	$("#account_id, #invoice_type_id").select2({placeholder: "Selecione una opción"});
 
 	$(".product_id").select2({
 		placeholder: "Seleciona un Producto",
@@ -42,9 +42,7 @@ $(document).ready(function() {
 	// Add slider for change test input length
 	FormLayoutExampleInputLength($( ".slider-style" ));
 	// Initialize datepicker
-	$('#fecha_emision').datepicker({setDate: new Date()});
-	$('#fecha_vencimiento').datepicker({setDate: new Date()});
-	$('#payment_date, #payment_expiration_date, #start_date, #end_date, #expiration_date, #issue_date').datepicker({setDate: new Date()});
+	$('#payment_date, #payment_expiration_date, #start_date, #end_date, #expiration_date, #issue_date').datepicker({ dateFormat:'dd-mm-yy',setDate: new Date()});
 	// Load Timepicker plugin
 	// LoadTimePickerScript(DemoTimePicker);
 	// Add tooltip to form-controls

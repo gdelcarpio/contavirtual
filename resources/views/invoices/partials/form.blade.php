@@ -1,4 +1,20 @@
 <h3>Tipo de Venta</h3>
+
+    <div class="row">
+        <div class="form-group">
+            
+            <div class="col-sm-6">
+                <label class="col-sm-2 control-label">Tipo</label>
+                <div class="col-sm-9">
+                    {!! Form::select('invoice_type_id', $types, '',['class' => '', 'required', 'id' => 'invoice_type_id']) !!}
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+            </div>
+            
+        </div>
+    </div>
     <div class="row">
 
         <div class="form-group">
@@ -54,13 +70,13 @@
 
                 <label class="col-sm-2 control-label">Emisión</label>
                 <div class="col-sm-4">
-                    {!! Form::text('issue_date', null, ['class' => 'form-control text-center', 'placeholder' => 'dd/mm/yyyy', 'required', 'id' => 'issue_date']) !!}
+                    {!! Form::text('issue_date', null, ['class' => 'form-control text-center', 'placeholder' => 'dd-mm-yyyy', 'required', 'id' => 'issue_date']) !!}
                     <span class="fa fa-calendar form-control-feedback"></span>
                 </div>
 
                 <label class="col-sm-2 control-label">Vencimiento</label>
                 <div class="col-sm-4">
-                    {!! Form::text('expiration_date', null, ['class' => 'form-control text-center', 'placeholder' => 'dd/mm/yyyy', 'required', 'id' => 'expiration_date']) !!}
+                    {!! Form::text('expiration_date', null, ['class' => 'form-control text-center', 'placeholder' => 'dd-mm-yyyy', 'required', 'id' => 'expiration_date']) !!}
                     <span class="fa fa-calendar form-control-feedback"></span>
                 </div>
 
@@ -68,6 +84,17 @@
 
         </div>
 
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">IGV %</label>
+                <div class="col-sm-4">
+                    {!! Form::text('igv', null, ['class' => 'form-control text-center', 'placeholder' => 'Sólo números', 'required', 'minlength' => '2', 'maxlength' => '4', 'id' => 'igv']) !!}
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="col-sm-12 detalle_cabecera">

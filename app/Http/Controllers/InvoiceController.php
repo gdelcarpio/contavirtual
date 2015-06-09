@@ -10,6 +10,7 @@ use App\Http\Requests\InvoiceRequest;
 
 use App\Invoice;
 use App\Account;
+use App\InvoiceType as Type;
 use App\Subaccount;
 use App\Company;
 use App\Product;
@@ -42,6 +43,9 @@ class InvoiceController extends Controller {
 	{
 		$user = \Auth::user();
 
+        $types = Type::where('id', '<',3)->lists('name','id');
+        $types = array(''=>'') + $types;
+
         $accounts = Account::lists('name','id');
         $accounts = array(''=>'') + $accounts;
 
@@ -55,14 +59,13 @@ class InvoiceController extends Controller {
 
 		$items = $cart->items();
 
-		return view('invoices.create', compact('accounts','companies','products', 'items'));        
+		return view('invoices.create', compact('accounts','companies','products', 'items', 'types'));        
 	}
 
 
 	public function store(InvoiceRequest $request)
 	{
 		$request['invoice_category_id'] =  '1';
-		$request['invoice_type_id'] =  '1';
 
 		$invoice = Invoice::create($request->except('account_id', 'product_id', 'quantity'));
 

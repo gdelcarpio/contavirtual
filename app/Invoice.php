@@ -47,7 +47,7 @@ class Invoice extends Model {
 	{
 		if ( ! empty ( $this->attributes['issue_date'] ) ) {
 			$issue_date = Carbon::createFromFormat('Y-m-d', $this->attributes['issue_date']);
-			return $issue_date->format('m/d/Y');
+			return $issue_date->format('d-m-Y');
 		}
 
 		return $this->attributes['payment_date'];

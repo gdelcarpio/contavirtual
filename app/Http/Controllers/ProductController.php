@@ -153,4 +153,13 @@ class ProductController extends Controller {
 		return view('invoices.partials.form-total');
 	}
 
+	public function ajaxIgv($igv)
+	{
+		if (is_numeric($igv) AND $igv >= 0 AND $igv <= 100) {
+			session(['igv' => $igv]);
+		}
+		
+		return view('invoices.partials.form-total');
+	}
+
 }

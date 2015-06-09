@@ -16,6 +16,8 @@
 
 				$('.remove_item').click(remove_item);
 					
+				get_cart_total();
+
 		  	}).fail(function() {
 				alert('Producto ya agregado');
 			});
@@ -26,7 +28,6 @@
 
 		}
 
-		get_cart_total();
 
 	});
 
@@ -43,6 +44,7 @@
 	$('#cart_clear').click(clear_cart);
 
 	function clear_cart(){
+
 		$.post("{{ URL::to('/clear-cart') }}",{},function(cadena){
 
 	        $(".detalle_cuerpo").html(''); 
@@ -52,6 +54,7 @@
 		});
 
 		get_cart_total();
+
 	}
 
 	// AJAX REMOVE ITEM
@@ -59,6 +62,7 @@
 	$('.remove_item').click(remove_item);
 
 	function remove_item(){
+
 		var row = $(this).parents('div');
 
 		var id = row.data('id');
@@ -70,6 +74,7 @@
 		});
 
 		get_cart_total();
+		
 	}
 
 	// AJAX COMPANY NAME
@@ -112,11 +117,23 @@
     	if ( $('#quantity').val() != '' && $('#product_id').val() != '' ) {
       
       		$.post("{{ URL::to('/price') }}/"+$('#product_id').val()+"/"+$('#quantity').val(),{},function(cadena){
-        	$(".price").html(cadena); 
-      	});
+        		$(".price").html(cadena); 
+      		});
 
-    }
+    	}
 
-  });
+  	});
+
+  	$('#igv').blur(function(){
+
+    	if ( $('#igv').val() != '' ) {
+      
+      		$.post("{{ URL::to('/igv') }}/"+$('#igv').val(),{},function(cadena){
+        		$(".total").html(cadena); 
+      		});
+
+    	}
+
+  	});
 
 </script>
