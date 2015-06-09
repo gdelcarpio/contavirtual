@@ -43,7 +43,7 @@ class InvoiceController extends Controller {
 	{
 		$user = \Auth::user();
 
-        $types = Type::where('id', '<',3)->lists('name','id');
+        $types = Type::where('id', '<', 3)->lists('name','id');
         $types = array(''=>'') + $types;
 
         $accounts = Account::lists('name','id');
@@ -75,6 +75,12 @@ class InvoiceController extends Controller {
 
 		$invoice->products()->attach($products_id);
 
+		$invoice->subtotal = $cart->getTotal();
+		$invoice->total = $cart->getTotal() * ( 1 + ( $invoice->igv / 100 ) );
+
+		$invoice->update();
+
+
 		$cart->clear();
 
 		\Flash::success('Factura agregada satisfactoriamente.');
@@ -98,6 +104,9 @@ class InvoiceController extends Controller {
 	{
 
 		$user = \Auth::user();
+
+		$types = Type::where('id', '<',3)->lists('name','id');
+        $types = array(''=>'') + $types;
 
         $accounts = Account::lists('name','id');
         $accounts = array(''=>'') + $accounts;
@@ -131,7 +140,7 @@ class InvoiceController extends Controller {
 
 		$items = $cart->items();
 
-		return view('invoices.edit', compact('accounts','companies','products', 'items', 'invoice'));        
+		return view('invoices.edit', compact('accounts','companies','products', 'items', 'invoice', 'types'));        
 	}
 
 	/**
