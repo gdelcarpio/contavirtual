@@ -71,9 +71,14 @@ class InvoiceController extends Controller {
 
 		$cart = new Cart();
 
-		$products_id = $cart->items()->lists('id');
+		foreach ($cart->items() as $pos => $item) {
+			$attach[$pos]['product_id'] = $item->id;
+			$attach[$pos]['quantity'] 	= $item->quantity;
+			$attach[$pos]['old_price'] 	= $item->price;
+		}
 
-		$invoice->products()->attach($products_id);
+		$invoice->products()->attach($attach);
+
 
 		$invoice->subtotal = $cart->getTotal();
 		$invoice->total = $cart->getTotal() * ( 1 + ( $invoice->igv / 100 ) );
@@ -133,8 +138,8 @@ class InvoiceController extends Controller {
 			$cart->add([
 			    'id'       => $item->id,
 			    'name'     => $item->name,
-			    'quantity' => 1,
-			    'price'    => $item->price
+			    'quantity' => $item->pivot->quantity,
+			    'price'    => $item->pivot->old_price
 			]);
 		}
 
@@ -157,9 +162,13 @@ class InvoiceController extends Controller {
 
 		$cart = new Cart();
 
-		$products_id = $cart->items()->lists('id');
+		foreach ($cart->items() as $pos => $item) {
+			$sync[$pos]['product_id'] = $item->id;
+			$sync[$pos]['quantity'] 	= $item->quantity;
+			$sync[$pos]['old_price'] 	= $item->price;
+		}
 
-		$invoice->products()->sync($products_id);
+		$invoice->products()->sync($sync);
 
 		$invoice->subtotal 	= $cart->getTotal();
 		$invoice->total 	= $cart->getTotal() * ( 1 + ( $invoice->igv / 100 ) );

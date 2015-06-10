@@ -10,7 +10,7 @@ class Invoice extends Model {
 
 	public function products()
 	{
-		return $this->belongsToMany('App\Product');
+		return $this->belongsToMany('App\Product')->withPivot(array('old_price', 'quantity'));;
 	}
 
 	public function invoiceCategory()
@@ -50,7 +50,17 @@ class Invoice extends Model {
 			return $issue_date->format('d-m-Y');
 		}
 
-		return $this->attributes['payment_date'];
+		return $this->attributes['issue_date'];
+	}
+
+	public function getExpirationDateAttribute()
+	{
+		if ( ! empty ( $this->attributes['expiration_date'] ) ) {
+			$expiration_date = Carbon::createFromFormat('Y-m-d', $this->attributes['expiration_date']);
+			return $expiration_date->format('d-m-Y');
+		}
+
+		return $this->attributes['expiration_date'];
 	}
 
 }

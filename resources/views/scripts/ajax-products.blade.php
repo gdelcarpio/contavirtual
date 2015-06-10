@@ -79,7 +79,7 @@
 
 	// AJAX COMPANY NAME
 
-	$('#company_id').change(function(){
+	function client_name(){
 
 	   	$.post("{{ URL::to('/ajax-company') }}/"+$('#company_id').val(),{},function(cadena){
 
@@ -87,7 +87,19 @@
 
 	  	});
 
+	}
+
+	$('#company_id').change(function(){
+
+		client_name();
+
 	});
+	
+	if ( $('#company_id').val() != '' ) {
+		
+		client_name();
+
+	}
 
 	// AJAX PRODUCT PRICE
 
