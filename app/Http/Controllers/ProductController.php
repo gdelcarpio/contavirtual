@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 
 use App\Product;
-use Anam\Phpcart\Cart;
 
 class ProductController extends Controller {
 	
@@ -44,10 +43,12 @@ class ProductController extends Controller {
 				];
 		return view('products.index', compact('products','rows','column','direction'));
 	}
+
 	public function create()
 	{
 		return view('products.create');
 	}
+
 	public function store(ProductRequest $request)
 	{
 		$product = new Product($request->all());
@@ -56,22 +57,26 @@ class ProductController extends Controller {
 		//\Flash::success('Se agregó elproducto correctamente.');
 		return redirect()->route('products.index');
 	}
+
 	public function show($id)
 	{
 		$product = Product::findOrFail($id);
 		return view('products.show', compact('product'));
 	}
+
 	public function edit($id)
 	{
 		$product = Product::findOrFail($id);
 		return view('products.edit', compact('product'));
 	}
+
 	public function update($id, ProductRequest $request)
 	{
 		$product = Product::findOrFail($id);
 		$product->update($request->all());
 		return redirect()->back();
 	}
+
 	public function destroy($id)
 	{
 		$product = Product::findOrFail($id);
@@ -86,35 +91,34 @@ class ProductController extends Controller {
 		$quantity = $quantity != 0 ? $quantity : 1;
 		return view('invoices.partials.form-price', compact('product', 'quantity'));
 	}
+
 	public function ajaxAddToCart($product_id, $quantity)
 	{
-		$cart = new Cart();
-		if (!$cart->has($product_id)) {
+		if (!\Cart::has($product_id)) {
 			$product = Product::findOrFail($product_id);
-			$cart->add([
+			\Cart::add([
 			    'id'       => $product->id,
 			    'name'     => $product->name,
 			    'quantity' => $quantity,
 			    'price'    => $product->price
 			]);
-			$product = $cart->get($product_id);
+			$product = \Cart::get($product_id);
 			return view('invoices.partials.form-product', compact('product'));
 		}
 	}
+
 	public function ajaxEmptyCart()
 	{
-		$cart = new Cart();
-		$cart->clear();
-		// return true;
+		\Cart::clear();
 	}
+
 	public function ajaxRemoveFromCart($id)
 	{
-		$cart = new Cart();
-		$cart->remove($id);
+		\Cart::remove($id);
 	}
+
 	public function ajaxTotalCart()
 	{
-		// $cart = new Cart();
 		return view('invoices.partials.form-total');
 	}
 

@@ -15,7 +15,6 @@ use App\Subaccount;
 use App\Company;
 use App\Product;
 use App\User;
-use Anam\Phpcart\Cart;
 
 class InvoiceController extends Controller {
 
@@ -38,18 +37,14 @@ class InvoiceController extends Controller {
         return view('invoices.index', compact('invoices', 'rows'));
     }
 
-
 	public function create()
 	{
 		$options = $this->getComboBoxOptions();
 
-        $cart = new Cart();
-
-		$items = $cart->items();
+		$items = \Cart::items();
 
 		return view('invoices.create', compact('options', 'items'));        
 	}
-
 
 	public function store(InvoiceRequest $request)
 	{
@@ -57,9 +52,7 @@ class InvoiceController extends Controller {
 
 		$invoice = Invoice::create($request->except('account_id', 'product_id', 'quantity'));
 
-		$cart = new Cart();
-
-		foreach ($cart->items() as $pos => $item) {
+		foreach (\Cart::items() as $pos => $item) {
 			$attach[$pos]['product_id'] = $item->id;
 			$attach[$pos]['quantity'] 	= $item->quantity;
 			$attach[$pos]['old_price'] 	= $item->price;
@@ -67,13 +60,12 @@ class InvoiceController extends Controller {
 
 		$invoice->products()->attach($attach);
 
-		$invoice->subtotal 	= $cart->getTotal();
-		$invoice->total 	= $cart->getTotal() * ( 1 + ( $invoice->igv / 100 ) );
+		$invoice->subtotal 	= \Cart::getTotal();
+		$invoice->total 	= \Cart::getTotal() * ( 1 + ( $invoice->igv / 100 ) );
 
 		$invoice->update();
 
-
-		$cart->clear();
+		\Cart::clear();
 
 		\Flash::success('Factura agregada satisfactoriamente.');
 
@@ -96,9 +88,7 @@ class InvoiceController extends Controller {
 	{
 		$options = $this->getComboBoxOptions();
 
-        $cart = new Cart();
-
-        $cart->clear();
+        \Cart::clear();
 
 		$invoice = \Auth::user()->invoices->find($id);
 
@@ -109,7 +99,7 @@ class InvoiceController extends Controller {
 
 		foreach ($invoice->products as $item) {
 
-			$cart->add([
+			\Cart::add([
 			    'id'       => $item->id,
 			    'name'     => $item->name,
 			    'quantity' => $item->pivot->quantity,
@@ -117,7 +107,7 @@ class InvoiceController extends Controller {
 			]);
 		}
 
-		$items = $cart->items();
+		$items = \Cart::items();
 
 		return view('invoices.edit', compact('options', 'items', 'invoice'));        
 	}
@@ -134,9 +124,7 @@ class InvoiceController extends Controller {
 
 		$invoice->update($request->except('account_id', 'product_id', 'quantity'));
 
-		$cart = new Cart();
-
-		foreach ($cart->items() as $pos => $item) {
+		foreach (\Cart::items() as $pos => $item) {
 			$sync[$pos]['product_id'] 	= $item->id;
 			$sync[$pos]['quantity'] 	= $item->quantity;
 			$sync[$pos]['old_price'] 	= $item->price;
@@ -144,12 +132,12 @@ class InvoiceController extends Controller {
 
 		$invoice->products()->sync($sync);
 
-		$invoice->subtotal 	= $cart->getTotal();
-		$invoice->total 	= $cart->getTotal() * ( 1 + ( $invoice->igv / 100 ) );
+		$invoice->subtotal 	= \Cart::getTotal();
+		$invoice->total 	= \Cart::getTotal() * ( 1 + ( $invoice->igv / 100 ) );
 
 		$invoice->update();
 
-		$cart->clear();
+		\Cart::clear();
 
 		\Flash::success('Factura actualizada satisfactoriamente.');
 
