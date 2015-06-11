@@ -41,25 +41,13 @@ class InvoiceController extends Controller {
 
 	public function create()
 	{
-		$user = \Auth::user();
-
-        $types = Type::where('id', '<', 3)->lists('name','id');
-        $types = array(''=>'') + $types;
-
-        $accounts = Account::lists('name','id');
-        $accounts = array(''=>'') + $accounts;
-
-        $companies = $user->companies->where('client', 1)->lists('ruc','id');
-        $companies = array(''=>'') + $companies;
-
-        $products = $user->products->where('active', 1)->lists('name','id');
-        $products = array(''=>'') + $products;
+		$options = $this->getComboBoxOptions();
 
         $cart = new Cart();
 
 		$items = $cart->items();
 
-		return view('invoices.create', compact('accounts','companies','products', 'items', 'types'));        
+		return view('invoices.create', compact('options', 'items'));        
 	}
 
 
@@ -79,9 +67,8 @@ class InvoiceController extends Controller {
 
 		$invoice->products()->attach($attach);
 
-
-		$invoice->subtotal = $cart->getTotal();
-		$invoice->total = $cart->getTotal() * ( 1 + ( $invoice->igv / 100 ) );
+		$invoice->subtotal 	= $cart->getTotal();
+		$invoice->total 	= $cart->getTotal() * ( 1 + ( $invoice->igv / 100 ) );
 
 		$invoice->update();
 
@@ -107,26 +94,13 @@ class InvoiceController extends Controller {
 	 */
 	public function edit($id)
 	{
-
-		$user = \Auth::user();
-
-		$types = Type::where('id', '<',3)->lists('name','id');
-        $types = array(''=>'') + $types;
-
-        $accounts = Account::lists('name','id');
-        $accounts = array(''=>'') + $accounts;
-
-        $companies = $user->companies->where('client', 1)->lists('ruc','id');
-        $companies = array(''=>'') + $companies;
-
-        $products = $user->products->where('active', 1)->lists('name','id');
-        $products = array(''=>'') + $products;
+		$options = $this->getComboBoxOptions();
 
         $cart = new Cart();
 
         $cart->clear();
 
-		$invoice = $user->invoices->find($id);
+		$invoice = \Auth::user()->invoices->find($id);
 
 		if ( ! $invoice ) {
 			\Flash::warning('No tiene los permisos necesarios para acceder a esta factura');
@@ -145,7 +119,7 @@ class InvoiceController extends Controller {
 
 		$items = $cart->items();
 
-		return view('invoices.edit', compact('accounts','companies','products', 'items', 'invoice', 'types'));        
+		return view('invoices.edit', compact('options', 'items', 'invoice'));        
 	}
 
 	/**
@@ -163,7 +137,7 @@ class InvoiceController extends Controller {
 		$cart = new Cart();
 
 		foreach ($cart->items() as $pos => $item) {
-			$sync[$pos]['product_id'] = $item->id;
+			$sync[$pos]['product_id'] 	= $item->id;
 			$sync[$pos]['quantity'] 	= $item->quantity;
 			$sync[$pos]['old_price'] 	= $item->price;
 		}
@@ -206,6 +180,32 @@ class InvoiceController extends Controller {
      	$subaccount = Subaccount::findOrFail($subaccount_id);
 
      	return $subaccount->account_id;            
+    }
+
+    public function getComboBoxOptions()
+    {
+		$user 		= \Auth::user();
+
+        $companies 	= $user->companies->where('client', 1)->lists('ruc','id');
+        $companies 	= array(''=>'') + $companies;
+
+        $products 	= $user->products->where('active', 1)->lists('name','id');
+        $products 	= array(''=>'') + $products;
+
+    	$types 		= Type::where('id', '<', 3)->lists('name','id');
+        $types 		= array(''=>'') + $types;
+
+        $accounts 	= Account::lists('name','id');
+        $accounts 	= array(''=>'') + $accounts;
+
+        $options 	= [
+        				'types'  	=> $types,
+        				'accounts' 	=> $accounts,
+        				'companies' => $companies,
+        				'products' 	=> $products,
+        			];
+
+        return $options;
     }
 
 }

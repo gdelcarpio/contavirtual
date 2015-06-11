@@ -6,7 +6,7 @@
             <div class="col-sm-6">
                 <label class="col-sm-2 control-label">Tipo</label>
                 <div class="col-sm-9">
-                    {!! Form::select('invoice_type_id', $types, null,['class' => '', 'required', 'id' => 'invoice_type_id']) !!}
+                    {!! Form::select('invoice_type_id', $options['types'], null,['class' => '', 'required', 'id' => 'invoice_type_id']) !!}
                 </div>
             </div>
 
@@ -22,7 +22,7 @@
             <div class="col-sm-6">
                 <label class="col-sm-2 control-label">Categoría</label>
                 <div class="col-sm-9">
-                    {!! Form::select('account_id', $accounts, null,['class' => '', 'required', 'id' => 'account_id']) !!}
+                    {!! Form::select('account_id', $options['accounts'], null,['class' => '', 'required', 'id' => 'account_id']) !!}
                 </div>
             </div>
             <div class="col-sm-6">
@@ -41,7 +41,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">RUC</label>
                 <div class="col-sm-9">
-                    {!! Form::select('company_id', $companies, null,['class' => '', 'required', 'id' => 'company_id']) !!}
+                    {!! Form::select('company_id', $options['companies'], null,['class' => '', 'required', 'id' => 'company_id']) !!}
                 </div>
             </div>
             <div class="form-group">
@@ -99,7 +99,7 @@
 
     <div class="col-sm-12 detalle_cabecera">
         <div class="col-xs-6">
-            {!! Form::select("product_id", $products, null, ["class" => "product_id", "id" => "product_id"]) !!}
+            {!! Form::select("product_id", $options['products'], null, ["class" => "product_id", "id" => "product_id"]) !!}
         </div>
 
         <div class="col-xs-1 text-center">
