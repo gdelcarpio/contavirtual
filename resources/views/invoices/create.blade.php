@@ -28,7 +28,7 @@
 
             {!! Form::open(['route' => 'invoices.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form-horizontal']) !!}
                 
-               @include('invoices.partials.form')
+               @include('invoices.partials.form', ['submitButton' => 'INGRESAR'])
                
             {!! Form::close() !!}
 

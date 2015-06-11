@@ -18,6 +18,11 @@ use App\User;
 
 class InvoiceController extends Controller {
 
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *991118G
@@ -41,7 +46,7 @@ class InvoiceController extends Controller {
 	{
 		$options = $this->getComboBoxOptions();
 
-		$items = \Cart::items();
+		$items 	 = \Cart::items();
 
 		return view('invoices.create', compact('options', 'items'));        
 	}
@@ -155,16 +160,16 @@ class InvoiceController extends Controller {
 		//
 	}
 
-     public function ajaxSubaccounts($id)
-     {
+    public function ajaxSubaccounts($id)
+    {
         $subaccounts = Subaccount::where('account_id',$id)->lists('name','id');
         $subaccounts = array('' => '') + $subaccounts;
         return view('invoices.partials.form-subaccount', compact('subaccounts'));
             
     }
 
-     public function ajaxAccounts($subaccount_id)
-     {
+    public function ajaxAccounts($subaccount_id)
+    {
      	$subaccount = Subaccount::findOrFail($subaccount_id);
 
      	return $subaccount->account_id;            

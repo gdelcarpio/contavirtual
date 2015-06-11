@@ -10,10 +10,9 @@ function sort_model_by($column, $body, $url)
 	return link_to_route($url, $body, ['q' => $q,'column' => $column, 'direction' => $direction, 'rows' => $rows ]);
 }
 
-function filter_by($url, $title, $type){
-
+function filter_by($url, $title, $type)
+{
 	return link_to_route($url, $title, ['type' => $type]);
-
 }
 
 function show_sort_icon($sortName, $sortRequest, $direction)
@@ -43,14 +42,16 @@ function show_role_icon($role_id)
 
 function limpiarCaracteresEspeciales($string)
 {
- $string = htmlentities($string);
- $string = preg_replace('/\&(.)[^;]*;/', '\\1', $string);
- return $string;
+	$string = htmlentities($string);
+	$string = preg_replace('/\&(.)[^;]*;/', '\\1', $string);
+
+	return $string;
 }
 
 function limpiarEspacios($string)
 {
 	$string = str_replace(' ', '', $string);
+	
 	return $string;
 }
 
@@ -97,4 +98,9 @@ function rememberFormLocation($department, $province, $district)
 	Session::push('location.district', $district);
 
 	return true;
+}
+
+function url_alias()
+{
+	return Route::currentRouteName();
 }

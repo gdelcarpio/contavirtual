@@ -28,7 +28,7 @@
 
             {!! Form::model($invoice, ['route' => ['invoices.update', $invoice->id ], 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-horizontal']) !!}
                 
-               @include('invoices.partials.form')
+               @include('invoices.partials.form', ['submitButton' => 'ACTUALIZAR'])
                
             {!! Form::close() !!}
 

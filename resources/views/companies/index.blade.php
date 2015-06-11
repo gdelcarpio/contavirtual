@@ -20,7 +20,7 @@
 		  <li role="presentation" class="active"><a href="{{route('companies.index')}}">Todos <span class="badge">42</span></a></li>
 
 		  
-		  <li role="presentation">{!! filter_by(Route::currentRouteName(),"Clientes",1) !!}</li>
+		  <li role="presentation">{!! filter_by(url_alias(),"Clientes",1) !!}</li>
 		  <li role="presentation"><a href="#">Clientes <span class="badge">30</span></a></li>
 		  <li role="presentation"><a href="#">Proveedores <span class="badge">12</span></a></li>
 		</ul>
@@ -32,7 +32,6 @@
 			  <a href="paginas/empresa-crear.html"  class="btn btn-danger crear_documento">
 			    <i class="fa fa-plus"></i> Registrar Empresa
 			  </a>
-			 
 			</div>
 
 		</div>
@@ -44,9 +43,9 @@
 
 			@include('partials.search-form')
 				|
-				@include('partials.rows-form')
+			@include('partials.rows-form')
 
-			</div>
+		</div>
 
 		<div class="col-md-6 text-right">
 
@@ -65,31 +64,31 @@
 							
 							<th>
 								<i class="fa fa-{{ show_sort_icon('company_name', $column, $direction) }}"></i>
-          						{!! sort_model_by('company_name', 'Empresa', Route::currentRouteName()) !!}
+          						{!! sort_model_by('company_name', 'Empresa', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('ruc', $column, $direction) }}"></i>
-          						{!! sort_model_by('ruc', 'RUC', Route::currentRouteName()) !!}
+          						{!! sort_model_by('ruc', 'RUC', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('name', $column, $direction) }}"></i>
-          						{!! sort_model_by('name', 'Nombre de Contac.', Route::currentRouteName()) !!}
+          						{!! sort_model_by('name', 'Nombre de Contac.', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('email', $column, $direction) }}"></i>
-          						{!! sort_model_by('email', 'Correo Electrónico', Route::currentRouteName()) !!}
+          						{!! sort_model_by('email', 'Correo Electrónico', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('phone', $column, $direction) }}"></i>
-          						{!! sort_model_by('phone', 'Teléfono', Route::currentRouteName()) !!}
+          						{!! sort_model_by('phone', 'Teléfono', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('provider', $column, $direction) }}"></i>
-          						{!! sort_model_by('provider', 'Proveedor', Route::currentRouteName()) !!}
+          						{!! sort_model_by('provider', 'Proveedor', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('client', $column, $direction) }}"></i>
-          						{!! sort_model_by('client', 'Cliente', Route::currentRouteName()) !!}
+          						{!! sort_model_by('client', 'Cliente', url_alias()) !!}
 							</th>
 							<th>Acciones</th>
 							
@@ -98,17 +97,18 @@
 					<tbody>
 						@foreach($companies as $company)
 
-						<tr>
-							<td>{{ $company->company_name }}</td>
-							<td>{{ $company->ruc }}</td>
-							<td>{{ $company->name }}</td>
-							<td>{{ $company->email }}</td>
-							<td>{{ $company->phone }}</td>
-							<td>@if( $company->provider  == 1 ) si @else no @endif </td>
-							<td>@if( $company->client  == 1 ) si @else no @endif </td>
-							<td><a href="#">Editar</a>
-								<a href="#">Eliminar</a></td>
-						</tr>
+							<tr>
+								<td>{{ $company->company_name }}</td>
+								<td>{{ $company->ruc }}</td>
+								<td>{{ $company->name }}</td>
+								<td>{{ $company->email }}</td>
+								<td>{{ $company->phone }}</td>
+								<td>@if( $company->provider  == 1 ) si @else no @endif </td>
+								<td>@if( $company->client  == 1 ) si @else no @endif </td>
+								<td><a href="#">Editar</a>
+									<a href="#">Eliminar</a>
+								</td>
+							</tr>
 					
 						@endforeach
 					</tbody>
@@ -119,15 +119,14 @@
 		<!-- paginado inferior -->
 
 	</div>
+
     <div class="col-md-6">
 	    {!! $companies->setPath('')->appends(['rows' => Input::get('rows')])->render() !!}
 	</div>
-		<div class="col-md-6 text-right">
 
-			          
+	<div class="col-md-6 text-right">
 
-
-		</div>
+	</div>
 
 </div>
 @endsection

@@ -8,6 +8,11 @@ use App\Http\Requests\ProductRequest;
 use App\Product;
 
 class ProductController extends Controller {
+
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
 	
 	public function index()
 	{
@@ -41,6 +46,7 @@ class ProductController extends Controller {
 					30 => 30,
 					40 => 40
 				];
+
 		return view('products.index', compact('products','rows','column','direction'));
 	}
 
@@ -82,6 +88,7 @@ class ProductController extends Controller {
 		$product = Product::findOrFail($id);
 		\Flash::success('Se eliminó el producto ' . $product->name . ' correctamente.');
 		$product->delete();
+
 		return view('message');
 	}
 
@@ -89,20 +96,25 @@ class ProductController extends Controller {
 	{
 		$product = \Auth::user()->products->find($product_id);
 		$quantity = $quantity != 0 ? $quantity : 1;
+
 		return view('invoices.partials.form-price', compact('product', 'quantity'));
 	}
 
 	public function ajaxAddToCart($product_id, $quantity)
 	{
 		if (!\Cart::has($product_id)) {
+
 			$product = Product::findOrFail($product_id);
+			
 			\Cart::add([
 			    'id'       => $product->id,
 			    'name'     => $product->name,
 			    'quantity' => $quantity,
 			    'price'    => $product->price
 			]);
+
 			$product = \Cart::get($product_id);
+
 			return view('invoices.partials.form-product', compact('product'));
 		}
 	}

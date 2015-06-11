@@ -1,7 +1,7 @@
-@if(Route::currentRouteName()=='users.payments.index')
-	{!! Form::open(['route' => [Route::currentRouteName(), $user->id], 'method' => 'GET', 'role' => 'form', 'class' => 'form-inline', 'style' => 'display:inline-block']) !!}
+@if(url_alias()=='users.payments.index')
+	{!! Form::open(['route' => [url_alias(), $user->id], 'method' => 'GET', 'role' => 'form', 'class' => 'form-inline', 'style' => 'display:inline-block']) !!}
 @else
-	{!! Form::open(['route' => Route::currentRouteName(), 'method' => 'GET', 'role' => 'form', 'class' => 'form-inline', 'style' => 'display:inline-block']) !!}
+	{!! Form::open(['route' => url_alias(), 'method' => 'GET', 'role' => 'form', 'class' => 'form-inline', 'style' => 'display:inline-block']) !!}
 @endif
 
 	<div class="form-group">

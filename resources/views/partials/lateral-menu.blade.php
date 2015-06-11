@@ -1,7 +1,7 @@
 <ul class="nav main-menu">
 			
 	<li>
-		<a href="{{ route('home') }}" class="{{ link_selected(Route::currentRouteName(), 'Panel') }}">
+		<a href="{{ route('home') }}" class="{{ link_selected(url_alias(), 'Panel') }}">
 			<i class="fa fa-dashboard"></i>
 			<span class="hidden-xs">Panel de control</span>
 		</a>
@@ -9,26 +9,26 @@
 
 	@if( is_admin() )
 
-	<li class="menu-li">
-		<a href="{{ route('users.index') }}" class="{{ link_selected(Route::currentRouteName(), 'Usuarios') }}">
-			<i class="fa fa-users"></i>
-			<span class="hidden-xs">Usuarios</span>
-		</a>
-		<a href="{{ route('users.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
-	</li>
+		<li class="menu-li">
+			<a href="{{ route('users.index') }}" class="{{ link_selected(url_alias(), 'Usuarios') }}">
+				<i class="fa fa-users"></i>
+				<span class="hidden-xs">Usuarios</span>
+			</a>
+			<a href="{{ route('users.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
+		</li>
 
-	<li class="menu-li">
-		<a href="{{ route('payments.index') }}" class="{{ link_selected(Route::currentRouteName(), 'Pagos') }}">
-			<i class="fa fa-credit-card"></i>
-			<span class="hidden-xs">Pagos</span>
-		</a>
-		<a href="{{ route('payments.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
-	</li>
+		<li class="menu-li">
+			<a href="{{ route('payments.index') }}" class="{{ link_selected(url_alias(), 'Pagos') }}">
+				<i class="fa fa-credit-card"></i>
+				<span class="hidden-xs">Pagos</span>
+			</a>
+			<a href="{{ route('payments.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
+		</li>
 		
 	@endif
 
 	<li class="menu-li">
-		<a href="{{ route('companies.index') }}" class="{{ link_selected(Route::currentRouteName(), 'Empresas') }}">
+		<a href="{{ route('companies.index') }}" class="{{ link_selected(url_alias(), 'Empresas') }}">
 			<i class="fa fa-building"></i>
 			<span class="hidden-xs">Empresas</span>
 		</a>
@@ -37,7 +37,7 @@
 	</li>
 
 	<li class="menu-li">
-		<a href="{{ route('products.index') }}" class="{{ link_selected(Route::currentRouteName(), 'Productos') }}">
+		<a href="{{ route('products.index') }}" class="{{ link_selected(url_alias(), 'Productos') }}">
 			<i class="fa fa-list-ul"></i>
 			<span class="hidden-xs">Productos / servicios</span>
 		</a>
@@ -54,7 +54,7 @@
 
 		<ul class="dropdown-menu">
 			<li class="menu-li"><a class="ajax-link" href="{{ route('invoices.index') }}">Facturas</a>
-				<a href="{{ route('invoices.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
+				<a href="{{ route('invoices.create.sales', 1) }}" class="agregar"><i class="fa fa-plus"></i></a>
 			</li>
 			<li class="menu-li"><a class="ajax-link" href="{{ route('tickets') }}">Boletas</a>
 				<a href="#" class="agregar"><i class="fa fa-plus"></i></a>
@@ -73,7 +73,7 @@
 		</a>
 		<ul class="dropdown-menu">
 			<li><a class="ajax-link" href="{{ route('expenses') }}">Gastos</a>
-			<a href="#" class="agregar"><i class="fa fa-plus"></i></a>
+			<a href="{{ route('invoices.create.expenses', 2) }}" class="agregar"><i class="fa fa-plus"></i></a>
 			</li>								
 		</ul>
 	</li>
