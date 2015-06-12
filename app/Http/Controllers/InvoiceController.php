@@ -30,7 +30,11 @@ class InvoiceController extends Controller {
 	 */
 	public function index()
     {
-        $invoices = Invoice::all();
+		$page = $this->getPageInfo(url_alias());
+
+		$rows  		= \Input::get('rows', 10);
+
+        $invoices = Invoice::where('invoice_category_id', $page['id'])->paginate($rows);
 
 		$rows = [
 			10 => 10,
@@ -39,7 +43,6 @@ class InvoiceController extends Controller {
 			40 => 40
 		];
 
-		$page = $this->getPageInfo(url_alias());
 
         return view('invoices.index', compact('invoices', 'rows', 'page'));
     }
@@ -228,7 +231,7 @@ class InvoiceController extends Controller {
 
 				break;
 
-			case 'invoices.expenses.create': case 'invoices.expenses.edit':	case 'invoices.expenses.index': case 'invoices.expenses.store'case 'invoices.expenses.update'
+			case 'invoices.expenses.create': case 'invoices.expenses.edit':	case 'invoices.expenses.index': case 'invoices.expenses.store': case 'invoices.expenses.update':
 				
 				$page = [
 						'id'		=> 2,

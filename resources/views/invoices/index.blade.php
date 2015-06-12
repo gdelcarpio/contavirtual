@@ -110,6 +110,8 @@
 				</table>
 			</div>
 		</div>
+
+		{!! $invoices->setPath('')->appends( array( 'q' => Input::get('q') ,'column' => Input::get('column'),'direction' => Input::get('direction'), 'rows' => Input::get('rows') ) )->render() !!}
 	
 	</div>
   	
