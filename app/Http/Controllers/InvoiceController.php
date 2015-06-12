@@ -33,8 +33,10 @@ class InvoiceController extends Controller {
 		$page = $this->getPageInfo(url_alias());
 
 		$rows  		= \Input::get('rows', 10);
+		$column 	= \Input::get('column', 'id');
+		$direction  = \Input::get('direction', 'desc');
 
-        $invoices = Invoice::where('invoice_category_id', $page['id'])->paginate($rows);
+        $invoices = \Auth::user()->invoices()->where('invoice_category_id', $page['id'])->paginate($rows);
 
 		$rows = [
 			10 => 10,
@@ -43,8 +45,7 @@ class InvoiceController extends Controller {
 			40 => 40
 		];
 
-
-        return view('invoices.index', compact('invoices', 'rows', 'page'));
+        return view('invoices.index', compact('invoices', 'rows', 'page', 'column', 'direction'));
     }
 
 	public function create()

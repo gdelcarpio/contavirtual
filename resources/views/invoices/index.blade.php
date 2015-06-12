@@ -17,23 +17,12 @@
 
 		<div class="col-sm-10">
 
-			<form class="form-inline">
-			  <div class="form-group">
-			    <label for="exampleInputName2">Desde</label>
-			    <input type="text" class="form-control" id="input_date_desde" placeholder="dd/mm/yyyy">
-			  </div>
-			  <div class="form-group">
-			    <label for="exampleInputEmail2">Hasta</label>
-			    <input type="text" class="form-control" id="input_date_hasta" placeholder="dd/mm/yyyy">
-			  </div>
-			  <button type="submit" class="btn btn-primary">Filtrar por fecha</button>
-			  <a href="#" class="btn btn-success">Todas las fechas</a>
-			</form>
+			@include('partials.date-form')
 
 		</div>
 		<div class="col-md-2 text-right">
 			<a href="{{ route($page['create']) }}"  class="btn btn-danger crear_documento">
-				<i class="fa fa-plus"></i> Nueva Factura
+				<i class="fa fa-plus"></i> Nuevo Comprobante
 			</a>					
 		</div>	
 
@@ -44,16 +33,9 @@
 
 		<div class="col-md-9">
 
-
-			<form class="form-inline" style="display:inline-block">
-			  <div class="form-group">		    
-			    <input type="text" class="form-control" id="exampleInputName2" placeholder="buscar">
-			  </div>		  
-			  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-			</form>
+			@include('partials.search-form')
 			|
 			@include('partials.rows-form')
-
 
 		</div>
 
@@ -75,21 +57,53 @@
 				<table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
 					<thead>
 						<tr>
-							<th><a href="#"><i class="fa fa-sort"></i> Emisión</a></th>
-							<th><a href="#"><i class="fa fa-sort"></i> Vencimiento</a></th>
-							<th><a href="#"><i class="fa fa-sort"></i> Tipo doc.</a></th>
-							<th><a href="#"><i class="fa fa-sort"></i> N° Doc.</a></th>
-							<th><a href="#"><i class="fa fa-sort"></i> Empresa</a></th>
-							<th><a href="#"><i class="fa fa-sort"></i> RUC</a></th>
-							<th><a href="#"><i class="fa fa-sort"></i> Subtotal</a></th>
-							<th><a href="#"><i class="fa fa-sort"></i> IGV</a></th>
-							<th><a href="#"><i class="fa fa-sort"></i> Total</a></th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('id', $column, $direction) }}"></i>
+          						{!! sort_model_by('id', 'ID', url_alias()) !!}
+							</th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('issue_date', $column, $direction) }}"></i>
+          						{!! sort_model_by('issue_date', 'Emisión', url_alias()) !!}
+							</th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('expiration_date', $column, $direction) }}"></i>
+          						{!! sort_model_by('expiration_date', 'Vencimiento', url_alias()) !!}
+							</th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('invoice_type_id', $column, $direction) }}"></i>
+          						{!! sort_model_by('invoice_type_id', 'Tipo doc.', url_alias()) !!}
+							</th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('serial', $column, $direction) }}"></i>
+          						{!! sort_model_by('serial', 'N° Doc.', url_alias()) !!}
+							</th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('company_id', $column, $direction) }}"></i>
+          						{!! sort_model_by('company_id', 'Empresa', url_alias()) !!}
+							</th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('company_id', $column, $direction) }}"></i>
+          						{!! sort_model_by('company_id', 'RUC', url_alias()) !!}
+							</th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('subtotal', $column, $direction) }}"></i>
+          						{!! sort_model_by('subtotal', 'Subtotal', url_alias()) !!}
+							</th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('igv', $column, $direction) }}"></i>
+          						{!! sort_model_by('igv', 'IGV', url_alias()) !!}
+							</th>
+							<th>
+								<i class="fa fa-{{ show_sort_icon('total', $column, $direction) }}"></i>
+          						{!! sort_model_by('total', 'Total', url_alias()) !!}
+							</th>
 							<th><a href="#"><i class="fa fa-sort"></i> Opciones</a></th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($invoices as $invoice)
 							<tr>
+								<td>{{ $invoice->id }}</td>
 								<td>{{ $invoice->issue_date }}</td>
 								<td>{{ $invoice->expiration_date }}</td>
 								<td>{{ $invoice->invoiceType->name }}</td>
