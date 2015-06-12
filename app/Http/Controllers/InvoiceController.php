@@ -25,7 +25,7 @@ class InvoiceController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
-	 *991118G
+	 *
 	 * @return Response
 	 */
 	public function index()
@@ -39,21 +39,27 @@ class InvoiceController extends Controller {
 			40 => 40
 		];
 
-        return view('invoices.index', compact('invoices', 'rows'));
+		$page = $this->getPageInfo(url_alias());
+
+        return view('invoices.index', compact('invoices', 'rows', 'page'));
     }
 
 	public function create()
 	{
 		$options = $this->getComboBoxOptions();
 
+		$page 	 = $this->getPageInfo(url_alias());
+
 		$items 	 = \Cart::items();
 
-		return view('invoices.create', compact('options', 'items'));        
+		return view('invoices.create', compact('options', 'items', 'page'));        
 	}
 
 	public function store(InvoiceRequest $request)
 	{
-		$request['invoice_category_id'] =  '1';
+		$page = $this->getPageInfo(url_alias());
+
+		$request['invoice_category_id'] =  $page['id'];
 
 		$invoice = Invoice::create($request->except('account_id', 'product_id', 'quantity'));
 
@@ -72,7 +78,7 @@ class InvoiceController extends Controller {
 
 		\Cart::clear();
 
-		\Flash::success('Factura agregada satisfactoriamente.');
+		\Flash::success('Comprobante agregado satisfactoriamente.');
 
 		return \Redirect::route('invoices.index');
 	}
@@ -98,7 +104,7 @@ class InvoiceController extends Controller {
 		$invoice = \Auth::user()->invoices->find($id);
 
 		if ( ! $invoice ) {
-			\Flash::warning('No tiene los permisos necesarios para acceder a esta factura');
+			\Flash::warning('No tiene los permisos necesarios para acceder a este comprobante de pago');
 			return \Redirect::route('invoices.index');
 		}
 
@@ -114,7 +120,9 @@ class InvoiceController extends Controller {
 
 		$items = \Cart::items();
 
-		return view('invoices.edit', compact('options', 'items', 'invoice'));        
+		$page  = $this->getPageInfo(url_alias());
+
+		return view('invoices.edit', compact('options', 'items', 'invoice', 'page'));        
 	}
 
 	/**
@@ -144,7 +152,7 @@ class InvoiceController extends Controller {
 
 		\Cart::clear();
 
-		\Flash::success('Factura actualizada satisfactoriamente.');
+		\Flash::success('Comprobante actualizado satisfactoriamente.');
 
 		return \Redirect::route('invoices.index');
 	}
@@ -199,6 +207,46 @@ class InvoiceController extends Controller {
         			];
 
         return $options;
+    }
+
+    public function getPageInfo($url_alias)
+    {
+		switch ($url_alias) {
+
+			case 'invoices.sales.create': case 'invoices.sales.edit': case 'invoices.sales.index': case 'invoices.sales.store': case 'invoices.sales.update':
+
+				$page = [
+						'id'		=> 1,
+						'title' 	=> 'ventas',
+						'title_en' 	=> 'sales',
+						'create' 	=> 'invoices.sales.create',
+						'store' 	=> 'invoices.sales.store',
+						'update' 	=> 'invoices.sales.update',
+						'edit' 		=> 'invoices.sales.edit',
+						'index' 	=> 'invoices.sales.index',
+					];
+
+				break;
+
+			case 'invoices.expenses.create': case 'invoices.expenses.edit':	case 'invoices.expenses.index': case 'invoices.expenses.store'case 'invoices.expenses.update'
+				
+				$page = [
+						'id'		=> 2,
+						'title' 	=> 'compras',
+						'title_en' 	=> 'expenses',
+						'create' 	=> 'invoices.expenses.create',
+						'store' 	=> 'invoices.expenses.store',
+						'update' 	=> 'invoices.expenses.update',
+						'edit' 		=> 'invoices.expenses.edit',
+						'index' 	=> 'invoices.expenses.index',
+					];
+
+				break;
+			
+			default: $page = []; break;
+		}
+
+		return $page;
     }
 
 }

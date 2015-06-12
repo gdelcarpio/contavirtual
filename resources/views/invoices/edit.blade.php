@@ -18,7 +18,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-file-text-o"></i>
-					<span>EDITAR FACTURA - {{ $invoice->id }} </span>
+					<span>EDITAR COMPROBANTE DE PAGO - {{ $invoice->id }} </span>
 				</div>			
 			</div>
 

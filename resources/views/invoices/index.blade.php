@@ -5,24 +5,13 @@
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12">
 		<ol class="breadcrumb">
-			<li><a href="index.html">FACTURAS DE VENTA</a></li>
-			
+			<li><a href="index.html">COMPROBANTES DE PAGO - {{ Str::upper($page['title']) }}</a></li>
 		</ol>
 	</div>
-</div> 
-
-<div class="row">
-	<div class="col-xs-12">
-	
-
-
-		
+</div> 		
 	
 <div class="row">
 	<div class="col-xs-12">
-		
-		
-
 	
 	<div class="row">
 
@@ -43,10 +32,10 @@
 
 		</div>
 		<div class="col-md-2 text-right">
-					<a href="{{ route('invoices.create') }}"  class="btn btn-danger crear_documento">
-						<i class="fa fa-plus"></i> Nueva Factura
-					</a>					
-			</div>	
+			<a href="{{ route($page['create']) }}"  class="btn btn-danger crear_documento">
+				<i class="fa fa-plus"></i> Nueva Factura
+			</a>					
+		</div>	
 
 	</div>
 	<hr class="dividor">
@@ -112,7 +101,7 @@
 								<td>PEN {{ $invoice->total }}</td>
 								<td class="text-center">
 						            <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar" class="option-icons row-delete"><i class="fa fa-trash-o fa-lg"></i></a>
-									<a href="{{ route('invoices.edit', $invoice->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-pencil fa-lg"></i></a>
+									<a href="{{ route($page['edit'], $invoice->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-pencil fa-lg"></i></a>
 									<a href="{{ route('invoices.show', $invoice->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detalle"><i class="fa fa-bars fa-lg"></i></a>
 								</td>
 							</tr>

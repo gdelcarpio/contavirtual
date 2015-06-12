@@ -60,7 +60,8 @@ class ProductController extends Controller {
 		$product = new Product($request->all());
 		$product->user_id = \Auth::user()->id;
 		$product->save();
-		//\Flash::success('Se agregó elproducto correctamente.');
+		
+		\Flash::success('Se agregó el producto correctamente.');
 		return redirect()->route('products.index');
 	}
 

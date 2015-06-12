@@ -18,7 +18,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-file-text-o"></i>
-					<span>NUEVA FACTURA</span>
+					<span>NUEVO COMPROBANTE DE PAGO</span>
 				</div>			
 			</div>
 

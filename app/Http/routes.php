@@ -12,16 +12,25 @@
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Route::get('/purchases', ['as' => 'purchases', 'uses' => 'HomeController@purchases']);
-Route::get('/expenses',  ['as' => 'expenses',  'uses' => 'HomeController@expenses']);
 Route::get('/tickets', ['as' => 'tickets', 'uses' => 'HomeController@tickets']);
 Route::get('/credit_notes', ['as' => 'credit_notes', 'uses' => 'HomeController@credit_notes']);
 // Route::resource('accounts', 'AccountController');
 Route::resource('companies', 'CompanyController');
 // Route::resource('credit_notes', 'CreditNoteController');
 
-// Invoice routes
-Route::get('/invoices/create/{id}/sales',		['as' => 'invoices.create.sales', 	 'uses' => 'InvoiceController@create']);
-Route::get('/invoices/create/{id}/expenses',	['as' => 'invoices.create.expenses', 'uses' => 'InvoiceController@create']);
+// Invoices routes (Sales and Expenses)
+Route::get('/invoices/sales',						['as' => 'invoices.sales.index', 	 'uses' => 'InvoiceController@index']);
+Route::get('/invoices/sales/create',				['as' => 'invoices.sales.create', 	 'uses' => 'InvoiceController@create']);
+Route::get('/invoices/sales/store',					['as' => 'invoices.sales.store', 	 'uses' => 'InvoiceController@store']);
+Route::get('/invoices/sales/{id}/edit',				['as' => 'invoices.sales.edit', 	 'uses' => 'InvoiceController@edit']);
+Route::get('/invoices/sales/{id}/update',			['as' => 'invoices.sales.update', 	 'uses' => 'InvoiceController@update']);
+
+Route::get('/invoices/expenses',					['as' => 'invoices.expenses.index',  'uses' => 'InvoiceController@index']);
+Route::get('/invoices/expenses/create',				['as' => 'invoices.expenses.create', 'uses' => 'InvoiceController@create']);
+Route::get('/invoices/expenses/store',				['as' => 'invoices.expenses.store',  'uses' => 'InvoiceController@store']);
+Route::get('/invoices/expenses/{id}/edit',			['as' => 'invoices.expenses.edit', 	 'uses' => 'InvoiceController@edit']);
+Route::get('/invoices/expenses/{id}/update',		['as' => 'invoices.expenses.update', 'uses' => 'InvoiceController@update']);
+
 Route::resource('invoices', 'InvoiceController');
 
 

@@ -53,17 +53,12 @@
 		</a>
 
 		<ul class="dropdown-menu">
-			<li class="menu-li"><a class="ajax-link" href="{{ route('invoices.index') }}">Facturas</a>
-				<a href="{{ route('invoices.create.sales', 1) }}" class="agregar"><i class="fa fa-plus"></i></a>
-			</li>
-			<li class="menu-li"><a class="ajax-link" href="{{ route('tickets') }}">Boletas</a>
-				<a href="#" class="agregar"><i class="fa fa-plus"></i></a>
+			<li class="menu-li"><a class="ajax-link" href="{{ route('invoices.sales.index') }}">Facturas / Boletas</a>
+				<a href="{{ route('invoices.sales.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
 			</li>
 			<li class="menu-li"><a class="ajax-link" href="{{ route('credit_notes') }}">Notas de crédito</a>
 				<a href="#" class="agregar"><i class="fa fa-plus"></i></a>
 			</li>
-	<!-- 		<li><a class="ajax-link" href="ajax/charts_flot.html">Pagos Recibidos</a></li>
-			<li><a class="ajax-link" href="ajax/charts_xcharts.html">Facturas recurrentes</a></li>-->
 		</ul>
 	</li>
 	<li class="dropdown">
@@ -72,8 +67,8 @@
 			 <span class="hidden-xs">Compras</span>
 		</a>
 		<ul class="dropdown-menu">
-			<li><a class="ajax-link" href="{{ route('expenses') }}">Gastos</a>
-			<a href="{{ route('invoices.create.expenses', 2) }}" class="agregar"><i class="fa fa-plus"></i></a>
+			<li><a class="ajax-link" href="{{ route('invoices.expenses.index') }}">Gastos</a>
+			<a href="{{ route('invoices.expenses.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
 			</li>								
 		</ul>
 	</li>
