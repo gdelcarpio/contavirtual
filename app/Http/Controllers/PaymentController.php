@@ -50,12 +50,7 @@ class PaymentController extends Controller {
 				            })
 							->paginate($rows);
 
-		$rows = [
-			10 => 10,
-			20 => 20,
-			30 => 30,
-			40 => 40
-		];
+		$rows = getRowsNumber();
 
 		return view('payments.index', compact('payments', 'column', 'direction', 'rows'));
 	}

@@ -26,7 +26,7 @@
 
             @include('errors.form')
 
-            {!! Form::model($invoice, ['route' => ['invoices.update', $invoice->id ], 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+            {!! Form::model($invoice, ['route' => [$page['update'], $invoice->id ], 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-horizontal']) !!}
                 
                @include('invoices.partials.form', ['submitButton' => 'ACTUALIZAR'])
                

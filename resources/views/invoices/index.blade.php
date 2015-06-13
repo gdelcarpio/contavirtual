@@ -70,20 +70,20 @@
           						{!! sort_model_by('expiration_date', 'Vencimiento', url_alias()) !!}
 							</th>
 							<th>
-								<i class="fa fa-{{ show_sort_icon('invoice_type_id', $column, $direction) }}"></i>
-          						{!! sort_model_by('invoice_type_id', 'Tipo doc.', url_alias()) !!}
+								<i class="fa fa-{{ show_sort_icon('invoice', $column, $direction) }}"></i>
+          						{!! sort_model_by('invoice', 'Tipo doc.', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('serial', $column, $direction) }}"></i>
           						{!! sort_model_by('serial', 'N° Doc.', url_alias()) !!}
 							</th>
 							<th>
-								<i class="fa fa-{{ show_sort_icon('company_id', $column, $direction) }}"></i>
-          						{!! sort_model_by('company_id', 'Empresa', url_alias()) !!}
+								<i class="fa fa-{{ show_sort_icon('company', $column, $direction) }}"></i>
+          						{!! sort_model_by('company', 'Empresa', url_alias()) !!}
 							</th>
 							<th>
-								<i class="fa fa-{{ show_sort_icon('company_id', $column, $direction) }}"></i>
-          						{!! sort_model_by('company_id', 'RUC', url_alias()) !!}
+								<i class="fa fa-{{ show_sort_icon('ruc', $column, $direction) }}"></i>
+          						{!! sort_model_by('ruc', 'RUC', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('subtotal', $column, $direction) }}"></i>
@@ -108,15 +108,15 @@
 								<td>{{ $invoice->expiration_date }}</td>
 								<td>{{ $invoice->invoiceType->name }}</td>
 								<td>{{ $invoice->serial }} - {{ $invoice->number }}</td>
-								<td>{{ $invoice->company->company_name }}</td>
-								<td>{{ $invoice->company->ruc  }}</td>
+								<td>{{ $invoice->company }}</td>
+								<td>{{ $invoice->ruc  }}</td>
 								<td>PEN {{ $invoice->subtotal }}</td>
 								<td>PEN {{ $invoice->igv }}</td>
 								<td>PEN {{ $invoice->total }}</td>
 								<td class="text-center">
 						            <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar" class="option-icons row-delete"><i class="fa fa-trash-o fa-lg"></i></a>
 									<a href="{{ route($page['edit'], $invoice->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-pencil fa-lg"></i></a>
-									<a href="{{ route('invoices.show', $invoice->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detalle"><i class="fa fa-bars fa-lg"></i></a>
+									<a href="{{ route($page['show'], $invoice->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detalle"><i class="fa fa-bars fa-lg"></i></a>
 								</td>
 							</tr>
 						@endforeach

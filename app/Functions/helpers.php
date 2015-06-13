@@ -104,3 +104,17 @@ function url_alias()
 {
 	return Route::currentRouteName();
 }
+
+function getRowsNumber()
+{
+	$rows = [
+				'' => '#',
+				5  => 5,
+				10 => 10,
+				20 => 20,
+				30 => 30,
+				40 => 40
+			];
+
+	return $rows;
+}

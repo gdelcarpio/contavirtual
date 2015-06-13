@@ -39,13 +39,8 @@ class ProductController extends Controller {
 					                }
 					            })
 		                       ->paginate($rows);
-		$rows = [
-					5  => 5,
-					10 => 10,
-					20 => 20,
-					30 => 30,
-					40 => 40
-				];
+		                       
+		$rows = getRowsNumber();
 
 		return view('products.index', compact('products','rows','column','direction'));
 	}

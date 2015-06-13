@@ -63,12 +63,7 @@ class UserController extends Controller {
 		$count['accountants'] 		= User::byRole(3)->count();
 
 
-		$rows = [
-					10 => 10,
-					20 => 20,
-					30 => 30,
-					40 => 40
-				];
+		$rows = getRowsNumber();
 
 		return view('users.index', compact('users', 'count', 'column', 'direction', 'rows'));
 	}
@@ -302,12 +297,7 @@ class UserController extends Controller {
 							->paginate($rows);
 
 
-				$rows = [
-					10 => 10,
-					20 => 20,
-					30 => 30,
-					40 => 40
-				];
+		$rows = getRowsNumber();
 
 		return view('users.payments', compact('payments', 'user','column', 'direction', 'rows'));
 	}

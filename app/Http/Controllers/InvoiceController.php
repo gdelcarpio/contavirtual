@@ -36,14 +36,32 @@ class InvoiceController extends Controller {
 		$column 	= \Input::get('column', 'id');
 		$direction  = \Input::get('direction', 'desc');
 
-        $invoices = \Auth::user()->invoices()->where('invoice_category_id', $page['id'])->paginate($rows);
+		$q  = trim(\Input::get('q')) != "" ? trim(\Input::get('q')) : '';
 
-		$rows = [
-			10 => 10,
-			20 => 20,
-			30 => 30,
-			40 => 40
-		];
+		$searchTerms = $q != '' ? explode(' ', $q) : '';
+
+        $invoices = \Auth::user()->invoices()
+	        			->where('invoice_category_id', $page['id'])
+       					->with(['invoiceType', 'company', 'subaccount'])		
+						// ->join('companies', 'companies.id', '=', 'company_id')
+						->join('invoice_types', 'invoice_types.id', '=', 'invoice_type_id')
+						->select('invoices.*','companies.company_name as company', 'companies.ruc as ruc', 'invoice_types.name as invoice')
+						->sortBy(compact('column', 'direction'))
+	        			->where(function($query) use ($searchTerms) {
+			                if( $searchTerms != '' )
+			                {
+			                    foreach($searchTerms as $term){
+			                    	$query->orWhere('companies.company_name', 'LIKE', '%'. $term .'%');
+			                    	$query->orWhere('companies.ruc', 'LIKE', '%'. $term .'%');
+			                    	$query->orWhere('serial', 'LIKE', '%'. $term .'%');
+			                    	$query->orWhere('number', 'LIKE', '%'. $term .'%');
+			                    }
+
+			                }
+			            })
+	        			->paginate($rows);
+
+		$rows = getRowsNumber();
 
         return view('invoices.index', compact('invoices', 'rows', 'page', 'column', 'direction'));
     }
@@ -228,6 +246,7 @@ class InvoiceController extends Controller {
 						'update' 	=> 'invoices.sales.update',
 						'edit' 		=> 'invoices.sales.edit',
 						'index' 	=> 'invoices.sales.index',
+						'show' 		=> 'invoices.sales.show',
 					];
 
 				break;
@@ -243,6 +262,7 @@ class InvoiceController extends Controller {
 						'update' 	=> 'invoices.expenses.update',
 						'edit' 		=> 'invoices.expenses.edit',
 						'index' 	=> 'invoices.expenses.index',
+						'show' 		=> 'invoices.expenses.show',
 					];
 
 				break;
