@@ -1,5 +1,7 @@
 <h3>{{ Str::title($page['title']) }}</h3>
 
+{!! Form::hidden('invoice_category_id', $page['id'], ['required', 'id' => 'invoice_category_id']) !!}
+
 <div class="row">
     <div class="form-group">
         

@@ -85,16 +85,20 @@ class InvoiceController extends Controller {
 
 		$invoice = Invoice::create($request->except('account_id', 'product_id', 'quantity'));
 
-		foreach (\Cart::items() as $pos => $item) {
-			$attach[$pos]['product_id'] = $item->id;
-			$attach[$pos]['quantity'] 	= $item->quantity;
-			$attach[$pos]['old_price'] 	= $item->price;
+		if ($page['title_en'] == 'sales') {
+
+			foreach (\Cart::items() as $pos => $item) {
+				$attach[$pos]['product_id'] = $item->id;
+				$attach[$pos]['quantity'] 	= $item->quantity;
+				$attach[$pos]['old_price'] 	= $item->price;
+			}
+
+			$invoice->products()->attach($attach);
+
+			$invoice->subtotal 	= \Cart::getTotal();
+			$invoice->total 	= \Cart::getTotal() * ( 1 + ( $invoice->igv / 100 ) );
+			
 		}
-
-		$invoice->products()->attach($attach);
-
-		$invoice->subtotal 	= \Cart::getTotal();
-		$invoice->total 	= \Cart::getTotal() * ( 1 + ( $invoice->igv / 100 ) );
 
 		$invoice->update();
 
@@ -102,7 +106,7 @@ class InvoiceController extends Controller {
 
 		\Flash::success('Comprobante agregado satisfactoriamente.');
 
-		return \Redirect::route('invoices.index');
+		return \Redirect::route($page['index']);
 	}
 
 

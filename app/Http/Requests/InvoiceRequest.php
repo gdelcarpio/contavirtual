@@ -26,7 +26,7 @@ class InvoiceRequest extends Request {
 
 		return [
             'invoice_type_id'		=> 'required|exists:invoice_types,id',
-            // 'invoice_category_id'	=> 'required|exists:invoice_categories,id',
+            'invoice_category_id'	=> 'required|exists:invoice_categories,id',
             'company_id'			=> 'required|exists:companies,id',
             'serial'     			=> 'required|max:15',
             'number'     			=> array('required', 'max:20', 'regex:/^[0-9]+$/'),
@@ -34,7 +34,8 @@ class InvoiceRequest extends Request {
             'expiration_date'		=> 'required|date',
             'note'     				=> 'required|max:300',
             'subaccount_id'			=> 'required|exists:subaccounts,id',
-            'igv'					=> 'required|numeric',
+            'igv'					=> 'required_if:invoice_category_id,1|numeric',
+            'total'					=> 'required_if:invoice_category_id,1|numeric',
         ];
 
 	}
