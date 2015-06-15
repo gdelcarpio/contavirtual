@@ -8,13 +8,19 @@
   
   <div class="form-group">   
 	@if(Input::get('q'))
+
     {!! Form::hidden('q', Input::get('q')) !!}
-    @endif
+
+  @endif
+
 	@if(Input::get('column') AND Input::get('direction'))
+
     {!! Form::hidden('column', Input::get('column')) !!}
     {!! Form::hidden('direction', Input::get('direction')) !!}
-    @endif
-    {!! Form::select('rows', $rows, Input::get('rows'), ['class' => 'form-control', 'id' => 'rows', 'onchange' => 'this.form.submit()']) !!}
+
+  @endif
+
+  {!! Form::select('rows', $rows, Input::get('rows'), ['class' => 'form-control', 'id' => 'rows', 'onchange' => 'this.form.submit()']) !!}
 
   </div>
 

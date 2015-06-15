@@ -33,9 +33,7 @@ Route::get('/invoices/expenses/{id}/edit',			['as' => 'invoices.expenses.edit', 
 Route::patch('/invoices/expenses/{id}/update',		['as' => 'invoices.expenses.update', 'uses' => 'InvoiceController@update']);
 Route::get('/invoices/expenses/{id}/show',			['as' => 'invoices.expenses.show', 	 'uses' => 'InvoiceController@show']);
 
-// Route::resource('invoices', 'InvoiceController');
-
-
+// Payments routes
 Route::resource('payments', 'PaymentController');
 
 // Products routes
@@ -79,5 +77,6 @@ Route::post('/ajax-accounts/{id}', 		['as' => 'ajax.accounts', 	 'uses' => 'Invo
 
 //Cargar Cliente
 Route::post('/ajax-company/{company_id}', ['as' => 'subaccount', 'uses' => 'CompanyController@ajaxCompany']);
+
 
 

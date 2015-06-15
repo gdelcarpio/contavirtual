@@ -100,6 +100,7 @@
 	<!-- All functions for this theme + document.ready processing -->
 	<script src="{{ asset('js/devoops.js') }}"></script>
 	<script src="{{ asset('js/paginas.js') }}"></script>
+	<script src="{{ asset('js/url.js') }}"></script>
 
 	<script type="text/javascript">
 	    $.ajaxSetup({

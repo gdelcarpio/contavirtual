@@ -76,4 +76,21 @@ class Invoice extends Model {
         return $params['column'] and $params['direction'];
     }
 
+	public function scopeDateBetween($query, array $params)
+	{
+		if ($this->isDatable($params))
+        {
+    		$from = Carbon::parse($params['from']);
+    		$to   = Carbon::parse($params['to'])->endOfDay();
+
+        	$range = [$from, $to];
+        	$query->whereBetween( 'invoices.created_at', $range );
+        }
+	}
+
+	protected function isDatable(array $params)
+    {
+        return $params['from'] and $params['to'];
+    }
+
 }

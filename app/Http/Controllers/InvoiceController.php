@@ -35,6 +35,8 @@ class InvoiceController extends Controller {
 		$rows  		= \Input::get('rows', 10);
 		$column 	= \Input::get('column', 'id');
 		$direction  = \Input::get('direction', 'desc');
+		$from  		= \Input::get('from', '');
+		$to  		= \Input::get('to', '');
 
 		$q  = trim(\Input::get('q')) != "" ? trim(\Input::get('q')) : '';
 
@@ -47,6 +49,7 @@ class InvoiceController extends Controller {
 						->join('invoice_types', 'invoice_types.id', '=', 'invoice_type_id')
 						->select('invoices.*','companies.company_name as company', 'companies.ruc as ruc', 'invoice_types.name as invoice')
 						->sortBy(compact('column', 'direction'))
+						->dateBetween(compact('from', 'to'))
 	        			->where(function($query) use ($searchTerms) {
 			                if( $searchTerms != '' )
 			                {
@@ -159,6 +162,8 @@ class InvoiceController extends Controller {
 	 */
 	public function update($id, InvoiceRequest $request)
 	{
+		$page  = $this->getPageInfo(url_alias());
+		
 		$invoice = Invoice::findOrFail($id);
 
 		$invoice->update($request->except('account_id', 'product_id', 'quantity'));
@@ -180,7 +185,7 @@ class InvoiceController extends Controller {
 
 		\Flash::success('Comprobante actualizado satisfactoriamente.');
 
-		return \Redirect::route('invoices.index');
+		return \Redirect::route($page['index']);
 	}
 
 	/**

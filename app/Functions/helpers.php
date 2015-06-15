@@ -4,10 +4,13 @@ function sort_model_by($column, $body, $url)
 {
 	$q 			= Request::get('q');
 	$direction 	= Request::get('direction') == 'asc' ? 'desc' : 'asc' ;
-	$option 	= Request::get('option');
 	$rows 		= Request::get('rows');
+	$page 		= Request::get('page');
 
-	return link_to_route($url, $body, ['q' => $q,'column' => $column, 'direction' => $direction, 'rows' => $rows ]);
+	$from 		= Request::get('from');
+	$to 		= Request::get('to');
+
+	return link_to_route($url, $body, ['q' => $q,'column' => $column, 'direction' => $direction, 'rows' => $rows, 'page' => $page, 'from' => $from, 'to' => $to ]);
 }
 
 function filter_by($url, $title, $type)
