@@ -72,7 +72,7 @@
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('name', $column, $direction) }}"></i>
-          						{!! sort_model_by('name', 'Nombre de Contac.', url_alias()) !!}
+          						{!! sort_model_by('name', 'Contacto', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('email', $column, $direction) }}"></i>

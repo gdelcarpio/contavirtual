@@ -34,7 +34,7 @@ class InvoiceRequest extends Request {
             'expiration_date'		=> 'required|date',
             'note'     				=> 'required|max:300',
             'subaccount_id'			=> 'required|exists:subaccounts,id',
-            'igv'					=> 'required_if:invoice_category_id,2|numeric',
+            'igv'					=> 'required_if:invoice_category_id,1|numeric',
             'total'					=> 'required_if:invoice_category_id,2|numeric',
         ];
 

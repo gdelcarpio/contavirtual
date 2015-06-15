@@ -44,13 +44,7 @@
 
 		<div class="col-md-6 text-right">
 
-			<a href="#" class="btn btn-primary "><i class="fa  fa-angle-left"></i></a>
-
-		    <form id="pog1" method="get" style="display:inline-block" >
-	        	<input id="pag_actual1" size="3" name="pag" value="" type="text" style="text-align:center"> de 100
-		    </form>
-	   
-	    	<a href="#" class="btn btn-primary"><i class="fa  fa-angle-right"></i></a>               
+			@include('partials.goto-form')             
 
 		</div>
 

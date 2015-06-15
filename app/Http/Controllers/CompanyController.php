@@ -33,24 +33,18 @@ class CompanyController extends Controller {
 					                if( $searchTerms != '' )
 					                {
 					                    foreach($searchTerms as $term){
-					                     $query->orWhere('company_name', 'LIKE', '%'. $term .'%');
-					                     $query->orWhere('ruc', 'LIKE', '%'. $term .'%');
-					                     $query->orWhere('name', 'LIKE', '%'. $term .'%');
-					                     $query->orWhere('email', 'LIKE', '%'. $term .'%');
-					                     $query->orWhere('phone', 'LIKE', '%'. $term .'%');
+											$query->orWhere('company_name', 'LIKE', '%'. $term .'%');
+											$query->orWhere('ruc', 'LIKE', '%'. $term .'%');
+											$query->orWhere('name', 'LIKE', '%'. $term .'%');
+											$query->orWhere('email', 'LIKE', '%'. $term .'%');
+											$query->orWhere('phone', 'LIKE', '%'. $term .'%');
 					                    }
 
 					                }
 					            })
 		                       ->paginate($rows);
 
-		$rows = [
-					5  => 5,
-					10 => 10,
-					20 => 20,
-					30 => 30,
-					40 => 40
-				];
+		$rows = getRowsNumber();
 
 		return view('companies.index', compact('companies','rows','column','direction','type'));
 	}

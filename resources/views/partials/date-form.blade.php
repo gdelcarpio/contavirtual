@@ -6,16 +6,16 @@
 
   @endif
 
-  @if(Input::get('rows'))
-
-    {!! Form::hidden('rows', Input::get('rows')) !!}
-
-  @endif
-
   @if(Input::get('column') AND Input::get('direction'))
 
     {!! Form::hidden('column', Input::get('column')) !!}
     {!! Form::hidden('direction', Input::get('direction')) !!}
+
+  @endif
+
+  @if(Input::get('rows'))
+
+    {!! Form::hidden('rows', Input::get('rows')) !!}
 
   @endif
 

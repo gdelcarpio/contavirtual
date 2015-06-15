@@ -45,7 +45,6 @@ class InvoiceController extends Controller {
         $invoices = \Auth::user()->invoices()
 	        			->where('invoice_category_id', $page['id'])
        					->with(['invoiceType', 'company', 'subaccount'])		
-						// ->join('companies', 'companies.id', '=', 'company_id')
 						->join('invoice_types', 'invoice_types.id', '=', 'invoice_type_id')
 						->select('invoices.*','companies.company_name as company', 'companies.ruc as ruc', 'invoice_types.name as invoice')
 						->sortBy(compact('column', 'direction'))
@@ -126,6 +125,8 @@ class InvoiceController extends Controller {
 	 */
 	public function edit($id)
 	{
+		$page  = $this->getPageInfo(url_alias());
+		
 		$options = $this->getComboBoxOptions();
 
         \Cart::clear();
@@ -137,19 +138,24 @@ class InvoiceController extends Controller {
 			return \Redirect::route('invoices.index');
 		}
 
-		foreach ($invoice->products as $item) {
+		if ($page['title_en'] == 'sales') {
 
-			\Cart::add([
-			    'id'       => $item->id,
-			    'name'     => $item->name,
-			    'quantity' => $item->pivot->quantity,
-			    'price'    => $item->pivot->old_price
-			]);
+			foreach ($invoice->products as $item) {
+
+				\Cart::add([
+				    'id'       => $item->id,
+				    'name'     => $item->name,
+				    'quantity' => $item->pivot->quantity,
+				    'price'    => $item->pivot->old_price
+				]);
+			}
+
+			$items = \Cart::items();
+		}else{
+
+			$items = [];
+		
 		}
-
-		$items = \Cart::items();
-
-		$page  = $this->getPageInfo(url_alias());
 
 		return view('invoices.edit', compact('options', 'items', 'invoice', 'page'));        
 	}
@@ -168,16 +174,20 @@ class InvoiceController extends Controller {
 
 		$invoice->update($request->except('account_id', 'product_id', 'quantity'));
 
-		foreach (\Cart::items() as $pos => $item) {
-			$sync[$pos]['product_id'] 	= $item->id;
-			$sync[$pos]['quantity'] 	= $item->quantity;
-			$sync[$pos]['old_price'] 	= $item->price;
+
+		if ($page['title_en'] == 'sales') {
+
+			foreach (\Cart::items() as $pos => $item) {
+				$sync[$pos]['product_id'] 	= $item->id;
+				$sync[$pos]['quantity'] 	= $item->quantity;
+				$sync[$pos]['old_price'] 	= $item->price;
+			}
+
+			$invoice->products()->sync($sync);
+
+			$invoice->subtotal 	= \Cart::getTotal();
+			$invoice->total 	= \Cart::getTotal() * ( 1 + ( $invoice->igv / 100 ) );
 		}
-
-		$invoice->products()->sync($sync);
-
-		$invoice->subtotal 	= \Cart::getTotal();
-		$invoice->total 	= \Cart::getTotal() * ( 1 + ( $invoice->igv / 100 ) );
 
 		$invoice->update();
 

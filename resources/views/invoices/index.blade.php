@@ -38,16 +38,8 @@
 
 		<div class="col-md-3 text-right">
 
-{{-- 			<a href="#" class="btn btn-primary "><i class="fa  fa-angle-left"></i></a>
-
-		    <form id="pog1" method="get" style="display:inline-block" >
-		        <input id="pag_actual1" size="3" name="pag" value="" type="text" style="text-align:center"> de 100
-		    </form>
-	   
-	    	<a href="#" class="btn btn-primary"><i class="fa  fa-angle-right"></i></a>               
- --}}
-
  			@include('partials.goto-form')
+
 		</div>
 
 	</div>
@@ -124,7 +116,7 @@
 			</div>
 		</div>
 
-		{!! $invoices->setPath('')->appends( array( 'q' => Input::get('q') ,'column' => Input::get('column'),'direction' => Input::get('direction'), 'rows' => Input::get('rows') ) )->render() !!}
+		{!! $invoices->setPath('')->appends( array( 'q' => Input::get('q') ,'column' => Input::get('column'),'direction' => Input::get('direction'), 'rows' => Input::get('rows'), 'from' => Input::get('from'), 'to' => Input::get('to') ) )->render() !!}
 	
 	</div>
   	

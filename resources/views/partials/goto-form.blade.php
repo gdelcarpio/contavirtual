@@ -12,12 +12,6 @@
 
 	  	@endif
 
-	  	@if(Input::get('rows'))
-
-	    	{!! Form::hidden('rows', Input::get('rows')) !!}
-
-	  	@endif
-
 		@if(Input::get('column') AND Input::get('direction'))
 
 		    {!! Form::hidden('column', Input::get('column')) !!}
@@ -25,7 +19,20 @@
 
 		@endif
 
-	    {!! Form::input('number','page', Input::get('page'), ['class' => 'form-controlx text-center', 'placeholder' => '#', 'required', 'id'=>'page']) !!}
+	  	@if(Input::get('rows'))
+
+	    	{!! Form::hidden('rows', Input::get('rows')) !!}
+
+	  	@endif
+
+		@if(Input::get('from') AND Input::get('to'))
+
+		    {!! Form::hidden('from', Input::get('from')) !!}
+		    {!! Form::hidden('to', Input::get('to')) !!}
+
+		@endif
+
+	    {!! Form::text('page', Input::get('page'), ['class' => 'form-control text-center', 'size' => 3, 'placeholder' => '#', 'required', 'id'=>'page']) !!}
 	    {!! Form::submit('Ir', ['id' => 'go_to']) !!}
 
 	  </div>
