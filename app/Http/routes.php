@@ -25,6 +25,7 @@ Route::post('/invoices/sales/store',				['as' => 'invoices.sales.store', 	 'uses
 Route::get('/invoices/sales/{id}/edit',				['as' => 'invoices.sales.edit', 	 'uses' => 'InvoiceController@edit']);
 Route::patch('/invoices/sales/{id}/update',			['as' => 'invoices.sales.update', 	 'uses' => 'InvoiceController@update']);
 Route::get('/invoices/sales/{id}/show',				['as' => 'invoices.sales.show', 	 'uses' => 'InvoiceController@show']);
+Route::delete('/invoices/sales/{id}',				['as' => 'invoices.sales.destroy', 	 'uses' => 'InvoiceController@destroy']);
 
 Route::get('/invoices/expenses',					['as' => 'invoices.expenses.index',  'uses' => 'InvoiceController@index']);
 Route::get('/invoices/expenses/create',				['as' => 'invoices.expenses.create', 'uses' => 'InvoiceController@create']);
@@ -32,6 +33,7 @@ Route::post('/invoices/expenses/store',				['as' => 'invoices.expenses.store',  
 Route::get('/invoices/expenses/{id}/edit',			['as' => 'invoices.expenses.edit', 	 'uses' => 'InvoiceController@edit']);
 Route::patch('/invoices/expenses/{id}/update',		['as' => 'invoices.expenses.update', 'uses' => 'InvoiceController@update']);
 Route::get('/invoices/expenses/{id}/show',			['as' => 'invoices.expenses.show', 	 'uses' => 'InvoiceController@show']);
+Route::delete('/invoices/expenses/{id}',			['as' => 'invoices.expenses.destroy','uses' => 'InvoiceController@destroy']);
 
 // Payments routes
 Route::resource('payments', 'PaymentController');

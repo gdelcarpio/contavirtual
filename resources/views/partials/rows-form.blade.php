@@ -4,9 +4,9 @@
   {!! Form::open(['route' => url_alias(), 'method' => 'GET', 'role' => 'form', 'class' => 'form-inline', 'style' => 'display:inline-block']) !!}
 @endif
 
-  <label>Número de filas:</label>
+<label>Número de filas:</label>
   
-  <div class="form-group">   
+<div class="form-group">   
 	@if(Input::get('q'))
 
     {!! Form::hidden('q', Input::get('q')) !!}
@@ -22,6 +22,13 @@
 
   {!! Form::select('rows', $rows, Input::get('rows'), ['class' => 'form-control', 'id' => 'rows', 'onchange' => 'this.form.submit()']) !!}
 
-  </div>
+  @if(Input::get('from') AND Input::get('to'))
+
+    {!! Form::hidden('from', Input::get('from')) !!}
+    {!! Form::hidden('to', Input::get('to')) !!}
+
+  @endif
+
+</div>
 
 {!! Form::close() !!}

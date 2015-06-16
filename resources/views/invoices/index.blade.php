@@ -92,8 +92,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($invoices as $invoice)
-							<tr>
+						@forelse($invoices as $invoice)
+							<tr data-id="{{ $invoice->id }}" data-type="el comprobante" data-name="{{ $invoice->id }}">
 								<td>{{ $invoice->id }}</td>
 								<td>{{ $invoice->issue_date }}</td>
 								<td>{{ $invoice->expiration_date }}</td>
@@ -110,7 +110,11 @@
 									<a href="{{ route($page['show'], $invoice->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detalle"><i class="fa fa-bars fa-lg"></i></a>
 								</td>
 							</tr>
-						@endforeach
+						@empty
+							<tr>
+								<td align="center" colspan="20">No se encontraron registros.</td>
+							</tr>
+						@endforelse
 					</tbody>
 				</table>
 			</div>
@@ -134,5 +138,17 @@
 
 	</div>
 </div>
+
+<!-- DELETE FORM -->
+
+{!! Form::open([ 'route' => [$page['destroy'], ':ROW_ID'], 'method' => 'DELETE', 'id' => 'form-delete']) !!}
+
+{!! Form::close() !!}
+
+@endsection
+
+@section('ajax-scripts')
+
+  @include('scripts.ajax-delete')
 
 @endsection

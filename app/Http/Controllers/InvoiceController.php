@@ -206,7 +206,13 @@ class InvoiceController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$invoice = \Auth::user()->invoices->find($id);
+
+		$invoice->products()->detach();
+		$invoice->delete();
+
+		\Flash::success('Se eliminó el comprobante #' . $id . ' correctamente.');
+		return view('message');
 	}
 
     public function ajaxSubaccounts($id)
@@ -266,6 +272,7 @@ class InvoiceController extends Controller {
 						'edit' 		=> 'invoices.sales.edit',
 						'index' 	=> 'invoices.sales.index',
 						'show' 		=> 'invoices.sales.show',
+						'destroy' 	=> 'invoices.sales.destroy',
 					];
 
 				break;
@@ -282,6 +289,7 @@ class InvoiceController extends Controller {
 						'edit' 		=> 'invoices.expenses.edit',
 						'index' 	=> 'invoices.expenses.index',
 						'show' 		=> 'invoices.expenses.show',
+						'destroy' 	=> 'invoices.expenses.destroy',
 					];
 
 				break;

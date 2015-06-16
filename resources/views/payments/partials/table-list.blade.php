@@ -37,7 +37,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach($payments as $payment)
+		@forelse($payments as $payment)
 			<tr data-id="{{ $payment->id }}" data-type="el pago" data-name="{{ $payment->id }}">
 				<td>{{ $payment->id }}</td>
 				<td>{{ $payment->user->name }} {{ $payment->user->lastname }}</td>
@@ -53,6 +53,10 @@
 					<a href="{{ route('payments.show', $payment->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detalle"><i class="fa fa-bars fa-lg"></i></a>
 				</td>
 			</tr>
-		@endforeach
+		@empty
+			<tr>
+				<td align="center" colspan="20">No se encontraron registros.</td>
+			</tr>
+		@endforelse
 	</tbody>
 </table>

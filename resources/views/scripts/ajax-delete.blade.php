@@ -20,8 +20,6 @@
 
           row.fadeOut(500);
 
-
-
           $.post(url, data, function(result) {
 
             var mensaje = $('<div/>', {
