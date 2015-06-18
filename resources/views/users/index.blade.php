@@ -84,7 +84,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($users as $user)
+						@forelse($users as $user)
 							<tr data-id="{{ $user->id }}" data-type="el usuario" data-name="{{ $user->lastname }}">
 								<td>{{ $user->id }}</td>
 								<td>{{ $user->name }}</td>
@@ -110,7 +110,11 @@
 
 								</td>
 							</tr>
-						@endforeach
+						@empty
+							<tr>
+								<td align="center" colspan="20">No se encontraron registros.</td>
+							</tr>
+						@endforelse
 					</tbody>
 				</table>
 			</div>

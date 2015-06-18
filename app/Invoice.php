@@ -84,7 +84,7 @@ class Invoice extends Model {
     		$to   = Carbon::parse($params['to'])->endOfDay();
 
         	$range = [$from, $to];
-        	$query->whereBetween( 'invoices.created_at', $range );
+        	$query->whereBetween( 'invoices.issue_date', $range );
         }
 	}
 

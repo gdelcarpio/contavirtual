@@ -47,21 +47,19 @@ class UserController extends Controller {
 			                if( $searchTerms != '' )
 			                {
 			                    foreach($searchTerms as $term){
-			                     $query->orWhere('users.name', 'LIKE', '%'. $term .'%');
-			                     $query->orWhere('lastname', 'LIKE', '%'. $term .'%');
-			                     $query->orWhere('email', 'LIKE', '%'. $term .'%');
+			                    	$query->orWhere('users.name', 'LIKE', '%'. $term .'%');
+			                    	$query->orWhere('lastname', 'LIKE', '%'. $term .'%');
+			                    	$query->orWhere('email', 'LIKE', '%'. $term .'%');
 			                    }
 
 			                }
 			            })
             			->paginate($rows);
 		
-		$count['users'] = User::all()->count();
-
+		$count['users'] 			= User::all()->count();
 		$count['clients'] 			= User::byRole(1)->count();
 		$count['administrators'] 	= User::byRole(2)->count();
 		$count['accountants'] 		= User::byRole(3)->count();
-
 
 		$rows = getRowsNumber();
 
@@ -234,8 +232,8 @@ class UserController extends Controller {
 
 	    if(!\Hash::check($request['old_password'], $user->password))
 	    {
-	      \Flash::warning('La contraseña actual no es correcta.');
-	      return \Redirect::back();
+	    	\Flash::warning('La contraseña actual no es correcta.');
+	    	return \Redirect::back();
 	    }
 
 		$user->update($request->only('password'));
@@ -287,9 +285,9 @@ class UserController extends Controller {
 				                if( $searchTerms != '' )
 				                {
 				                    foreach($searchTerms as $term){
-				                     $query->orWhere('users.name', 'LIKE', '%'. $term .'%');
-				                     $query->orWhere('users.lastname', 'LIKE', '%'. $term .'%');
-				                     $query->orWhere('invoice', 'LIKE', '%'. $term .'%');
+				                    	$query->orWhere('users.name', 'LIKE', '%'. $term .'%');
+				                    	$query->orWhere('users.lastname', 'LIKE', '%'. $term .'%');
+				                    	$query->orWhere('invoice', 'LIKE', '%'. $term .'%');
 				                    }
 
 				                }
@@ -323,22 +321,16 @@ class UserController extends Controller {
 				                if( $searchTerms != '' )
 				                {
 				                    foreach($searchTerms as $term){
-				                     $query->orWhere('users.name', 'LIKE', '%'. $term .'%');
-				                     $query->orWhere('users.lastname', 'LIKE', '%'. $term .'%');
-				                     $query->orWhere('invoice', 'LIKE', '%'. $term .'%');
+				                    	$query->orWhere('users.name', 'LIKE', '%'. $term .'%');
+				                    	$query->orWhere('users.lastname', 'LIKE', '%'. $term .'%');
+				                    	$query->orWhere('invoice', 'LIKE', '%'. $term .'%');
 				                    }
 
 				                }
 				            })
 							->paginate($rows);
 
-
-				$rows = [
-					10 => 10,
-					20 => 20,
-					30 => 30,
-					40 => 40
-				];
+		$rows = getRowsNumber();
 		
 		return view('users.payments', compact('payments', 'user', 'column', 'direction', 'rows'));
 	}

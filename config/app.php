@@ -148,6 +148,7 @@ return [
 	    'Laracasts\Flash\FlashServiceProvider',
 	    'Illuminate\Html\HtmlServiceProvider',
 	    'Anam\Phpcart\CartServiceProvider',
+	    'Maatwebsite\Excel\ExcelServiceProvider',
 
 	],
 
@@ -202,6 +203,7 @@ return [
 		'Html'      => 'Illuminate\Html\HtmlFacade',
     	'Form'      => 'Illuminate\Html\FormFacade',
     	'Cart' 		=> 'Anam\Phpcart\Facades\Cart',
+    	'Excel' 	=> 'Maatwebsite\Excel\Facades\Excel',
 
 	],
 
