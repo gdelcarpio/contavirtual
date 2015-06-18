@@ -350,4 +350,23 @@ class UserController extends Controller {
 		\Flash::success('Pago registrado correctamente.');
 		return \Redirect::route('users.payments.index', $id);
 	}
+
+	public function exportToExcel()
+	{
+		$users = User::all();
+
+		\Excel::create('CONTAVIRTUAL | Usuarios', function($excel) use ($users){
+
+			$excel->setCreator('CONTAVIRTUAL')
+            	  ->setCompany('CONTAVIRTUAL');
+
+		    $excel->sheet('Lista de usuarios', function($sheet) use ($users){
+
+		        $sheet->loadView('users.partials.table-excel')->with('users', $users);
+		        $sheet->freezeFirstRow();
+
+		    });
+
+		})->download('xls');
+	}
 }

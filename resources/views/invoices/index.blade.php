@@ -31,7 +31,7 @@
 		<div class="col-md-9">
 
 			@include('partials.search-form')
-			|
+			
 			@include('partials.rows-form')
 
 		</div>
@@ -39,6 +39,11 @@
 		<div class="col-md-3 text-right">
 
  			@include('partials.goto-form')
+
+
+			<div class="pull-right">
+				Exportar a Excel <a href="{{ route('invoices.export.excel') }}"><i class="fa fa-file-excel-o fa-lg"></i></a>
+			</div>   
 
 		</div>
 

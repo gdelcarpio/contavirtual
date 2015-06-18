@@ -56,6 +56,7 @@ Route::post('/districts/{code}', ['as' => 'districts', 'uses' => 'UserController
 
 // Users routes
 Route::patch('/users/{users}/reset', 	 ['as' => 'users.password.reset',  'uses' => 'UserController@resetPassword']);
+Route::get('/users/export', 	 		 ['as' => 'users.export.excel',    'uses' => 'UserController@exportToExcel']);
 Route::patch('/users/password', 		 ['as' => 'users.password.update', 'uses' => 'UserController@updatePassword']);
 Route::patch('/users/{users}/active', 	 ['as' => 'users.active', 		   'uses' => 'UserController@active']);
 Route::post('/auth/register', 			 ['as' => 'users.register', 	   'uses' => 'UserController@register']);

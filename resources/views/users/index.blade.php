@@ -37,14 +37,18 @@
 		<div class="col-md-6">
 
 			@include('partials.search-form')
-			|
+			
 			@include('partials.rows-form')
 
 		</div>
 
 		<div class="col-md-6 text-right">
 
-			@include('partials.goto-form')             
+			@include('partials.goto-form') 
+
+			<div class="pull-right">
+				Exportar a Excel <a href="{{ route('users.export.excel') }}"><i class="fa fa-file-excel-o fa-lg"></i></a>
+			</div>          
 
 		</div>
 
