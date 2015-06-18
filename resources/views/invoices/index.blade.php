@@ -42,7 +42,7 @@
 
 
 			<div class="pull-right">
-				Exportar a Excel <a href="{{ route('invoices.export.excel') }}"><i class="fa fa-file-excel-o fa-lg"></i></a>
+				Exportar todo a Excel <a href="{{ route($page['excel']) }}"><i class="fa fa-file-excel-o fa-lg"></i></a>
 			</div>   
 
 		</div>

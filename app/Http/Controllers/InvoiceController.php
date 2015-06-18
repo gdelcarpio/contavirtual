@@ -260,7 +260,7 @@ class InvoiceController extends Controller {
     {
 		switch ($url_alias) {
 
-			case 'invoices.sales.create': case 'invoices.sales.edit': case 'invoices.sales.index': case 'invoices.sales.store': case 'invoices.sales.update':
+			case 'invoices.sales.create': case 'invoices.sales.edit': case 'invoices.sales.index': case 'invoices.sales.store': case 'invoices.sales.update': case 'invoices.sales.excel':
 
 				$page = [
 						'id'		=> 1,
@@ -273,11 +273,12 @@ class InvoiceController extends Controller {
 						'index' 	=> 'invoices.sales.index',
 						'show' 		=> 'invoices.sales.show',
 						'destroy' 	=> 'invoices.sales.destroy',
+						'excel' 	=> 'invoices.sales.excel',
 					];
 
 				break;
 
-			case 'invoices.expenses.create': case 'invoices.expenses.edit':	case 'invoices.expenses.index': case 'invoices.expenses.store': case 'invoices.expenses.update':
+			case 'invoices.expenses.create': case 'invoices.expenses.edit':	case 'invoices.expenses.index': case 'invoices.expenses.store': case 'invoices.expenses.update': case 'invoices.expenses.excel':
 				
 				$page = [
 						'id'		=> 2,
@@ -290,6 +291,7 @@ class InvoiceController extends Controller {
 						'index' 	=> 'invoices.expenses.index',
 						'show' 		=> 'invoices.expenses.show',
 						'destroy' 	=> 'invoices.expenses.destroy',
+						'excel' 	=> 'invoices.expenses.excel',
 					];
 
 				break;
@@ -298,6 +300,27 @@ class InvoiceController extends Controller {
 		}
 
 		return $page;
+    }
+
+    public function exportToExcel()
+    {
+		$page 	 = $this->getPageInfo(url_alias());
+
+    	$invoices = \Auth::user()->invoices()->where('invoice_category_id', $page['id'])->get();
+
+		\Excel::create('CONTAVIRTUAL | ' . \Str::title($page['title']), function($excel) use ($invoices, $page){
+
+			$excel->setCreator('CONTAVIRTUAL')
+            	  ->setCompany('CONTAVIRTUAL');
+
+		    $excel->sheet('Lista de ' . $page['title'], function($sheet) use ($invoices){
+
+		        $sheet->loadView('invoices.excel')->with('invoices', $invoices);
+		        $sheet->freezeFirstRow();
+
+		    });
+
+		})->download('xls');
     }
 
 }
