@@ -28,7 +28,7 @@ Route::patch('/invoices/sales/{id}/update',			['as' => 'invoices.sales.update', 
 Route::get('/invoices/sales/{id}/show',				['as' => 'invoices.sales.show', 	 'uses' => 'InvoiceController@show']);
 Route::delete('/invoices/sales/{id}',				['as' => 'invoices.sales.destroy', 	 'uses' => 'InvoiceController@destroy']);
 
-Route::get('/invoices/expenses/export',				['as' => 'invoices.expenses.excel', 'uses' => 'InvoiceController@exportToExcel']);
+Route::get('/invoices/expenses/export',				['as' => 'invoices.expenses.excel',  'uses' => 'InvoiceController@exportToExcel']);
 Route::get('/invoices/expenses',					['as' => 'invoices.expenses.index',  'uses' => 'InvoiceController@index']);
 Route::get('/invoices/expenses/create',				['as' => 'invoices.expenses.create', 'uses' => 'InvoiceController@create']);
 Route::post('/invoices/expenses/store',				['as' => 'invoices.expenses.store',  'uses' => 'InvoiceController@store']);

@@ -39,11 +39,11 @@
 <div class="linea"></div>
 <h3>Datos del Comprobante</h3>
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6 company">
         <div class="form-group">
             <label class="col-sm-2 control-label">RUC</label>
             <div class="col-sm-9">
-                {!! Form::select('company_id', $options['companies'], null,['class' => '', 'required', 'id' => 'company_id']) !!}
+                {!! Form::select('company_id', $options['companies'], null,['class' => 'ruc-inputs', 'required', 'id' => 'company_id']) !!}
             </div>
         </div>
         <div class="form-group">
@@ -58,13 +58,13 @@
 
         <!-- datos de la factura -->
 
-        <div class="form-group">
+        <div class="form-group company">
             <label class="col-sm-2 col-xs-2 control-label">Factura</label>
             <div class="col-sm-3 col-xs-3">
-                {!! Form::text('serial', null, ['class' => 'form-control text-center', 'placeholder' => 'Serie', 'required', 'minlength' => '2', 'maxlength' => '20', 'id' => 'serial']) !!}
+                {!! Form::text('serial', null, ['class' => 'form-control text-center ruc-inputs', 'placeholder' => 'Serie', 'required', 'minlength' => '2', 'maxlength' => '20', 'id' => 'serial']) !!}
             </div>
             <div class="col-sm-7 col-xs-7">
-                {!! Form::text('number', null, ['class' => 'form-control text-center', 'placeholder' => 'Número', 'required', 'minlength' => '2', 'maxlength' => '20', 'id' => 'number']) !!}
+                {!! Form::text('number', null, ['class' => 'form-control text-center ruc-inputs', 'placeholder' => 'Número', 'required', 'minlength' => '2', 'maxlength' => '20', 'id' => 'number']) !!}
             </div>
         </div>
 
@@ -112,3 +112,9 @@
         </div>
     </div>
 </div>
+
+@section('scripts')
+
+    @include('scripts.hide-div')
+
+@endsection
