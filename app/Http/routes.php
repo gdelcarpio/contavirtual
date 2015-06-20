@@ -83,5 +83,10 @@ Route::post('/ajax-accounts/{id}', 		['as' => 'ajax.accounts', 	 'uses' => 'Invo
 //Cargar Cliente
 Route::post('/ajax-company/{company_id}', ['as' => 'subaccount', 'uses' => 'CompanyController@ajaxCompany']);
 
-
+/**
+ * Companies 
+ */
+Route::resource('companies', 'CompanyController');
+Route::get('/departament', ['as' => 'departament', 'uses' => 'AssistantController@getDepartament']);
+Route::get('/province', ['as' => 'province', 'uses' => 'AssistantController@getProvince']);
 
