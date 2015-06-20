@@ -14,10 +14,10 @@ class ProductTableSeeder extends Seeder {
 	{
 		$faker = Faker::create('es_ES');
 
-		foreach(range(1, 200) as $index)
+		foreach(range(1, 600) as $index)
 		{
 			\DB::table('products')->insert(array(
-				'user_id'       => $faker->numberBetween(1,50),
+				'user_id'       => $faker->numberBetween(1,30),
 				'code'          => $faker->numberBetween(1111111,9999999),
 				'name'          => $faker->word,
                 'active'        => $faker->numberBetween(0,1),

@@ -22,11 +22,14 @@ class CreateInvoicesTable extends Migration {
 			$table->integer('invoice_category_id')->unsigned();
 			$table->foreign('invoice_category_id')->references('id')->on('invoice_categories');
 
-			$table->integer('company_id')->unsigned();
+			$table->integer('company_id')->nullable()->unsigned();
 			$table->foreign('company_id')->references('id')->on('companies');
 
+			$table->integer('user_id')->unsigned();
+			$table->foreign('user_id')->references('id')->on('users');
+
 			$table->string('serial');
-			$table->integer('number');
+			$table->string('number');
 			$table->date('issue_date');
 			$table->date('expiration_date');
 			$table->decimal('subtotal');

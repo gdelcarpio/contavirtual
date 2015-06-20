@@ -14,10 +14,10 @@ class CompanyTableSeeder extends Seeder {
 	{
 		$faker = Faker::create('es_ES');
 
-		foreach(range(1, 200) as $index)
+		foreach(range(1, 500) as $index)
 		{
 			\DB::table('companies')->insert(array(
-				'user_id'       => $faker->numberBetween(1,50),
+				'user_id'       => $faker->numberBetween(1,30),
 				'company_name'  => $faker->company,
 				'ruc'           => $faker->numberBetween(1111111111,9999999999),
 				'tax_address'   => $faker->address,

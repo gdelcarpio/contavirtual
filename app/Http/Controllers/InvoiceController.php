@@ -46,6 +46,7 @@ class InvoiceController extends Controller {
 	        			->where('invoice_category_id', $page['id'])
        					->with(['invoiceType', 'company', 'subaccount'])		
 						->join('invoice_types', 'invoice_types.id', '=', 'invoice_type_id')
+						->leftJoin('companies', 'companies.id', '=', 'company_id')
 						->select('invoices.*','companies.company_name as company', 'companies.ruc as ruc', 'invoice_types.name as invoice')
 						->sortBy(compact('column', 'direction'))
 						->dateBetween(compact('from', 'to'))
@@ -85,14 +86,14 @@ class InvoiceController extends Controller {
 
 		$request['invoice_category_id'] =  $page['id'];
 
-		$invoice = Invoice::create($request->except('account_id', 'product_id', 'quantity'));
+		$invoice = \Auth::user()->invoices()->create($request->except('account_id', 'product_id', 'quantity'));
 
 		if ($page['title_en'] == 'sales') {
 
 			foreach (\Cart::items() as $pos => $item) {
 				$attach[$pos]['product_id'] = $item->id;
 				$attach[$pos]['quantity'] 	= $item->quantity;
-				$attach[$pos]['old_price'] 	= $item->price;
+				$attach[$pos]['price'] 	= $item->price;
 			}
 
 			$invoice->products()->attach($attach);
@@ -146,7 +147,7 @@ class InvoiceController extends Controller {
 				    'id'       => $item->id,
 				    'name'     => $item->name,
 				    'quantity' => $item->pivot->quantity,
-				    'price'    => $item->pivot->old_price
+				    'price'    => $item->pivot->price
 				]);
 			}
 
@@ -180,7 +181,7 @@ class InvoiceController extends Controller {
 			foreach (\Cart::items() as $pos => $item) {
 				$sync[$pos]['product_id'] 	= $item->id;
 				$sync[$pos]['quantity'] 	= $item->quantity;
-				$sync[$pos]['old_price'] 	= $item->price;
+				$sync[$pos]['price'] 	= $item->price;
 			}
 
 			$invoice->products()->sync($sync);

@@ -19,6 +19,9 @@ class CreateInvoiceProductTable extends Migration {
 
 			$table->integer('product_id')->unsigned()->index();
 			$table->foreign('product_id')->references('id')->on('products');
+
+			$table->integer('quantity');
+			$table->decimal('price');
 	
 			$table->timestamps();
 		});

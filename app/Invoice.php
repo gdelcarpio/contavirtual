@@ -10,7 +10,7 @@ class Invoice extends Model {
 
 	public function products()
 	{
-		return $this->belongsToMany('App\Product')->withPivot(array('old_price', 'quantity'));;
+		return $this->belongsToMany('App\Product')->withPivot(array('price', 'quantity'));;
 	}
 
 	public function invoiceCategory()
@@ -26,6 +26,11 @@ class Invoice extends Model {
 	public function company()
 	{
 		return $this->belongsTo('App\Company');
+	}
+
+	public function user()
+	{
+		return $this->belongsTo('App\User');
 	}
 
 	public function subaccount()
