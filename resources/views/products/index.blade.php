@@ -6,7 +6,7 @@
 	<div id="breadcrumb" class="col-xs-12">
 		<ol class="breadcrumb">
 			<li>
-				<a href="index.html">Lista de productos / servicios</a>
+				<a href="index.html">Lista de Productos / Servicios</a>
 			</li>			
 		</ol>
 	</div>

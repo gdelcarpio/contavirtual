@@ -46,9 +46,7 @@
 
 			@include('partials.goto-form') 
 
-			<div class="pull-right">
-				Exportar a Excel <a href="{{ route('users.export.excel') }}"><i class="fa fa-file-excel-o fa-lg"></i></a>
-			</div>          
+			<a href="{{ route('users.export.excel') }}" class="btn btn-success"><i class="fa fa-upload"></i> Exportar productos</a>       
 
 		</div>
 
@@ -62,27 +60,27 @@
 						<tr>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('id', $column, $direction) }}"></i>
-          						{!! sort_model_by('id', 'ID', Route::currentRouteName()) !!}
+          						{!! sort_model_by('id', 'ID', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('name', $column, $direction) }}"></i>
-          						{!! sort_model_by('name', 'Nombres', Route::currentRouteName()) !!}
+          						{!! sort_model_by('name', 'Nombres', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('lastname', $column, $direction) }}"></i>
-          						{!! sort_model_by('lastname', 'Apellidos', Route::currentRouteName()) !!}
+          						{!! sort_model_by('lastname', 'Apellidos', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('email', $column, $direction) }}"></i>
-          						{!! sort_model_by('email', 'Correo', Route::currentRouteName()) !!}
+          						{!! sort_model_by('email', 'Correo', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('active', $column, $direction) }}"></i>
-          						{!! sort_model_by('active', 'Estado', Route::currentRouteName()) !!}
+          						{!! sort_model_by('active', 'Estado', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('scale', $column, $direction) }}"></i>
-          						{!! sort_model_by('scale', 'Nivel', Route::currentRouteName()) !!}
+          						{!! sort_model_by('scale', 'Nivel', url_alias()) !!}
 							</th>
 							<th>Acciones</th>
 						</tr>

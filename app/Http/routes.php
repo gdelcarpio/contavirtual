@@ -13,10 +13,15 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Route::get('/purchases', ['as' => 'purchases', 'uses' => 'HomeController@purchases']);
 Route::get('/tickets', ['as' => 'tickets', 'uses' => 'HomeController@tickets']);
-Route::get('/credit_notes', ['as' => 'credit_notes', 'uses' => 'HomeController@credit_notes']);
 // Route::resource('accounts', 'AccountController');
 Route::resource('companies', 'CompanyController');
-// Route::resource('credit_notes', 'CreditNoteController');
+
+// Credit Notes routes
+Route::delete('/credit-notes/{id}/destroy',			['as' => 'credit-notes.destroy', 'uses' => 'CreditNoteController@destroy']);
+Route::post('/invoices/{id}/credit-notes/store',	['as' => 'credit-notes.store',   'uses' => 'CreditNoteController@store']);
+Route::get('/invoices/{id}/credit-notes/create',	['as' => 'credit-notes.create',  'uses' => 'CreditNoteController@create']);
+Route::get('/credit-notes',							['as' => 'credit-notes.index', 	 'uses' => 'CreditNoteController@index']);
+// Route::resource('credit-notes', 'CreditNoteController');
 
 // Invoices routes (Sales and Expenses)
 Route::get('/invoices/sales/export',				['as' => 'invoices.sales.excel', 	 'uses' => 'InvoiceController@exportToExcel']);

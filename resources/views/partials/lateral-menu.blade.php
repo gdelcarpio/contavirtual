@@ -56,7 +56,7 @@
 			<li class="menu-li"><a class="ajax-link" href="{{ route('invoices.sales.index') }}">Facturas / Boletas</a>
 				<a href="{{ route('invoices.sales.create') }}" class="agregar"><i class="fa fa-plus"></i></a>
 			</li>
-			<li class="menu-li"><a class="ajax-link" href="{{ route('credit_notes') }}">Notas de crédito</a>
+			<li class="menu-li"><a class="ajax-link" href="{{ route('credit-notes.index') }}">Notas de crédito</a>
 				<a href="#" class="agregar"><i class="fa fa-plus"></i></a>
 			</li>
 		</ul>

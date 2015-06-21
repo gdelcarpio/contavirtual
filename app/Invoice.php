@@ -38,6 +38,11 @@ class Invoice extends Model {
 		return $this->belongsTo('App\Subaccount');
 	}
 
+	public function credit_notes()
+	{
+		return $this->hasMany('App\CreditNote');
+	}
+
 	public function setIssueDateAttribute($date)
 	{
 		$this->attributes['issue_date'] = Carbon::parse($date);
