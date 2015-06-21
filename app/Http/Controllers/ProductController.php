@@ -17,7 +17,7 @@ class ProductController extends Controller {
 	public function index()
 	{
 		$user       = \Auth::user();		
-		$rows  	    = \Input::get('rows', 5);
+		$rows  	    = \Input::get('rows', 10);
 		
 		$column 	= \Input::get('column', 'id'); //columna a ordenr
 		$direction  = \Input::get('direction', 'desc'); //tipo de orden
@@ -137,6 +137,25 @@ class ProductController extends Controller {
 		}
 		
 		return view('invoices.partials.form-total');
+	}
+
+	public function exportToExcel()
+	{
+    	$products = auth()->user()->products()->get();
+
+		\Excel::create('CONTAVIRTUAL | Productos ', function($excel) use ($products){
+
+			$excel->setCreator('CONTAVIRTUAL')
+            	  ->setCompany('CONTAVIRTUAL');
+
+		    $excel->sheet('Lista de Productos', function($sheet) use ($products){
+
+		        $sheet->loadView('products.excel')->with('products', $products);
+		        $sheet->freezeFirstRow();
+
+		    });
+
+		})->download('xls');
 	}
 
 }

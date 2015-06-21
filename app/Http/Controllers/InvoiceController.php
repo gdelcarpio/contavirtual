@@ -42,7 +42,7 @@ class InvoiceController extends Controller {
 
 		$searchTerms = $q != '' ? explode(' ', $q) : '';
 
-        $invoices = \Auth::user()->invoices()
+        $invoices = auth()->user()->invoices()
 	        			->where('invoice_category_id', $page['id'])
        					->with(['invoiceType', 'company', 'subaccount'])		
 						->join('invoice_types', 'invoice_types.id', '=', 'invoice_type_id')
@@ -86,7 +86,7 @@ class InvoiceController extends Controller {
 
 		$request['invoice_category_id'] =  $page['id'];
 
-		$invoice = \Auth::user()->invoices()->create($request->except('account_id', 'product_id', 'quantity'));
+		$invoice = auth()->user()->invoices()->create($request->except('account_id', 'product_id', 'quantity'));
 
 		if ($page['title_en'] == 'sales') {
 
@@ -109,7 +109,7 @@ class InvoiceController extends Controller {
 
 		\Flash::success('Comprobante agregado satisfactoriamente.');
 
-		return \Redirect::route($page['index']);
+		return redirect()->route($page['index']);
 	}
 
 
@@ -132,11 +132,11 @@ class InvoiceController extends Controller {
 
         \Cart::clear();
 
-		$invoice = \Auth::user()->invoices->find($id);
+		$invoice = auth()->user()->invoices->find($id);
 
 		if ( ! $invoice ) {
 			\Flash::warning('No tiene los permisos necesarios para acceder a este comprobante de pago');
-			return \Redirect::route('invoices.index');
+			return redirect()->route('invoices.index');
 		}
 
 		if ($page['title_en'] == 'sales') {
@@ -196,7 +196,7 @@ class InvoiceController extends Controller {
 
 		\Flash::success('Comprobante actualizado satisfactoriamente.');
 
-		return \Redirect::route($page['index']);
+		return redirect()->route($page['index']);
 	}
 
 	/**
@@ -207,7 +207,7 @@ class InvoiceController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$invoice = \Auth::user()->invoices->find($id);
+		$invoice = auth()->user()->invoices->find($id);
 
 		$invoice->products()->detach();
 		$invoice->delete();
@@ -233,7 +233,7 @@ class InvoiceController extends Controller {
 
     public function getComboBoxOptions()
     {
-		$user 		= \Auth::user();
+		$user 		= auth()->user();
 
         $companies 	= $user->companies->where('client', 1)->lists('ruc','id');
         $companies 	= array(''=>'') + $companies;
@@ -307,7 +307,7 @@ class InvoiceController extends Controller {
     {
 		$page 	 = $this->getPageInfo(url_alias());
 
-    	$invoices = \Auth::user()->invoices()->where('invoice_category_id', $page['id'])->get();
+    	$invoices = auth()->user()->invoices()->where('invoice_category_id', $page['id'])->get();
 
 		\Excel::create('CONTAVIRTUAL | ' . \Str::title($page['title']), function($excel) use ($invoices, $page){
 

@@ -41,6 +41,7 @@ Route::delete('/invoices/expenses/{id}',			['as' => 'invoices.expenses.destroy',
 Route::resource('payments', 'PaymentController');
 
 // Products routes
+Route::get('/products/export', 	 		 			['as' => 'products.export.excel','uses' => 'ProductController@exportToExcel']);
 Route::post('/igv/{igv}',							['as' => 'products.cart.igv', 	 'uses' => 'ProductController@ajaxIgv']);
 Route::post('/cart-total',							['as' => 'products.cart.total',  'uses' => 'ProductController@ajaxTotalCart']);
 Route::post('/clear-cart',							['as' => 'products.cart.empty',  'uses' => 'ProductController@ajaxEmptyCart']);

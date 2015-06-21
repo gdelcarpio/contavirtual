@@ -28,7 +28,7 @@
 
 	<div class="row">
 
-		<div class="col-md-9">
+		<div class="col-md-6">
 
 			@include('partials.search-form')
 			
@@ -36,15 +36,11 @@
 
 		</div>
 
-		<div class="col-md-3 text-right">
+		<div class="col-md-6 text-right">
 
  			@include('partials.goto-form')
 
-
-			<div class="pull-right">
-				Exportar todo a Excel <a href="{{ route($page['excel']) }}"><i class="fa fa-file-excel-o fa-lg"></i></a>
-			</div>   
-
+			<a href="{{ route($page['excel']) }}" class="btn btn-success"><i class="fa fa-upload"></i> Exportar a Excel </a>
 		</div>
 
 	</div>
