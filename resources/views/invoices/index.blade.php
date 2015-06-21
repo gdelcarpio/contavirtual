@@ -103,7 +103,7 @@
 								<td>{{ $invoice->issue_date }}</td>
 								<td>{{ $invoice->expiration_date }}</td>
 								<td>{{ $invoice->invoiceType->name }}</td>
-								<td>{{ $invoice->serial or '--' }} - {{ $invoice->number }}</td>
+								<td>{{ $invoice->serial }} - {{ $invoice->number }}</td>
 								<td>{{ $invoice->company }}</td>
 								<td>{{ $invoice->ruc  }}</td>
 								<td>PEN {{ $invoice->subtotal }}</td>

@@ -28,9 +28,9 @@
 					<td>{{ $invoice->issue_date }}</td>
 					<td>{{ $invoice->expiration_date }}</td>
 					<td>{{ $invoice->invoiceType->name }}</td>
-					<td>{{ $invoice->serial }} - {{ $invoice->number }}</td>
-					<td>{{ $invoice->company->company_name }}</td>
-					<td>{{ $invoice->ruc  }}</td>
+					<td>{{ $invoice->serial or '' }} - {{ $invoice->number or '' }}</td>
+					<td>{{ $invoice->company->company_name or '' }}</td>
+					<td>{{ $invoice->company->ruc  or '' }}</td>
 					<td>PEN {{ $invoice->subtotal }}</td>
 					<td>PEN {{ $invoice->igv }}</td>
 					<td>PEN {{ $invoice->total }}</td>
