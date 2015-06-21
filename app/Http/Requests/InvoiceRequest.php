@@ -35,7 +35,7 @@ class InvoiceRequest extends Request {
             'note'     				=> 'required|max:300',
             'subaccount_id'			=> 'required|exists:subaccounts,id',
             'igv'					=> 'required|numeric',
-            'total'					=> 'required_if:invoice_category_id,2|numeric',
+            'subtotal'				=> 'required_if:invoice_category_id,2|numeric',
         ];
 
 	}

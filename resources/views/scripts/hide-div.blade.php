@@ -3,7 +3,7 @@ $(document).ready(function(){
 
   	var exist = {{ isset($invoice) ? 1 : 0 }};
 
-  	if (exist) {
+  	if (exist == 1 || $('#invoice_type_id').val() == 2) {
 
 	    hideInputForms();
 
@@ -19,7 +19,7 @@ $(document).ready(function(){
   		
     	var type = $('#invoice_type_id').val();
 
-    	if (type != 1)
+    	if (type == 2)
     	{
   			$(".ruc-inputs").prop('disabled', true);
     		$('.company').fadeOut(500);

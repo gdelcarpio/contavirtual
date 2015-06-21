@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CreditNoteController extends Controller {
 
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -14,7 +19,39 @@ class CreditNoteController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$rows  		= \Input::get('rows', 10);
+		$column 	= \Input::get('column', 'id');
+		$direction  = \Input::get('direction', 'desc');
+		$from  		= \Input::get('from', '');
+		$to  		= \Input::get('to', '');
+
+		$q  = trim(\Input::get('q')) != "" ? trim(\Input::get('q')) : '';
+
+		$searchTerms = $q != '' ? explode(' ', $q) : '';
+
+        $credit_notes = auth()->user()->credit_notes()
+       					->with(['invoice'])		
+						// ->join('invoices', 'invoices.id', '=', 'invoice_id')
+						->join('invoice_types', 'invoice_types.id', '=', 'credit_notes.invoice_id')
+						->join('companies', 'companies.id', '=', 'invoices.company_id')
+						->select('credit_notes.*','companies.company_name as company', 'companies.ruc as ruc', 'invoice_types.name as invoice', 'invoices.serial as serial', 'invoices.number as number')
+						->sortBy(compact('column', 'direction'))
+						->dateBetween(compact('from', 'to'))
+	        			// ->where(function($query) use ($searchTerms) {
+			         //        if( $searchTerms != '' )
+			         //        {
+			         //            foreach($searchTerms as $term){
+			         //            	$query->orWhere('companies.ruc', 'LIKE', '%'. $term .'%');
+			         //            	$query->orWhere('total', 'LIKE', '%'. $term .'%');
+			         //            }
+
+			         //        }
+			         //    })
+	        			->paginate($rows);
+
+		$rows = getRowsNumber();
+
+        return view('credit-notes.index', compact('credit_notes','rows', 'column', 'direction'));
 	}
 
 	/**
@@ -22,9 +59,11 @@ class CreditNoteController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($id)
 	{
-		//
+		$invoice = auth()->user()->invoices()->find($id);
+
+		return view('credit-notes.create', compact('invoice'));    
 	}
 
 	/**

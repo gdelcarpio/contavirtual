@@ -6,7 +6,7 @@
 	<div id="breadcrumb" class="col-xs-12">
 		<ol class="breadcrumb">
 			<li>
-				<a href="index.html">Lista de productos / servicios</a>
+				<a href="index.html">Lista de Productos / Servicios</a>
 			</li>			
 		</ol>
 	</div>
@@ -16,7 +16,7 @@
 	<div class="col-xs-12">		
 		<div class="row">
 			<div class="col-md-6">
-				<a href="#" class="btn btn-success"><i class="fa fa-upload"></i> Exportar productos</a>
+				<a href="{{ route('products.export.excel') }}" class="btn btn-success"><i class="fa fa-upload"></i> Exportar productos</a>
 				<a href="#" class="btn btn-success"><i class="fa fa-download"></i> Importar productos</a>
 				<a href="#">Descargar archivo de muestra</a>
 			</div>
@@ -53,23 +53,23 @@
 						<tr>							
 							<th>
 								<i class="fa fa-{{ show_sort_icon('code', $column, $direction) }}"></i>
-          						{!! sort_model_by('code', 'Cod.', Route::currentRouteName()) !!}
+          						{!! sort_model_by('code', 'Código', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('name', $column, $direction) }}"></i>
-          						{!! sort_model_by('name', 'Nombres', Route::currentRouteName()) !!}
+          						{!! sort_model_by('name', 'Nombre', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('description', $column, $direction) }}"></i>
-          						{!! sort_model_by('description', 'Descripción', Route::currentRouteName()) !!}
+          						{!! sort_model_by('description', 'Descripción', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('price', $column, $direction) }}"></i>
-          						{!! sort_model_by('price', 'Precio uni. (sin IGV)', Route::currentRouteName()) !!}
+          						{!! sort_model_by('price', 'Precio uni. (sin IGV)', url_alias()) !!}
 							</th>
 							<th>
 								<i class="fa fa-{{ show_sort_icon('active', $column, $direction) }}"></i>
-          						{!! sort_model_by('active', 'Activo', Route::currentRouteName()) !!}
+          						{!! sort_model_by('active', 'Activo', url_alias()) !!}
 							</th>
 							<th>Acciones</th>
 						</tr>
@@ -81,7 +81,7 @@
 							<td>{{ $product->name }}</td>
 							<td>{{ str_limit($product->description, 40, '...') }}</td>
 							<td>PEN {{ $product->price }}</td>
-							<td>@if($product->active == 1) Si @else No  @endif</td>
+							<td>{{ $product->active == 1 ? 'Sí' : 'No' }}</td>
 							<td>
 								<a href="{{ route('products.edit', $product) }}">Editar</a>
 								<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar" class="option-icons row-delete"><i class="fa fa-trash-o fa-lg"></i></a>
