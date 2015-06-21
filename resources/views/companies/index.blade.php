@@ -2,39 +2,19 @@
 
 @section('content')
 
-<div class="row">
-	<div id="breadcrumb" class="col-xs-12">
-		<ol class="breadcrumb">
-			<li><a href="index.html">LISTA DE EMPRESAS</a></li>
-			
-		</ol>
-	</div>
-</div> 
+@include('companies.partials.header')
 
 <div class="row">
 	<div class="col-xs-12">
-		
 		<div class="row">
-			<div class="col-md-6">
-			<ul class="nav nav-pills" role="tablist">
-		  <li role="presentation" class="active"><a href="{{route('companies.index')}}">Todos <span class="badge">42</span></a></li>
-
-		  
-		  <li role="presentation">{!! filter_by(url_alias(),"Clientes",1) !!}</li>
-		  <li role="presentation"><a href="#">Clientes <span class="badge">30</span></a></li>
-		  <li role="presentation"><a href="#">Proveedores <span class="badge">12</span></a></li>
-		</ul>
-
-		</div>
-		<div class="col-md-6 text-right">
-					
-			<div class="btn-group">
-			  <a href="paginas/empresa-crear.html"  class="btn btn-danger crear_documento">
-			    <i class="fa fa-plus"></i> Registrar Empresa
-			  </a>
+			@include('companies.partials.report')
+			<div class="col-md-6 text-right">
+				<div class="btn-group">
+			  		<a href="{{route('companies.create')}}"  class="btn btn-danger crear_documento">
+			    		<i class="fa fa-plus"></i> Registrar Empresa
+			  		</a>
+				</div>
 			</div>
-
-		</div>
 	</div>
 	<div class="row">
 		<hr class="dividor">
@@ -49,84 +29,75 @@
 
 		<div class="col-md-6 text-right">
 
-			          
-
 		</div>
 
 	</div>
-
-		<div class="box">
 		
+	<div class="box">
 			<div class="box-content no-padding">
 				<table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
 					<thead>
-						<tr>
-							
-							<th>
-								<i class="fa fa-{{ show_sort_icon('company_name', $column, $direction) }}"></i>
-          						{!! sort_model_by('company_name', 'Empresa', url_alias()) !!}
-							</th>
-							<th>
-								<i class="fa fa-{{ show_sort_icon('ruc', $column, $direction) }}"></i>
-          						{!! sort_model_by('ruc', 'RUC', url_alias()) !!}
-							</th>
-							<th>
-								<i class="fa fa-{{ show_sort_icon('name', $column, $direction) }}"></i>
-          						{!! sort_model_by('name', 'Contacto', url_alias()) !!}
-							</th>
-							<th>
-								<i class="fa fa-{{ show_sort_icon('email', $column, $direction) }}"></i>
-          						{!! sort_model_by('email', 'Correo Electrónico', url_alias()) !!}
-							</th>
-							<th>
-								<i class="fa fa-{{ show_sort_icon('phone', $column, $direction) }}"></i>
-          						{!! sort_model_by('phone', 'Teléfono', url_alias()) !!}
-							</th>
-							<th>
-								<i class="fa fa-{{ show_sort_icon('provider', $column, $direction) }}"></i>
-          						{!! sort_model_by('provider', 'Proveedor', url_alias()) !!}
-							</th>
-							<th>
-								<i class="fa fa-{{ show_sort_icon('client', $column, $direction) }}"></i>
-          						{!! sort_model_by('client', 'Cliente', url_alias()) !!}
-							</th>
-							<th>Acciones</th>
-							
-						</tr>
+						@include('companies.partials.header-table')
 					</thead>
 					<tbody>
 						@foreach($companies as $company)
-
-							<tr>
-								<td>{{ $company->company_name }}</td>
-								<td>{{ $company->ruc }}</td>
-								<td>{{ $company->name }}</td>
-								<td>{{ $company->email }}</td>
-								<td>{{ $company->phone }}</td>
-								<td>@if( $company->provider  == 1 ) si @else no @endif </td>
-								<td>@if( $company->client  == 1 ) si @else no @endif </td>
-								<td><a href="#">Editar</a>
-									<a href="#">Eliminar</a>
-								</td>
-							</tr>
-					
+						<tr data-id="{{ $company->id }}">
+							<td>{{ $company->company_name }}</td>
+							<td>{{ $company->ruc }}</td>
+							<td>{{ $company->name }}</td>
+							<td>{{ $company->email }}</td>
+							<td>{{ $company->phone }}</td>
+							<td>@if( $company->provider  == 1 ) si @else no @endif </td>
+							<td>@if( $company->client  == 1 ) si @else no @endif </td>
+							<td>
+								<a href="{{ route('companies.edit', $company->id) }}">Editar</a>
+								<a href="#" class="btn-delete">Eliminar</a>
+							</td>
+						</tr>
 						@endforeach
 					</tbody>
 				</table>
 			</div>
-		</div>
-
-		<!-- paginado inferior -->
-
+			<div class='notifications bottom-right'></div>
 	</div>
 
+	<!-- paginado inferior -->
+
+	</div>
     <div class="col-md-6">
 	    {!! $companies->setPath('')->appends(['rows' => Input::get('rows')])->render() !!}
 	</div>
 
 	<div class="col-md-6 text-right">
-
 	</div>
-
 </div>
+
+{!! Form::open(['route'=>['companies.destroy', ':USER_ID'], 'method' => 'DELETE', 'id'=>'form-delete']) !!}
+
+@endsection
+
+@section('scripts')
+<script>
+	$(function(){
+		$('.btn-delete').on('click', function(e){
+			e.preventDefault();
+			var row = $(this).parents('tr');
+			
+			var id = row.data('id');
+			var form = $('#form-delete');
+			var url = form.attr('action').replace(':USER_ID', id);
+			var data = form.serialize();
+			
+			row.fadeOut();
+
+			$.post(url, data, function(result){
+				alert(result.id+' - '+result.message);
+			}).fail(function(){
+				row.show();
+				alert('El usuario no fue eliminado');
+			});
+			
+		});
+	});
+</script>
 @endsection

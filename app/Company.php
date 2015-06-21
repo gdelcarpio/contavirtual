@@ -4,6 +4,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model {
 
+	protected $fillable = [
+		'user_id', 
+		'company_name', 
+		'ruc', 
+		'tax_address',
+		'name',
+		'lastname',
+		'relationship',
+		'email',
+		'office_phone',
+		'phone',
+		'web', 
+		'department_id',
+		'province_id', 
+		'district_id', 
+		'country', 
+		'observations',
+		'client',
+		'provider'
+	];
+
 	public function users()
 	{
 		return $this->belongsTo('App\User');
