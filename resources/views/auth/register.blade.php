@@ -10,8 +10,7 @@
 
 					@include('errors.form')
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ route('users.register') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					{!! Form::open(['url' => 'auth/register', 'method' => 'POST', 'role' => 'form', 'class' => 'form-horizontal']) !!}
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">Nombres</label>
@@ -55,7 +54,8 @@
 								</button>
 							</div>
 						</div>
-					</form>
+
+					{!! Form::close() !!}
 				</div>
 			</div>
 		</div>

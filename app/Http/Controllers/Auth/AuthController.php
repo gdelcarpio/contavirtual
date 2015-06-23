@@ -5,6 +5,9 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+use App\Http\Requests\RegisterRequest;
+use App\User;
+
 class AuthController extends Controller {
 
 	/*
@@ -20,6 +23,8 @@ class AuthController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
+	protected $redirectTo = '/';
+
 	/**
 	 * Create a new authentication controller instance.
 	 *
@@ -33,6 +38,19 @@ class AuthController extends Controller {
 		$this->registrar = $registrar;
 
 		$this->middleware('guest', ['except' => 'getLogout']);
+	}
+
+	public function postRegister(RegisterRequest $request)
+	{
+		$request['level_id'] =  '1';
+
+		$user = User::create($request->except('password_confirmation'));
+
+		$user->roles()->attach(1);
+	
+		flash()->success('Usuario registrado satisfactoriamente.');
+
+		return redirect()->route('home');
 	}
 
 }

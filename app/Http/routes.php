@@ -67,7 +67,7 @@ Route::patch('/users/{users}/reset', 	 ['as' => 'users.password.reset',  'uses' 
 Route::get('/users/export', 	 		 ['as' => 'users.export.excel',    'uses' => 'UserController@exportToExcel']);
 Route::patch('/users/password', 		 ['as' => 'users.password.update', 'uses' => 'UserController@updatePassword']);
 Route::patch('/users/{users}/active', 	 ['as' => 'users.active', 		   'uses' => 'UserController@active']);
-Route::post('/auth/register', 			 ['as' => 'users.register', 	   'uses' => 'UserController@register']);
+// Route::post('/register', 			 	 ['as' => 'users.register', 	   'uses' => 'UserController@register']);
 Route::get('/users/{id}/payments',		 ['as' => 'users.payments.index',  'uses' => 'UserController@paymentsIndex']);
 Route::get('/users/{id}/payments/create',['as' => 'users.payments.create', 'uses' => 'UserController@paymentsCreate']);
 Route::post('/users/{id}/payments/store',['as' => 'users.payments.store',  'uses' => 'UserController@paymentsStore']);
@@ -78,8 +78,8 @@ Route::resource('users', 'UserController');
 
 // Auth and Password Controller
 Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
+	'auth' 		=> 'Auth\AuthController',
+	'password'  => 'Auth\PasswordController',
 ]);
 
 //Cuentas y subcuentas (categorias) - factura
