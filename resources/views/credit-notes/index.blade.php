@@ -17,11 +17,11 @@
 			@include('partials.date-form')
 
 		</div>
-{{-- 		<div class="col-md-2 text-right">
-			<a href="#"  class="btn btn-danger crear_documento">
-				<i class="fa fa-plus"></i> Nuevo Comprobante
+		<div class="col-md-2 text-right">
+			<a href="{{ route('credit-notes.create') }}"  class="btn btn-danger crear_documento">
+				<i class="fa fa-plus"></i> Nueva Nota de Crédito
 			</a>					
-		</div>	 --}}
+		</div>	
 
 	</div>
 	<hr class="dividor">

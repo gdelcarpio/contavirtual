@@ -26,7 +26,7 @@
 
             @include('errors.form')
 
-            {!! Form::open(['route' => ['credit-notes.store', $invoice->id], 'method' => 'POST', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+            {!! Form::open(['route' => ['credit-notes.store'], 'method' => 'POST', 'role' => 'form', 'class' => 'form-horizontal']) !!}
                 
                @include('credit-notes.partials.form', ['submitButton' => 'INGRESAR'])
                

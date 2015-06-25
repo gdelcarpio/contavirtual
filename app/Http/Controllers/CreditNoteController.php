@@ -59,11 +59,12 @@ class CreditNoteController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create($id)
+	public function create()
 	{
-		$invoice = auth()->user()->invoices()->find($id);
+		$companies = auth()->user()->companies()->lists('company_name', 'id');
+		$companies = array(''=>'') + $companies;
 
-		return view('credit-notes.create', compact('invoice'));    
+		return view('credit-notes.create', compact('companies'));    
 	}
 
 	/**

@@ -109,7 +109,6 @@
 						            <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar" class="option-icons row-delete"><i class="fa fa-trash-o fa-lg"></i></a>
 									<a href="{{ route($page['edit'], $invoice->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-pencil fa-lg"></i></a>
 									<a href="{{ route($page['show'], $invoice->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detalle"><i class="fa fa-bars fa-lg"></i></a>
-									<a href="{{ route('credit-notes.create', $invoice->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agregar Nota de Crédito"><i class="fa fa-plus fa-lg"></i></a>
 								</td>
 							</tr>
 						@empty

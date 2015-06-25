@@ -18,7 +18,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-file-text-o"></i>
-					<span>EDITAR COMPROBANTE DE PAGO - {{ $invoice->id }} </span>
+					<span>EDITAR NOTA DE CRÉDITO - {{ $credit_note->id }} </span>
 				</div>			
 			</div>
 
@@ -26,9 +26,9 @@
 
             @include('errors.form')
 
-            {!! Form::model($invoice, ['route' => [$page['update'], $invoice->id ], 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+            {!! Form::model($credit_note, ['route' => [$page['update'], $credit_note->id ], 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-horizontal']) !!}
                 
-               @include('invoices.partials.form', ['submitButton' => 'ACTUALIZAR'])
+               @include('credit_notes.partials.form', ['submitButton' => 'ACTUALIZAR'])
                
             {!! Form::close() !!}
 
