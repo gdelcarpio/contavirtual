@@ -17,10 +17,7 @@ Route::get('/tickets', ['as' => 'tickets', 'uses' => 'HomeController@tickets']);
 Route::resource('companies', 'CompanyController');
 
 // Credit Notes routes
-// Route::delete('/credit-notes/{id}/destroy',			['as' => 'credit-notes.destroy', 'uses' => 'CreditNoteController@destroy']);
-// Route::post('/invoices/{id}/credit-notes/store',	['as' => 'credit-notes.store',   'uses' => 'CreditNoteController@store']);
-// Route::get('/invoices/{id}/credit-notes/create',	['as' => 'credit-notes.create',  'uses' => 'CreditNoteController@create']);
-// Route::get('/credit-notes',							['as' => 'credit-notes.index', 	 'uses' => 'CreditNoteController@index']);
+Route::post('/ajax-invoices/{company_id}', 			['as' => 'ajax.invoices', 'uses' => 'CreditNoteController@ajaxInvoices']);
 Route::resource('credit-notes', 'CreditNoteController');
 
 // Invoices routes (Sales and Expenses)

@@ -44,7 +44,9 @@
         </div>
         <div class="col-sm-4">
             <label class="col-sm-4 control-label">Comprobantes</label>
-            <div class="col-sm-8" id="invoice"></div>
+            <div class="col-sm-8" id="invoice">
+                <select name="" id="invoice_id"></select>
+            </div>
         </div>
         <div class="col-sm-4">
 
@@ -83,3 +85,9 @@
         </div>
     </div>
 </div>
+
+@section('scripts')
+    
+    @include('scripts.ajax-invoices')
+
+@endsection

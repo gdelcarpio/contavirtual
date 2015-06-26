@@ -103,4 +103,9 @@ class Invoice extends Model {
         return $params['from'] and $params['to'];
     }
 
+    public function getFullInvoiceAttribute()
+    {
+        return $this->attributes['serial'] . '-' . $this->attributes['number'];
+    }
+
 }

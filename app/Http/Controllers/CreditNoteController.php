@@ -121,4 +121,15 @@ class CreditNoteController extends Controller {
 		//
 	}
 
+	public function ajaxInvoices($id)
+	{
+		// $invoices = auth()->user()->invoices()->where('company_id', $id)->lists('fullInvoice','id');
+
+		$invoices = auth()->user()->invoices()->where('company_id', $id)->get();
+		$invoices = $invoices->lists('full_invoice', 'id');
+        $invoices = array('' => '') + $invoices;
+
+        return view('credit-notes.partials.form-invoices', compact('invoices'));
+	}
+
 }

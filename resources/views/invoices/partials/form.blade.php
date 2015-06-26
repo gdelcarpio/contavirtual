@@ -29,7 +29,9 @@
         </div>
         <div class="col-sm-6">
             <label class="col-sm-2 control-label">Sub Cat.</label>
-            <div class="col-sm-9" id="subaccount"></div>
+            <div class="col-sm-9" id="subaccount">
+                <select name="" id="subaccount_id"></select>
+            </div>
         </div>
 
     </div>
