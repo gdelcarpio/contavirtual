@@ -93,8 +93,8 @@
 							<tr data-id="{{ $credit_note->id }}" data-type="el comprobante" data-name="{{ $credit_note->id }}">
 								<td>{{ $credit_note->id }}</td>
 								<td>{{ $credit_note->date }}</td>
-								<td>{{ $credit_note->invoice->name }}</td>
-								<td>{{ $credit_note->serial }} - {{ $credit_note->number }}</td>
+								<td>{{ $credit_note->invoice_type_name }}</td>
+								<td>{{ $credit_note->invoice->full_invoice }}</td>
 								<td>{{ $credit_note->company }}</td>
 								<td>{{ $credit_note->ruc  }}</td>
 								<td>PEN {{ $credit_note->subtotal }}</td>

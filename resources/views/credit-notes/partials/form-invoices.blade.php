@@ -1,1 +1,1 @@
-{!! Form::select('invoice_id', $invoices, null,['class' => '', 'required', 'id' => 'invoice_id']) !!}
+{!! Form::select('invoice_id', $invoices, '', ['class' => '', 'required', 'id' => 'invoice_id']) !!}

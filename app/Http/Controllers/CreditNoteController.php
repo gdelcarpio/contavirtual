@@ -4,6 +4,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreditNoteRequest;
+
+use App\CreditNote;
 
 class CreditNoteController extends Controller {
 
@@ -32,9 +35,9 @@ class CreditNoteController extends Controller {
         $credit_notes = auth()->user()->credit_notes()
        					->with(['invoice'])		
 						// ->join('invoices', 'invoices.id', '=', 'invoice_id')
-						->join('invoice_types', 'invoice_types.id', '=', 'credit_notes.invoice_id')
+						->join('invoice_types', 'invoice_types.id', '=', 'invoices.invoice_type_id')
 						->join('companies', 'companies.id', '=', 'invoices.company_id')
-						->select('credit_notes.*','companies.company_name as company', 'companies.ruc as ruc', 'invoice_types.name as invoice', 'invoices.serial as serial', 'invoices.number as number')
+						->select('credit_notes.*','companies.company_name as company', 'companies.ruc as ruc', 'invoice_types.name as invoice_type_name', 'invoices.serial as serial', 'invoices.number as number')
 						->sortBy(compact('column', 'direction'))
 						->dateBetween(compact('from', 'to'))
 	        			// ->where(function($query) use ($searchTerms) {
@@ -72,9 +75,15 @@ class CreditNoteController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CreditNoteRequest $request)
 	{
-		//
+		$invoice = auth()->user()->invoices()->find($request['invoice_id']);
+
+		$invoice->credit_notes()->create($request->except('companies', 'invoice_id'));
+
+		flash()->success('Nota de Crédito agregada satisfactoriamente.');
+
+		return redirect()->route('credit-notes.index');
 	}
 
 	/**

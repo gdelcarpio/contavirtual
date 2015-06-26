@@ -42,7 +42,7 @@ $(document).ready(function() {
 	// Add slider for change test input length
 	FormLayoutExampleInputLength($( ".slider-style" ));
 	// Initialize datepicker
-	$('#payment_date, #payment_expiration_date, #start_date, #end_date, #expiration_date, #issue_date, #from, #to').datepicker({ dateFormat:'dd-mm-yy',setDate: new Date()});
+	$('#payment_date, #payment_expiration_date, #start_date, #end_date, #expiration_date, #issue_date, #from, #to, #date').datepicker({ dateFormat:'dd-mm-yy',setDate: new Date()});
 	// Load Timepicker plugin
 	// LoadTimePickerScript(DemoTimePicker);
 	// Add tooltip to form-controls

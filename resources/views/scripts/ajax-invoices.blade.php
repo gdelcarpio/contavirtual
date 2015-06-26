@@ -1,10 +1,11 @@
 <script>
-	function getInvoices(){
+	function getInvoices(invoice_id){
 
 	   	$.post("{{ URL::to('/ajax-invoices') }}/"+$('#company_id').val(),{},function(cadena){
 
-	        $("#invoice_id").html(cadena); 
+	        $("#invoice").html(cadena); 
 	        $("#invoice_id").select2({placeholder: "Seleciona una opción"});
+	        $("#invoice_id").select2("val", invoice_id);
 
 	  	});
 
@@ -17,8 +18,9 @@
 	});
 	
 	if ( $('#company_id').val() != '' ) {
-		
-		getInvoices();
+
+		var invoice_id = {{ Request::old('invoice_id') ? Request::old('invoice_id') : 0 }}
+		getInvoices(invoice_id);
 
 	}
 </script>

@@ -4,6 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CreditNote extends Model {
 
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
 	public function invoice()
 	{
 		return $this->belongsTo('App\Invoice');

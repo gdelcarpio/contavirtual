@@ -220,6 +220,7 @@ class InvoiceController extends Controller {
     {
         $subaccounts = Subaccount::where('account_id',$id)->lists('name','id');
         $subaccounts = array('' => '') + $subaccounts;
+        
         return view('invoices.partials.form-subaccount', compact('subaccounts'));
             
     }
