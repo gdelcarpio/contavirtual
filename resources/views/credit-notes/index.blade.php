@@ -90,7 +90,7 @@
 					</thead>
 					<tbody>
 						@forelse($credit_notes as $credit_note)
-							<tr data-id="{{ $credit_note->id }}" data-type="el comprobante" data-name="{{ $credit_note->id }}">
+							<tr data-id="{{ $credit_note->id }}" data-type="la nota de crédito" data-name="{{ $credit_note->id }}">
 								<td>{{ $credit_note->id }}</td>
 								<td>{{ $credit_note->date }}</td>
 								<td>{{ $credit_note->invoice_type_name }}</td>

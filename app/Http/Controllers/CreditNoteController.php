@@ -138,7 +138,12 @@ class CreditNoteController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$credit_note = auth()->user()->credit_notes->find($id);
+
+		$credit_note->delete();
+
+		flash()->success('Se eliminó la nota de Crédito #' . $id . ' correctamente.');
+		return view('message');
 	}
 
 	public function ajaxInvoices($id)
