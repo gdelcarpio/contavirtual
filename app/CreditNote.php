@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+use Carbon\Carbon;
+
 class CreditNote extends Model {
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
@@ -10,6 +12,11 @@ class CreditNote extends Model {
 	{
 		return $this->belongsTo('App\Invoice');
 	}
+
+    public function setDateAttribute($date)
+    {
+        $this->attributes['date'] = Carbon::parse($date);
+    }
 
 	public function scopeSortBy($query, array $params)
 	{

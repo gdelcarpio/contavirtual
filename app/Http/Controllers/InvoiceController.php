@@ -101,6 +101,8 @@ class InvoiceController extends Controller {
 			$invoice->subtotal 	= \Cart::getTotal();
 			$invoice->total 	= \Cart::getTotal() * ( 1 + ( $invoice->igv / 100 ) );
 			
+		}else{
+			$invoice->total 	= $invoice->subtotal * ( 1 + ( $invoice->igv / 100 ) );
 		}
 
 		$invoice->update();
