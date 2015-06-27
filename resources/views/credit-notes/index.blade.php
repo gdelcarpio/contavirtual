@@ -102,7 +102,7 @@
 								<td>PEN {{ $credit_note->total }}</td>
 								<td class="text-center">
 						            <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar" class="option-icons row-delete"><i class="fa fa-trash-o fa-lg"></i></a>
-									<a href="{{ route('credit-notes.update', $credit_note->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-pencil fa-lg"></i></a>
+									<a href="{{ route('credit-notes.edit', $credit_note->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-pencil fa-lg"></i></a>
 									<a href="{{ route('credit-notes.show', $credit_note->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detalle"><i class="fa fa-bars fa-lg"></i></a>
 								</td>
 							</tr>

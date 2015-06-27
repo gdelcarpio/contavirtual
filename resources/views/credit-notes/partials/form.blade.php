@@ -39,7 +39,7 @@
         <div class="col-sm-4">
             <label class="col-sm-4 control-label">Empresas</label>
             <div class="col-sm-8">
-                {!! Form::select('companies', $companies, null,['class' => '', 'required', 'id' => 'company_id']) !!}
+                {!! Form::select('companies', $companies, null, ['class' => '', 'required', 'id' => 'company_id']) !!}
             </div>
         </div>
         <div class="col-sm-4">

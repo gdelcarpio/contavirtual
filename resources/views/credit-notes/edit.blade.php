@@ -26,9 +26,9 @@
 
             @include('errors.form')
 
-            {!! Form::model($credit_note, ['route' => [$page['update'], $credit_note->id ], 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+            {!! Form::model($credit_note, ['route' => ['credit-notes.update', $credit_note->id], 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-horizontal']) !!}
                 
-               @include('credit_notes.partials.form', ['submitButton' => 'ACTUALIZAR'])
+               @include('credit-notes.partials.form', ['submitButton' => 'ACTUALIZAR'])
                
             {!! Form::close() !!}
 
@@ -37,13 +37,5 @@
 	</div>
 
 </div>
-
-@endsection
-
-@section('ajax-scripts')
-
-    @include('scripts.ajax-products')
-    @include('scripts.ajax-subaccount')
-    @include('scripts.ajax-client')
 
 @endsection

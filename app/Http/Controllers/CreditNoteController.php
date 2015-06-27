@@ -105,7 +105,12 @@ class CreditNoteController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$credit_note = auth()->user()->credit_notes()->find($id);
+
+		$companies = auth()->user()->companies()->lists('company_name', 'id');
+		$companies = array(''=>'') + $companies;
+
+		return view('credit-notes.edit', compact('credit_note', 'companies'));
 	}
 
 	/**
@@ -114,9 +119,15 @@ class CreditNoteController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, CreditNoteRequest $request)
 	{
-		//
+		$credit_note = auth()->user()->credit_notes()->find($id);
+
+		$credit_note->update($request->except('companies'));
+
+		flash()->success('Nota de Crédito actualizada satisfactoriamente.');
+
+		return redirect()->route('credit-notes.index');
 	}
 
 	/**
