@@ -16,7 +16,9 @@
 	<div class="col-xs-10 col-sm-10">
 		<h3>{{ Auth::user()->roles->first()->name }} / {{ Auth::user()->name }} {{ Auth:: user()->lastname }}</h3>
 
-    <h4>{{ has_debt() ? 'Tiene deudas' : 'NO tiene deudas' }}</h4>
+    <h4>Deudas: {{ has_debts() ? 'SI' : 'NO' }}</h4>
+    <h4>Free: {{ is_free() ? 'SI' : 'NO' }}</h4>
+    <h4>PAGO AL DIA: {{ payment_up_to_date() ? 'SI' : 'NO' }}</h4>
 
     <hr>
     

@@ -51,7 +51,7 @@ class AuthController extends Controller {
 	
 		flash()->success('Usuario registrado satisfactoriamente.');
 
-		return redirect()->route('home');
+		return redirect($this->loginPath());
 	}
 
 	public function postLogin(Request $request)

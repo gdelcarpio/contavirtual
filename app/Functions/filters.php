@@ -9,28 +9,22 @@ function is_admin()
 
 function is_free()
 {
-	// return ! has_invoices() OR ( has_invoices() AND Auth::user()->invoices->count() <= 10 );
-	return Auth::user()->invoices->count() + Auth::user()->credit_notes->count() <= 10;
-}
-
-// function has_invoices()
-// {
-// 	return has_companies() AND Auth::user()->invoices->count() > 0;
-// }
-
-function has_companies()
-{
-	return Auth::user()->companies->count() > 0;
+	return Auth::user()->invoices->count() + Auth::user()->credit_notes->count() <= 5;
 }
 
 function payment_up_to_date()
 {
-	return Carbon::now() < Auth::user()->payments->last()->end_date;
+	if ( has_payments() )
+	{
+		return Carbon::now()->format('d-m-Y') < Auth::user()->payments->last()->end_date;
+	}
+
+	return false;
 }
 
-function has_debt()
+function has_debts()
 {
-	return ! is_free() AND has_payments() AND ! payment_up_to_date();
+	return ! is_free() AND ! payment_up_to_date() ;
 }
 
 function has_payments()

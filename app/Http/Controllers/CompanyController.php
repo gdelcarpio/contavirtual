@@ -179,4 +179,11 @@ class CompanyController extends Controller {
 		return \Redirect::route('companies.index');
 	}
 
+	public function ajaxCompany($company_id)
+	{
+		$company = Company::findOrFail($company_id);
+
+		return view('invoices.partials.company', compact('company'));
+	}
+
 }

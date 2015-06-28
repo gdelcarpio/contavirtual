@@ -51,7 +51,7 @@ class Payment extends Model {
 	{
 		if ( ! empty ( $this->attributes['payment_date'] ) ) {
 			$payment_date = Carbon::createFromFormat('Y-m-d', $this->attributes['payment_date']);
-			return $payment_date->format('m/d/Y');
+			return $payment_date->format('d-m-Y');
 		}
 
 		return $this->attributes['payment_date'];
@@ -61,7 +61,7 @@ class Payment extends Model {
 	{
 		if ( ! empty ( $this->attributes['payment_expiration_date'] ) ) {
 			$payment_expiration_date = Carbon::createFromFormat('Y-m-d', $this->attributes['payment_expiration_date']);
-			return $payment_expiration_date->format('m/d/Y');
+			return $payment_expiration_date->format('d-m-Y');
 		}
 
 		return $this->attributes['payment_expiration_date'];
@@ -71,7 +71,7 @@ class Payment extends Model {
 	{
 		if ( ! empty ( $this->attributes['end_date'] ) ) {
 			$end_date = Carbon::createFromFormat('Y-m-d', $this->attributes['end_date']);
-			return $end_date->format('m/d/Y');
+			return $end_date->format('d-m-Y');
 		}
 
 		return $this->attributes['end_date'];
@@ -81,7 +81,7 @@ class Payment extends Model {
 	{
 		if ( ! empty ( $this->attributes['start_date'] ) ) {
 			$start_date = Carbon::createFromFormat('Y-m-d', $this->attributes['start_date']);
-			return $start_date->format('m/d/Y');
+			return $start_date->format('d-m-Y');
 		}
 
 		return $this->attributes['start_date'];
