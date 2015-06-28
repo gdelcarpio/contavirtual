@@ -5,6 +5,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\User;
 
@@ -51,6 +52,36 @@ class AuthController extends Controller {
 		flash()->success('Usuario registrado satisfactoriamente.');
 
 		return redirect()->route('home');
+	}
+
+	public function postLogin(Request $request)
+	{
+		$this->validate($request, [
+			'email' => 'required|email', 'password' => 'required'
+		]);
+
+		$email 	  = $request->input('email');
+		$password = $request->input('password');
+
+		$attempt = $this->auth->attempt(['email' => $email, 'password' => $password, 'active' => 1] , $request->has('remember'));
+
+		if ($attempt)
+		{
+			return redirect()->intended($this->redirectPath());
+		}
+
+		if ($this->auth->validate(['email' => $email, 'password' => $password] , $request->has('remember')))
+		{
+		    return redirect()->back()->withInput()->withErrors([
+						'active' => 'La cuenta ha sido suspendida. Para mayor información contacte al administrador.',
+					]);
+		}
+
+		return redirect($this->loginPath())
+					->withInput($request->only('email', 'remember'))
+					->withErrors([
+						'email' => 'Las credenciales ingresadas no son correctas.',
+					]);
 	}
 
 }

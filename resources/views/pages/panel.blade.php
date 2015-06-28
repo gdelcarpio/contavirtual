@@ -16,16 +16,13 @@
 	<div class="col-xs-10 col-sm-10">
 		<h3>{{ Auth::user()->roles->first()->name }} / {{ Auth::user()->name }} {{ Auth:: user()->lastname }}</h3>
 
-    @if( has_debt() )
+    <h4>{{ has_debt() ? 'Tiene deudas' : 'NO tiene deudas' }}</h4>
 
-      <h4>Tiene deudas</h4>
-
-    @else
-
-      <h4>NO tiene deudas</h4>
-      
-    @endif
-
+    <hr>
+    
+    <h4>Comprobantes: {{ Auth::user()->invoices->count() }}</h4>
+    <h4>Notas de Crédito: {{ Auth::user()->credit_notes->count() }}</h4>
+    
 	</div>
 
 
