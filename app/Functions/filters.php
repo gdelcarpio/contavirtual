@@ -16,7 +16,9 @@ function payment_up_to_date()
 {
 	if ( has_payments() )
 	{
-		return Carbon::now()->format('d-m-Y') < Auth::user()->payments->last()->end_date;
+		$date = Carbon::createFromFormat('d-m-Y', Auth::user()->payments->last()->end_date);
+		
+		return Carbon::now()->format('Y-m-d') < $date->format('Y-m-d');
 	}
 
 	return false;
@@ -24,7 +26,7 @@ function payment_up_to_date()
 
 function has_debts()
 {
-	return ! is_free() AND ! payment_up_to_date() ;
+	return ( ! is_free() AND ! payment_up_to_date() );
 }
 
 function has_payments()

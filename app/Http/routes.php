@@ -10,9 +10,9 @@
 |
 */
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+Route::get('/report', ['as' => 'report', 'uses' => 'HomeController@report']);
 
-Route::get('/purchases', ['as' => 'purchases', 'uses' => 'HomeController@purchases']);
-Route::get('/tickets', ['as' => 'tickets', 'uses' => 'HomeController@tickets']);
+
 // Route::resource('accounts', 'AccountController');
 Route::resource('companies', 'CompanyController');
 

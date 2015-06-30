@@ -5,8 +5,7 @@
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12">
 		<ol class="breadcrumb">
-			<li><a href="index.html">Home</a></li>
-			<li><a href="#">Dashboard</a></li>
+			<li><a href="{{ route('report') }}">REPORTE</a></li>
 		</ol>
 	</div>
 </div>
@@ -15,7 +14,6 @@
 <div id="dashboard-header" class="row">
 	<div class="col-xs-10 col-sm-10">
 		<h3>{{ Auth::user()->roles->first()->name }} / {{ Auth::user()->name }} {{ Auth:: user()->lastname }}</h3>
-
     <h4>Deudas: {{ has_debts() ? 'SI' : 'NO' }}</h4>
     <h4>Free: {{ is_free() ? 'SI' : 'NO' }}</h4>
     <h4>PAGO AL DIA: {{ payment_up_to_date() ? 'SI' : 'NO' }}</h4>
@@ -24,9 +22,12 @@
     
     <h4>Comprobantes: {{ Auth::user()->invoices->count() }}</h4>
     <h4>Notas de Crédito: {{ Auth::user()->credit_notes->count() }}</h4>
-    
-	</div>
 
+    <h5>Total Ventas: {{ Auth::user()->invoices()->where('invoice_category_id', 1)->sum('total') }}</h5>
+    <h5>Total Compras: {{ Auth::user()->invoices()->where('invoice_category_id', 2)->sum('total') }}</h5>
+    <h5>Total Notas de Crédito: {{ Auth::user()->credit_notes()->sum('credit_notes.total') }}</h5>
+
+	</div>
 
 </div>
 <!--End Dashboard 1-->

@@ -8,6 +8,8 @@ class Invoice extends Model {
 
 	protected $guarded = ['id', 'created_at', 'updated_at'];
 
+	protected $dates = ['issue_date'];
+
 	public function products()
 	{
 		return $this->belongsToMany('App\Product')->withPivot(array('price', 'quantity'));;
