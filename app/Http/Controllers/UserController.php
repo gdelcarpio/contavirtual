@@ -20,7 +20,7 @@ class UserController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');
-		$this->middleware('admin', ['except' => [ 'profile',  'register', 'editPassword', 'updatePassword', 'myPayments'] ]);
+		$this->middleware('admin', ['except' => [ 'profile',  'register', 'editPassword', 'updatePassword', 'myPayments', 'profileEdit', 'profileUpdate', 'provinces', 'districts'] ]);
 	}
 
 	/**
@@ -129,7 +129,7 @@ class UserController extends Controller {
 		$departments 	= $this->modelList('Department');
 		$levels 		= $this->modelList('Level');
 
-		rememberFormLocation($user->department_id, $user->province_id, $user->district_id);
+		// rememberFormLocation($user->department_id, $user->province_id, $user->district_id);
 
 		return view('users.edit', compact('user', 'departments', 'levels'));
 	}
@@ -165,7 +165,7 @@ class UserController extends Controller {
 
 		$user_name = $user->name . ' ' . $user->lastname;
 
-		$user->roles()->detach();
+		// $user->roles()->detach();
 		$user->delete();
 
 		\Flash::success('Se eliminó al usuario ' . $user_name . ' correctamente.');
@@ -187,9 +187,32 @@ class UserController extends Controller {
 
 	public function profile()
 	{
-		$user = \Auth::user();
+		$user = auth()->user();
 
 		return view('users.profile', compact('user'));
+	}
+
+	public function profileEdit()
+	{
+		$user = auth()->user();
+
+		$departments 	= $this->modelList('Department');
+		$levels 		= $this->modelList('Level');
+
+		// rememberFormLocation($user->department_id, $user->province_id, $user->district_id);
+
+		return view('users.profile-edit', compact('user', 'departments', 'levels'));
+	}
+
+	public function profileUpdate(UserRequest $request)
+	{
+		auth()->user()->update($request->all());
+
+		\Session::forget('location');
+
+		\Flash::success('Su cuenta ha sido actualizada correctamente.');
+
+		return \Redirect::route('users.profile');
 	}
 
 	public function provinces($id)

@@ -1,13 +1,13 @@
-<div class="row">
+{{-- <div class="row">
     <div class="col-md-6">
         <div class="form-group">
             <label class="col-sm-2 control-label">IGV %</label>
             <div class="col-sm-4">
-                {!! Form::text('igv', null, ['class' => 'form-control text-center', 'placeholder' => 'Sólo números', 'required', 'minlength' => '2', 'maxlength' => '4', 'id' => 'igv']) !!}
+                {!! Form::text('igv', null, ['class' => 'form-control text-center', 'placeholder' => 'Sólo números' ,'required', 'minlength' => '2', 'maxlength' => '4', 'id' => 'igv']) !!}
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <div class="col-sm-12 detalle_cabecera">
     <div class="col-xs-6">

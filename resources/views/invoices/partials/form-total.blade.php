@@ -8,7 +8,7 @@
 
     <div class="row" style="padding-bottom:10px">
         <div class="col-xs-6">IGV</div>
-        <div class="col-xs-6 text-right">PEN {{ session('igv') == '' ? '0.00' : session('igv') }}</div>
+        <div class="col-xs-6 text-right">{{ session('igv') == '' ? '0.00' : session('igv') }} %</div>
         <div class="clearfix visible-xs-block"></div>
     </div>
 

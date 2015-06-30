@@ -1,1 +1,1 @@
-{!! Form::select('district_id', $districts, Session::get('location.district'), ['class' => 'form-control text-center', 'required', 'id' => 'district_id']) !!}
+{!! Form::select('district_id', $districts, null, ['class' => '', 'required', 'id' => 'district_id']) !!}

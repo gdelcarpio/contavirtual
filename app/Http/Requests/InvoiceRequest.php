@@ -32,9 +32,9 @@ class InvoiceRequest extends Request {
             'number'     			=> array('required_if:invoice_type_id,1', 'max:20', 'regex:/^[0-9]+$/'),
             'issue_date'   			=> 'required|date',
             'expiration_date'		=> 'required|date',
-            'note'     				=> 'required|max:300',
+            'note'     				=> 'max:300',
             'subaccount_id'			=> 'required|exists:subaccounts,id',
-            'igv'					=> 'required|numeric',
+            // 'igv'					=> 'required|numeric',
             'subtotal'				=> 'required_if:invoice_category_id,2|numeric',
         ];
 

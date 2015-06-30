@@ -5,7 +5,8 @@
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12">
 		<ol class="breadcrumb">
-			<li><a href="index.html">PERFIL DE USUARIO</a></li>
+			<li><a href="{{ route('users.profile') }}">PERFIL DE USUARIO</a></li>
+			<li><a href="{{ route('users.profile.edit') }}">EDITAR PERFIL</a></li>
 		</ol>
 	</div>
 </div> 

@@ -9,7 +9,7 @@ function DemoSelect2(){
 	});
 
 // creacion de factura
-	$("#account_id, #invoice_type_id, #subaccount_id, #invoice_id").select2({placeholder: "Selecione una opción"});
+	$("#account_id, #invoice_type_id, #subaccount_id, #invoice_id, #department_id, #province_id, #district_id").select2({placeholder: "Selecione una opción"});
 
 	$(".product_id").select2({
 		placeholder: "Seleciona un Producto",

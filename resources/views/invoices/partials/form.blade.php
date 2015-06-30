@@ -60,13 +60,13 @@
 
         <!-- datos de la factura -->
 
-        <div class="form-group company">
-            <label class="col-sm-2 col-xs-2 control-label">Factura</label>
+        <div class="form-group">
+            <label class="col-sm-2 col-xs-2 control-label">Comprobante</label>
             <div class="col-sm-3 col-xs-3">
-                {!! Form::text('serial', null, ['class' => 'form-control text-center ruc-inputs', 'placeholder' => 'Serie', 'required', 'minlength' => '2', 'maxlength' => '20', 'id' => 'serial']) !!}
+                {!! Form::text('serial', null, ['class' => 'form-control text-center', 'placeholder' => 'Serie', 'required', 'minlength' => '2', 'maxlength' => '20', 'id' => 'serial']) !!}
             </div>
             <div class="col-sm-7 col-xs-7">
-                {!! Form::text('number', null, ['class' => 'form-control text-center ruc-inputs', 'placeholder' => 'Número', 'required', 'minlength' => '2', 'maxlength' => '20', 'id' => 'number']) !!}
+                {!! Form::text('number', null, ['class' => 'form-control text-center', 'placeholder' => 'Número', 'required', 'minlength' => '2', 'maxlength' => '20', 'id' => 'number']) !!}
             </div>
         </div>
 
@@ -99,7 +99,7 @@
         </div>
 
         <div class="col-sm-10">
-            {!! Form::textarea('note', null, ['class' => 'form-control text-center', 'rows' => '2', 'placeholder' => 'Deja una anotación o descripción...', 'required', 'id' => 'note']) !!}
+            {!! Form::textarea('note', null, ['class' => 'form-control text-center', 'rows' => '2', 'placeholder' => 'Deja una anotación o descripción...', 'id' => 'note']) !!}
         </div>
     </div>
 </div>

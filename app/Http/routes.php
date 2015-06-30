@@ -69,6 +69,8 @@ Route::get('/users/{id}/payments',		 ['as' => 'users.payments.index',  'uses' =>
 Route::get('/users/{id}/payments/create',['as' => 'users.payments.create', 'uses' => 'UserController@paymentsCreate']);
 Route::post('/users/{id}/payments/store',['as' => 'users.payments.store',  'uses' => 'UserController@paymentsStore']);
 Route::get('/users/password', 			 ['as' => 'users.password.edit',   'uses' => 'UserController@editPassword']);
+Route::patch('/my-profile/edit', 		 ['as' => 'users.profile.update',  'uses' => 'UserController@profileUpdate']);
+Route::get('/my-profile/edit', 			 ['as' => 'users.profile.edit',    'uses' => 'UserController@profileEdit']);
 Route::get('/my-profile', 				 ['as' => 'users.profile', 		   'uses' => 'UserController@profile']);
 Route::get('/my-payments',				 ['as' => 'users.payments',        'uses' => 'UserController@myPayments']);
 Route::resource('users', 'UserController');

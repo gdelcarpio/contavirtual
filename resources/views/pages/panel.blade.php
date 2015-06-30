@@ -45,15 +45,9 @@
 				<div id="chart_div"></div>
 			</div>
 
-			
-
-
 		</div>
 
-
 <div style="height: 40px;"></div>
-
-
 
 <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>

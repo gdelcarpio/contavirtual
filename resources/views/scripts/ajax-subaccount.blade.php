@@ -34,7 +34,7 @@ function get_subaccounts(account_id, subaccount_id){
 	$.post("{{ URL::to('/ajax-subaccounts') }}/"+account_id,{},function(cadena){
 
         $("#subaccount").html(cadena); 
-        $("#subaccount_id").select2({placeholder: "Seleciona una opción"});
+        $("#subaccount_id").select2({placeholder: "Selecciona una opción"});
         $("#subaccount_id").select2("val", subaccount_id);
 
   	});

@@ -86,6 +86,7 @@ class InvoiceController extends Controller {
 		$page = $this->getPageInfo(url_alias());
 
 		$request['invoice_category_id'] =  $page['id'];
+		$request['igv'] =  session('igv');
 
 		$invoice = auth()->user()->invoices()->create($request->except('account_id', 'product_id', 'quantity'));
 
@@ -175,6 +176,8 @@ class InvoiceController extends Controller {
 		$page  = $this->getPageInfo(url_alias());
 		
 		$invoice = Invoice::findOrFail($id);
+		
+		$request['igv'] =  session('igv');
 
 		$invoice->update($request->except('account_id', 'product_id', 'quantity'));
 

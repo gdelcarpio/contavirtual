@@ -78,21 +78,21 @@
 		<div class="col-sm-4">
 			<label class="col-sm-12 xcontrol-label text-center">Departamento</label>
 			<div class="col-sm-12">
-				{!! Form::select('department_id', $departments, null, ['class' => 'form-control', 'required', 'id' => 'department_id']) !!}
+				{!! Form::select('department_id', $departments, null, ['class' => '', 'required', 'id' => 'department_id']) !!}
 			</div>	
 		</div>
 		<div class="col-sm-4">
 			<label class="col-sm-12 xcontrol-label text-center">Provincia</label>
-			<div class="col-sm-12">
-				<select id="province_id" name="province_id" class="form-control text-center" required>
+			<div class="col-sm-12" id="province">
+				<select id="province_id" name="province_id" class="" required>
 		          <option>Seleccione</option>
 		        </select>
 			</div>	
 		</div>
 		<div class="col-sm-4">
 			<label class="col-sm-12 xcontrol-label text-center">Distrito</label>
-			<div class="col-sm-12">
-				<select id="district_id" name="district_id" class="form-control text-center" required>
+			<div class="col-sm-12" id="district">
+				<select id="district_id" name="district_id" class="" required>
 		          <option>Seleccione</option>
 		        </select>
 			</div>	
@@ -135,18 +135,22 @@
 	</div>
 </div>
 
-<div class="linea"></div>
+@if( is_admin() )
 
-<div class="row">
-	<div class="form-group">
-		<div class="col-sm-6">
-			<label class="col-sm-2 control-label">Nivel</label>
-			<div class="col-sm-9">
-				{!! Form::select('level_id', $levels, null, ['class' => 'form-control', 'required', 'id' => 'level_id']) !!}
-			</div>	
+	<div class="linea"></div>
+
+	<div class="row">
+		<div class="form-group">
+			<div class="col-sm-6">
+				<label class="col-sm-2 control-label">Nivel</label>
+				<div class="col-sm-9">
+					{!! Form::select('level_id', $levels, null, ['class' => 'form-control', 'required', 'id' => 'level_id']) !!}
+				</div>	
+			</div>
 		</div>
-	</div>
-</div>					
+	</div>	
+
+@endif				
 
 </div>
 
