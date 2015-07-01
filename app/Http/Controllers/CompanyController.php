@@ -24,45 +24,61 @@ class CompanyController extends Controller {
 	public function index(){
 		$user       = \Auth::user()->id;
 		$type		= \Input::get('type');
-		$rows  	    = \Input::get('rows', 5);
-		$column 	= \Input::get('column', 'id'); //columna a ordenr
-		$direction  = \Input::get('direction', 'desc'); //tipo de orden
+		$rows  	    = \Input::get('rows', 10);
+		$column 	= \Input::get('column', 'id');
+		$direction  = \Input::get('direction', 'desc');
+
+		$role  		= \Input::get('role', '');
+		$param 		= $this->getRoleId($role);
 
 		$q  = trim(\Input::get('q') != "" ) ? trim(\Input::get('q')) : '';
 		$searchTerms = $q != '' ? explode(' ', $q) : '';
 
-		$companies = Company::where('user_id', $user)
-							   ->sortBy(compact('column', 'direction'))
-		                       ->where(function($query) use ($searchTerms) {
-					                if( $searchTerms != '' ){
-					                    foreach($searchTerms as $term){
-					              			$query->orWhere('company_name', 'LIKE', '%'. $term .'%');
-					                     	$query->orWhere('ruc', 'LIKE', '%'. $term .'%');
-					                     	$query->orWhere('name', 'LIKE', '%'. $term .'%');
-					                     	$query->orWhere('email', 'LIKE', '%'. $term .'%');
-					                     	$query->orWhere('phone', 'LIKE', '%'. $term .'%');
-					                    }
-					                }
-					            })
-		                       ->paginate($rows);
-		//$count = Company::where('user_id', $user)->count();
+		$companies = auth()->user()->companies()
+						->where(function($query) use ($param) {
+			                if( $param['id'] > 0 ){
+			              		$query->where($param['name'], $param['id']);
+			                }
+			            })
+					   ->sortBy(compact('column', 'direction'))
+                       ->where(function($query) use ($searchTerms) {
+			                if( $searchTerms != '' ){
+			                    foreach($searchTerms as $term){
+			              			$query->orWhere('company_name', 'LIKE', '%'. $term .'%');
+			                     	$query->orWhere('ruc', 'LIKE', '%'. $term .'%');
+			                     	$query->orWhere('name', 'LIKE', '%'. $term .'%');
+			                     	$query->orWhere('email', 'LIKE', '%'. $term .'%');
+			                     	$query->orWhere('phone', 'LIKE', '%'. $term .'%');
+			                    }
+			                }
+			            })
+                       ->paginate($rows);
+		
+		$countTotal 	= auth()->user()->companies()->count();
+		$countClient 	= auth()->user()->companies()->whereClient(1)->count();
+		$countProvider 	= auth()->user()->companies()->whereProvider(1)->count();
 
-		$countClient = Company::whereRaw('user_id = ? and client = 1', [$user])->count();
-		$countProvider = Company::whereRaw('user_id = ? and provider = 1', [$user])->count();
-		$rows = [
-					5  => 5,
-					10 => 10,
-					20 => 20,
-					30 => 30,
-					40 => 40
-				];
+		$rows = getRowsNumber();
 				
 		$report = [
         	'cliente'  	=> $countClient,
-        	'proveedor'	=> $countProvider
+        	'proveedor'	=> $countProvider,
+        	'total'		=> $countTotal,
         ];
 
 		return view('companies.index', compact('companies','rows','column','direction','type', 'report'));
+	}
+
+	public function getRoleId($role)
+	{
+		switch ($role) {
+			case 'client': $param['id'] = 1; $param['name'] = 'client'; break;
+			case 'provider': $param['id'] = 1; $param['name'] = 'provider'; break;
+			
+			default: $param['id'] = 0; break;
+		}
+
+		return $param;	
 	}
 
 	/**

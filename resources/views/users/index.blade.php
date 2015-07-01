@@ -58,7 +58,7 @@
 
 			@include('partials.goto-form') 
 
-			<a href="{{ route('users.export.excel') }}" class="btn btn-success"><i class="fa fa-upload"></i> Exportar productos</a>       
+			<a href="{{ route('users.export.excel') }}" class="btn btn-success"><i class="fa fa-upload"></i> Exportar todos</a>       
 
 		</div>
 
