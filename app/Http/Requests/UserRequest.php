@@ -23,10 +23,6 @@ class UserRequest extends Request {
 
 	public function rules()
 	{
-		// rememberFormLocation(Request::get('department_id'), Request::get('province_id'), Request::get('district_id'));
-
-		// dd( session('location.province.0') );
-
 		$id = url_alias() == 'users.profile.update' ? auth()->user()->id : $this->segment(2);
 
 		$validations = [

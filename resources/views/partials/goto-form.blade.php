@@ -4,7 +4,13 @@
 	  
 	  <label>Página N°:</label>
 	  
-	  <div class="form-group">   
+	  <div class="form-group">  
+
+		@if(Input::get('role'))
+
+			{!! Form::hidden('role', Input::get('role')) !!}
+
+		@endif
 
 		@if(Input::get('q'))
 
@@ -33,6 +39,7 @@
 		@endif
 
 	    {!! Form::text('page', Input::get('page'), ['class' => 'form-control text-center', 'size' => 3, 'placeholder' => '#', 'required', 'id'=>'page']) !!}
+	    
 	    {!! Form::submit('Ir', ['id' => 'go_to']) !!}
 
 	  </div>

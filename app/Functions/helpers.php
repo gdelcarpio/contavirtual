@@ -10,12 +10,14 @@ function sort_model_by($column, $body, $url)
 	$from 		= Request::get('from');
 	$to 		= Request::get('to');
 
-	return link_to_route($url, $body, ['q' => $q,'column' => $column, 'direction' => $direction, 'rows' => $rows, 'page' => $page, 'from' => $from, 'to' => $to ]);
+	$role 		= Request::get('role');
+
+	return link_to_route($url, $body, ['role' => $role, 'q' => $q, 'column' => $column, 'direction' => $direction, 'rows' => $rows, 'page' => $page, 'from' => $from, 'to' => $to ]);
 }
 
-function filter_by($url, $title, $type)
+function role_filter($role, $title, $url )
 {
-	return link_to_route($url, $title, ['type' => $type]);
+	return link_to_route($url, $title, ['role' => $role]);
 }
 
 function show_sort_icon($sortName, $sortRequest, $direction)
@@ -27,20 +29,6 @@ function show_sort_icon($sortName, $sortRequest, $direction)
 	}
 
 	return $sortIcon;
-}
-
-function show_role_icon($role_id)
-{
-	switch ($role_id) {
-		case 1:	$icon = 'fa-eye'; break;
-		case 2:	$icon = 'fa-user'; break;
-		case 3:	$icon = 'fa-user-plus'; break;
-		case 4:	$icon = 'fa-user-secret'; break;
-		
-		default: $icon = ''; break;
-	}
-
-	return $icon;
 }
 
 function limpiarCaracteresEspeciales($string)
@@ -90,6 +78,11 @@ function link_selected($route, $link)
 
 	return '';
 
+}
+
+function active_link($link, $parameter)
+{
+	return $link == $parameter ? 'active' : '';
 }
 
 function rememberFormLocation($department, $province, $district)

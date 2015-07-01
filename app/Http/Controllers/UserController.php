@@ -35,11 +35,20 @@ class UserController extends Controller {
 
 		$rows  		= \Input::get('rows', 10);
 
+		$role  		= \Input::get('role', '');
+		$role_id 	= $this->getRoleId($role);
+
 		$q  = trim(\Input::get('q')) != "" ? trim(\Input::get('q')) : '';
 
 		$searchTerms = $q != '' ? explode(' ', $q) : '';
 
-		$users = User::with(['level'])		
+		$users = User::with(['level'])
+						->whereHas('roles', function($query) use ($role_id)
+						{
+							if ($role_id > 0) {
+							    $query->where('id', $role_id);
+							}
+						})
 						->join('levels', 'levels.id', '=', 'level_id')
 						->select('users.*','levels.name as scale')
 						->sortBy(compact('column', 'direction'))
@@ -64,6 +73,19 @@ class UserController extends Controller {
 		$rows = getRowsNumber();
 
 		return view('users.index', compact('users', 'count', 'column', 'direction', 'rows'));
+	}
+
+	public function getRoleId($role)
+	{
+		switch ($role) {
+			case 'user': $id = 1; break;
+			case 'admin': $id = 2; break;
+			case 'accountant': $id = 3; break;
+			
+			default: $id = 0; break;
+		}
+
+		return $id;	
 	}
 
 	/**
@@ -128,8 +150,6 @@ class UserController extends Controller {
 
 		$departments 	= $this->modelList('Department');
 		$levels 		= $this->modelList('Level');
-
-		// rememberFormLocation($user->department_id, $user->province_id, $user->district_id);
 
 		return view('users.edit', compact('user', 'departments', 'levels'));
 	}
@@ -198,8 +218,6 @@ class UserController extends Controller {
 
 		$departments 	= $this->modelList('Department');
 		$levels 		= $this->modelList('Level');
-
-		// rememberFormLocation($user->department_id, $user->province_id, $user->district_id);
 
 		return view('users.profile-edit', compact('user', 'departments', 'levels'));
 	}

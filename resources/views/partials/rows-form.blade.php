@@ -6,7 +6,14 @@
 
 <label>Número de filas:</label>
   
-<div class="form-group">   
+<div class="form-group"> 
+
+  @if(Input::get('role'))
+
+    {!! Form::hidden('role', Input::get('role')) !!}
+
+  @endif
+
 	@if(Input::get('q'))
 
     {!! Form::hidden('q', Input::get('q')) !!}

@@ -16,10 +16,22 @@
 		<div class="row">
 			<div class="col-md-6">
 				<ul class="nav nav-pills" role="tablist">
-				  <li role="presentation" class="active"><a href="{{ route('users.index') }}">Todos <span class="badge">{{ $count['users'] }}</span></a></li>
-				  <li role="presentation"><a href="#">Administradores <span class="badge">{{ $count['administrators']}}</span></a></li>
-				  <li role="presentation"><a href="#">Usuarios <span class="badge">{{ $count['clients']}}</span></a></li>
-				  <li role="presentation"><a href="#">Contadores <span class="badge">{{ $count['accountants']}}</span></a></li>
+					<li class="presentation {{ active_link( Input::get('role'), '' ) }}">
+				  		<a href="{{ route('users.index') }}">Todos</a>
+				  		<span class="badge">{{ $count['users'] }}</span>
+				  	</li>
+				  	<li class="presentation {{ active_link( Input::get('role'), 'user' ) }}">
+				  		{!! role_filter('user', 'Usuarios', url_alias()) !!}
+				  		<span class="badge">{{ $count['clients'] }}</span>
+				  	</li>
+				  	<li class="presentation {{ active_link( Input::get('role'), 'admin' ) }}">
+				  		{!! role_filter('admin', 'Administradores', url_alias()) !!}
+				  		<span class="badge">{{ $count['administrators'] }}</span>
+				  	</li>
+				  	<li class="presentation {{ active_link( Input::get('role'), 'accountant' ) }}">
+				  		{!! role_filter('accountant', 'Contadores', url_alias()) !!}
+				  		<span class="badge">{{ $count['accountants'] }}</span>
+				  	</li>
 				</ul>
 			</div>
 			<div class="col-md-6 text-right">
@@ -123,7 +135,7 @@
 
 		</div>
 		
-		{!! $users->setPath('')->appends( array( 'q' => Input::get('q') ,'column' => Input::get('column'),'direction' => Input::get('direction'), 'rows' => Input::get('rows') ) )->render() !!}
+		{!! $users->setPath('')->appends( array('role' => Input::get('role'), 'q' => Input::get('q') ,'column' => Input::get('column'),'direction' => Input::get('direction'), 'rows' => Input::get('rows') ) )->render() !!}
 
 		<!-- paginado inferior -->
 

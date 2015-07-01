@@ -4,8 +4,13 @@
 	{!! Form::open(['route' => url_alias(), 'method' => 'GET', 'role' => 'form', 'class' => 'form-inline', 'style' => 'display:inline-block']) !!}
 @endif
 
-	<div class="form-group">
-		{!! Form::input('search','q', Input::get('q'), ['class' => 'form-control', 'placeholder' => 'Ingrese su búsqueda...', 'required']) !!}
+<div class="form-group">
+
+	{!! Form::input('search','q', Input::get('q'), ['class' => 'form-control', 'placeholder' => 'Ingrese su búsqueda...', 'required']) !!}
+
+		@if(Input::get('role'))
+			{!! Form::hidden('role', Input::get('role')) !!}
+		@endif
 
 		@if(Input::get('column') AND Input::get('direction'))
 	    	{!! Form::hidden('column', Input::get('column')) !!}
@@ -17,6 +22,7 @@
 	    @endif
 
   		<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-	</div>
 
-{!! Form::close() !!}
+	{!! Form::close() !!}
+	
+</div>

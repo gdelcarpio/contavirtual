@@ -2450,3 +2450,13 @@ a.agregar:hover{
     position: relative;
 }
 
+li.presentation > a{
+  display: inline-block;
+}
+
+.nav-pills > li.active {
+  padding: 0 5px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #428bca;
+}
